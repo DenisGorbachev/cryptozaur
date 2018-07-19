@@ -2,6 +2,8 @@
 
 ![Intro image](https://github.com/DenisGorbachev/cryptozaur/blob/master/images/intro.jpg)
 
+## Developer's best friend
+
 Cryptozaur **saves your time** by providing a unified command-line interface for cryptoasset exchanges:
 
 * Place orders without opening UI.
@@ -11,15 +13,15 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
 * See aggregated balances from all exchanges.
 * Export trade history to CSV from all exchanges.
 
-# Contents
+## Contents
 
 * [Examples](#examples)
 * [Automated trading](#automated-trading)
 * [Terminology](#terminology)
 
-# Examples
+## Examples
 
-## Buy LEX tokens on LeverEX
+### Buy LEX tokens on LeverEX
 
 First, get your API key & secret on credentials management page.
 
@@ -56,7 +58,7 @@ Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 
 Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 4) (Withdrawal ID: 138483)
 ```
 
-## Run trans-fee mining
+### Run trans-fee mining
 
 Some exchanges have recently implemented "[trans-fee mining](https://www.binaryoptions.net/what-is-trans-fee-mining-and-why-you-should-care/)". It's a profitable (although questionable) way of acquiring native exchange tokens via self-trade.
 
@@ -67,7 +69,7 @@ cryptozaur mine --account coinex --market ETH:BTC --single-order-amount 0.1 --bu
 ### This command will self-trade on ETH:BTC market by concurrently placing buy & sell orders for 0.1 ETH at the same price until the budget of 0.5 BTC is exhausted
 ```
 
-# Automated trading
+## Automated trading
 
 You can automate your trading by running certain commands periodically via task scheduler:
 
@@ -83,7 +85,7 @@ For example, if you want to accumulate a lowcap altcoin, you can add the followi
 
 This command will run every 15 minutes, maintaining 10 buy orders summing up to 10000.0 MSR, spreading them evenly between 5200-5800 sats, until it accumulates 190000.0 MSR.
 
-# Terminology
+## Terminology
 
 * `account` - API key & secret pair (e.g. "leverex")
 * `market` - exchange partition that allows trading `base` asset against `quote` asset (e.g. "ETH:BTC" spot market or "ETHM18" futures market).
