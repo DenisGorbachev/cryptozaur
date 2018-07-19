@@ -89,7 +89,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   defp validate(response) do
     case response do
-      %{"type" => type, "details" => details} = error -> failure(error)
+      %{"type" => _type, "details" => _details} = error -> failure(error)
       data -> success(data)
     end
   end

@@ -49,7 +49,7 @@ defmodule Cryptozaur.Connectors.Binance do
         quote,
         from,
         to,
-        extra \\ %{}
+        _extra \\ %{}
       ) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)

@@ -13,7 +13,7 @@ defmodule Cryptozaur.Connectors.Coinmarketcap do
     end
   end
 
-  defp to_brief(%{"symbol" => asset, "id" => coinmarketcap_id, "24h_volume_usd" => volume_24h_USD, "market_cap_usd" => market_cap_USD} = brief) do
+  defp to_brief(%{"symbol" => asset, "id" => coinmarketcap_id, "24h_volume_usd" => volume_24h_USD, "market_cap_usd" => market_cap_USD} = _brief) do
     %{
       asset: asset,
       coinmarketcap_id: coinmarketcap_id,

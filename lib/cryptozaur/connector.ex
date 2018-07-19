@@ -252,7 +252,7 @@ defmodule Cryptozaur.Connector do
       Code.ensure_loaded(module.connector)
       function_exported?(module.connector, function, arity)
     rescue
-      e -> false
+      _e -> false
     end
   end
 
@@ -278,7 +278,7 @@ defmodule Cryptozaur.Connector do
     @exchanges
   end
 
-  defp get_fallback_amount_precision(_exchange, base, quote) do
+  defp get_fallback_amount_precision(_exchange, _base, _quote) do
     8
   end
 

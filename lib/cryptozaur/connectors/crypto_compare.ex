@@ -269,7 +269,7 @@ defmodule Cryptozaur.Connectors.CryptoCompare do
   def get_symbols() do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
-      pairs <- Rest.get_pairs(rest)
+      _pairs <- Rest.get_pairs(rest)
       # TODO
       symbols = []
     after
@@ -390,7 +390,7 @@ defmodule Cryptozaur.Connectors.CryptoCompare do
     end
   end
 
-  def get_link(base, quote) do
+  def get_link(base, _quote) do
     "https://www.cryptocompare.com/coins/#{String.downcase(base)}/overview"
   end
 end

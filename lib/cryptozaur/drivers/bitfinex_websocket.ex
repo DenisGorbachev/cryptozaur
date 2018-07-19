@@ -181,7 +181,7 @@ defmodule Cryptozaur.Drivers.BitfinexWebsocket do
   #  end
 
   # used only for interval purposes
-  def handle_call({:register_channel, channel_id, channel, pair}, _from, %{channels: channels, key: key} = state) do
+  def handle_call({:register_channel, channel_id, channel, pair}, _from, %{channels: channels, key: _key} = state) do
     updated_state = %{state | channels: Map.put(channels, channel_id, {:data, channel, pair})}
 
     {:reply, nil, updated_state}
@@ -309,12 +309,12 @@ defmodule Cryptozaur.Drivers.BitfinexWebsocket do
     send_event(key, :welcome)
   end
 
-  def handle_message(%{"code" => 20051, "event" => "info", "msg" => "Stopping. Please try to reconnect"}, key, driver) do
+  def handle_message(%{"code" => 20051, "event" => "info", "msg" => "Stopping. Please try to reconnect"}, _key, driver) do
     GenServer.call(driver, {:reconnect})
     Process.exit(self(), :terminated)
   end
 
-  def handle_message(%{"channel" => channel, "code" => error_code, "event" => "error", "msg" => message, "pair" => _, "symbol" => pair}, key, _driver) do
+  def handle_message(%{"channel" => channel, "code" => _error_code, "event" => "error", "msg" => message, "pair" => _, "symbol" => pair}, key, _driver) do
     send_event(key, {:subscribe, channel, pair}, failure(message))
   end
 

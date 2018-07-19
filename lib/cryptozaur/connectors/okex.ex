@@ -1,9 +1,9 @@
 defmodule Cryptozaur.Connectors.Okex do
-  import OK, only: [success: 1]
+  require OK
 
   import Cryptozaur.Utils
 
-  alias Cryptozaur.Model.{Ticker, Trade, Order, Balance}
+  alias Cryptozaur.Model.{Ticker, Balance}
   alias Cryptozaur.Drivers.OkexRest, as: Rest
 
   def get_ticker(base, quote) do
@@ -64,7 +64,7 @@ defmodule Cryptozaur.Connectors.Okex do
     end
   end
 
-  def get_min_amount(base, price) do
+  def get_min_amount(base, _price) do
     case base do
       # TODO: find out real min_amount
       _ ->

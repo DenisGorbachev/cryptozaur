@@ -1,9 +1,9 @@
 defmodule Cryptozaur.Connectors.Bithumb do
-  import OK, only: [success: 1]
+  require OK
 
   import Cryptozaur.Utils
 
-  alias Cryptozaur.Model.{Ticker, Trade, Order, Balance}
+  alias Cryptozaur.Model.{Ticker}
   alias Cryptozaur.Drivers.BithumbRest, as: Rest
 
   def get_ticker(base, quote) do

@@ -72,7 +72,7 @@ defmodule Cryptozaur.Drivers.CryptopiaRest do
 
   defp validate(response) do
     case response do
-      %{"Success" => true, "Message" => null, "Data" => data} -> success(data)
+      %{"Success" => true, "Message" => _null, "Data" => data} -> success(data)
       %{"Success" => false, "Message" => message} -> failure(message)
     end
   end

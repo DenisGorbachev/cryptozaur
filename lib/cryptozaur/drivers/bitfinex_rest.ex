@@ -63,7 +63,7 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
 
   def handle_call({:get_ticker, base, quote}, _from, state) do
     path = "/v2/ticker/#{to_pair(base, quote)}"
-    params = %{}
+    _params = %{}
     result = send_public_request(path)
     {:reply, result, state}
   end
@@ -115,7 +115,7 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
 
   def handle_call({:get_symbols, base, quote}, _from, state) do
     path = "/v2/ticker/#{to_pair(base, quote)}"
-    params = %{}
+    _params = %{}
     result = send_public_request(path)
     {:reply, result, state}
   end

@@ -196,7 +196,7 @@ defmodule Cryptozaur.Drivers.BinanceRest do
     {:reply, result, state}
   end
 
-  def handle_call({:torches, base, quote, from, to, resolution, limit}, _from, state) do
+  def handle_call({:torches, base, quote, from, to, resolution, _limit}, _from, state) do
     url = "https://www.binance.com/api/v1/klines"
     parameters = %{"symbol" => to_binance_symbol(base, quote), "interval" => to_binance_resolution(resolution), "startTime" => to_binance_timestamp(from), "endTime" => to_binance_timestamp(to)}
 

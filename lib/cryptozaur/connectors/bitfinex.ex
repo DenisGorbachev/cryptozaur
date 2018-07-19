@@ -113,7 +113,7 @@ defmodule Cryptozaur.Connectors.Bitfinex do
   def pair_valid?(base, quote) do
     OK.try do
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
-      ticker <- Rest.get_ticker(rest, base, quote)
+      _ticker <- Rest.get_ticker(rest, base, quote)
     after
       success(true)
     rescue

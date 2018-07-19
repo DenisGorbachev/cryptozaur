@@ -1,9 +1,9 @@
 defmodule Cryptozaur.Connectors.Hitbtc do
   require OK
-  import OK, only: [success: 1, failure: 1]
+  import OK, only: [success: 1]
   import Cryptozaur.Utils
   import Cryptozaur.Logger
-  alias Cryptozaur.Model.{Ticker, Trade}
+  alias Cryptozaur.Model.{Trade}
   alias Cryptozaur.Drivers.HitbtcRest, as: Rest
 
   # actually, I was able to place an order with total = 0.00000329 (less than @btc_dust_threshold)

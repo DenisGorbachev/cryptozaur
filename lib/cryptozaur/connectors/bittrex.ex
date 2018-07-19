@@ -1,7 +1,6 @@
 defmodule Cryptozaur.Connectors.Bittrex do
   import OK, only: [success: 1, failure: 1]
-  import Cryptozaur.Utils
-  alias Cryptozaur.Model.{Trade, Order, Level, Summary, Ticker, Balance}
+  alias Cryptozaur.Model.{Trade, Order, Level, Ticker, Balance}
   alias Cryptozaur.Drivers.BittrexRest, as: Rest
 
   @btc_dust_threshold 0.00100000

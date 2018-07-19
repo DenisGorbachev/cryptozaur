@@ -112,7 +112,7 @@ defmodule Cryptozaur.Connectors.Huobi do
     %Balance{currency: String.upcase(currency), amount: balance}
   end
 
-  defp to_ticker(%{"bid" => [bid, bid_amount], "ask" => [ask, ask_amount], "amount" => volume_24h_base, "vol" => volume_24h_quote}, base, quote) do
+  defp to_ticker(%{"bid" => [bid, _bid_amount], "ask" => [ask, _ask_amount], "amount" => volume_24h_base, "vol" => volume_24h_quote}, base, quote) do
     %Ticker{
       symbol: to_symbol(base, quote),
       bid: to_float(bid),

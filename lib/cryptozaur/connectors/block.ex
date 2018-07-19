@@ -1,7 +1,6 @@
 defmodule Cryptozaur.Connectors.Block do
-  import Cryptozaur.Utils
 
-  alias Cryptozaur.Model.{Ticker, Trade, Order, Balance}
+  alias Cryptozaur.Model.{Ticker}
   alias Cryptozaur.Drivers.BlockRest, as: Rest
 
   def get_tickers(params) do

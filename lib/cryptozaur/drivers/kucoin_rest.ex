@@ -76,7 +76,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   def handle_call({:get_open_orders}, _from, state) do
     path = "/v1/order/active-map"
     params = %{}
-    body = ""
+    _body = ""
     {nonce, state} = increment_nonce(state)
     result = get(path, params, signature_headers(path, params, nonce, state))
     {:reply, result, state}
@@ -104,7 +104,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
     {:reply, success(result), state}
   end
 
-  def handle_call({:get_trades, symbol, limit, since}, _from, state) do
+  def handle_call({:get_trades, _symbol, _limit, _since}, _from, state) do
     path = "/v1/account/balances"
     parameters = %{limit: @max_balance_per_page, page: @first_fetch_page}
     result = success(recursive_pagination_call({path, parameters}, state))

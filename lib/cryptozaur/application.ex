@@ -7,8 +7,6 @@ defmodule Cryptozaur.Application do
 
   def start(_type, _args) do
     # List all child processes to be supervised
-    Apex.ap("asrtarst", numbers: false)
-
     children =
       [
         supervisor(Cryptozaur.Repo, [])

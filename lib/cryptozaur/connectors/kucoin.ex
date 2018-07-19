@@ -1,6 +1,5 @@
 defmodule Cryptozaur.Connectors.Kucoin do
   require OK
-  import OK, only: [success: 1, failure: 1]
   import Cryptozaur.Utils
   alias Cryptozaur.Model.{Ticker, Balance, Order}
   alias Cryptozaur.Drivers.KucoinRest, as: Rest
@@ -151,7 +150,7 @@ defmodule Cryptozaur.Connectors.Kucoin do
            "coinType" => base,
            "coinTypePair" => quote,
            "createdAt" => timestamp_in_milliseconds
-         } = order
+         } = _order
        ) do
     pair = to_pair(base, quote)
     timestamp = timestamp_in_milliseconds |> DateTime.from_unix!(:millisecond) |> DateTime.to_naive()

@@ -403,12 +403,12 @@ defmodule Cryptozaur.Connectors.Bitmex do
     %Trade{uid: id, symbol: symbol, timestamp: timestamp, amount: amount * sign, price: price}
   end
 
-  def get_min_amount(base, _price) do
+  def get_min_amount(_base, _price) do
     # BitMEX always trades full contracts (you can't buy 0.5 ETH contracts, only 1 ETH contract)
     1.0
   end
 
-  def get_amount_precision(base, quote) do
+  def get_amount_precision(_base, _quote) do
     # BitMEX always trades full contracts (you can't buy 0.5 ETH contracts, only 1 ETH contract)
     0
   end

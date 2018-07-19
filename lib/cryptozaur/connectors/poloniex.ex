@@ -11,7 +11,7 @@ defmodule Cryptozaur.Connectors.Poloniex do
   @iterate_trades_period 3600 * 24 * 28
   @btc_dust_threshold 0.0001000
 
-  def get_trades(base, quote, from, to, extra \\ %{}) do
+  def get_trades(base, quote, from, to, _extra \\ %{}) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
       trades <- Rest.get_trade_history(rest, base, quote, from, to)
