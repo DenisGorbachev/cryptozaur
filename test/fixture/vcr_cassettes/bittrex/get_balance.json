@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "4c184c438edf9ac77575987daa39cd9c94869b990d2c7bc74b03922339100d8024033830f43afe0103459119a48e63f373dcf977492892dd4411ed3ceb979192"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/getbalance?currency=BTC&apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504860774183055000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":{\"Currency\":\"BTC\",\"Balance\":0.00295640,\"Available\":0.00295640,\"Pending\":0.00000000,\"CryptoAddress\":\"1H4RYjAeXQKZa98B5gxDV1XAvrTWNDF49m\"}}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 08:52:54 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d1f709700fe39faeb48a60a1b07545cf91504860774; expires=Sat, 08-Sep-18 08:52:54 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b0ac9f4de94e5a-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

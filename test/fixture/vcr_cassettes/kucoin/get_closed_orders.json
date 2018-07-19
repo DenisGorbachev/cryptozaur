@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1517202289257",
+        "KC-API-SIGNATURE": "6ce52ab77a58c6cba45093fa0aceecf6822463d55804f85bb34e3cce0889da24"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/order/dealt?limit=20&page=1"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"SYSTEM_ERROR\",\"msg\":\"Operation succeeded.\",\"timestamp\":1517202291766,\"data\":{\"total\":2,\"datas\":[{\"coinType\":\"TNC\",\"createdAt\":1517199222000,\"amount\":2.0,\"dealValue\":6.06E-4,\"fee\":0.002,\"dealDirection\":\"SELL\",\"coinTypePair\":\"ETH\",\"oid\":\"5a6e9f7673fb6f11d627adeb\",\"dealPrice\":3.03E-4,\"orderOid\":\"5a6e9f6b87a12d4439beaa2a\",\"feeRate\":0.001,\"direction\":\"BUY\"},{\"coinType\":\"TNC\",\"createdAt\":1517199123000,\"amount\":1.0,\"dealValue\":3.1E-4,\"fee\":0.001,\"dealDirection\":\"BUY\",\"coinTypePair\":\"ETH\",\"oid\":\"5a6e9f1373fb6f11d627adcf\",\"dealPrice\":3.1E-4,\"orderOid\":\"5a6e9f1273fb6f12b0588de5\",\"feeRate\":0.001,\"direction\":\"BUY\"}],\"limit\":20,\"page\":1}}",
+      "headers": {
+        "Date": "Mon, 29 Jan 2018 05:04:51 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

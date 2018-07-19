@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.bitfinex.com/v2/book/tBTCUSD/P0"
+    },
+    "response": {
+      "body": "[[8077.2,1,0.0438],[8074.2,1,1.4],[8072.3,1,0.0588],[8072,1,12],[8070.5,1,1.6],[8070.1,1,0.003],[8069.6,1,0.4909786],[8068,1,12],[8067.6,1,0.49929893],[8067.5,1,0.49863047],[8066.8,1,0.17429277],[8065.7,1,2.47525059],[8065.6,1,1.6],[8065,1,0.02],[8064.6,1,0.48987701],[8064.2,1,0.48913926],[8064,1,0.05723219],[8062.7,2,0.98978943],[8061.1,1,2],[8061,1,10],[8060.7,1,2],[8060.2,1,0.07672],[8060.1,1,0.003],[8060,1,0.002],[8058.4,1,0.003],[8077.3,7,-0.26470386],[8077.9,1,-0.23631588],[8078,1,-2],[8079.4,1,-2],[8080,1,-1.97956727],[8082.6,2,-0.08093622],[8083.5,1,-0.4996288],[8085.4,2,-0.50884379],[8088.7,1,-0.5],[8089.3,1,-0.05261],[8090,1,-0.02],[8090.4,1,-0.003],[8090.9,1,-1],[8092,1,-2],[8095.9,1,-0.5],[8097.7,1,-0.10280448],[8099.6,1,-0.5],[8100.5,1,-1],[8100.6,1,-0.06814],[8102,1,-0.2],[8102.9,1,-1.0219],[8103,1,-9.64],[8106.3,1,-1],[8107.9,1,-16.93645552],[8108,1,-11]]",
+      "headers": {
+        "Date": "Thu, 08 Feb 2018 03:47:31 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d6b9bab2cac3a55366ce7b35e2c4f184b1518061650; expires=Fri, 08-Feb-19 03:47:30 GMT; path=/; domain=.bitfinex.com; HttpOnly",
+        "Vary": "Accept-Encoding",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "X-BFX-APIKEY,X-BFX-PAYLOAD,X-BFX-SIGNATURE,Content-Type,X-CSRF-Token,bfx-token,bfx-signature,bfx-apikey,bfx-nonce,bfx-flags",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e9b9ba26c641098-MDE"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

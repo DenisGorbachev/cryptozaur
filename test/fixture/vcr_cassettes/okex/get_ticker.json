@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "https://www.okex.com/api/v1/ticker.do?symbol=btc_usdt"
+    },
+    "response": {
+      "body": "{\"date\":\"1517896342\",\"ticker\":{\"high\":\"8316.9499\",\"vol\":\"164520.4297\",\"last\":\"6594.0003\",\"low\":\"6100.0000\",\"buy\":\"6600.0003\",\"sell\":\"6603.1398\"}}",
+      "headers": {
+        "Date": "Tue, 06 Feb 2018 05:52:22 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "145",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dd1cd7bf32aec23846d113084cf2c2a631517896341; expires=Wed, 06-Feb-19 05:52:21 GMT; path=/; domain=.okex.com; HttpOnly",
+        "X-Content-Type-Options": "nosniff",
+        "X-XSS-Protection": "1; mode=block",
+        "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "X-Frame-Options": "DENY",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e8bd7c82ca5490d-MDE"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

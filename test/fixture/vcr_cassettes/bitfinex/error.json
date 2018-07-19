@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.bitfinex.com/v2/trades/tBTCUSD/hist?end=1098751849653&start=1498741249653"
+    },
+    "response": {
+      "body": "[\"error\",10020,\"time_interval: invalid\"]",
+      "headers": {
+        "Date": "Thu, 08 Feb 2018 03:47:33 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d689b76ab6c3cb4490ab3a56b36047a7e1518061652; expires=Fri, 08-Feb-19 03:47:32 GMT; path=/; domain=.bitfinex.com; HttpOnly",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e9b9bb03b0f1098-MDE"
+      },
+      "status_code": 500,
+      "type": "ok"
+    }
+  }
+]

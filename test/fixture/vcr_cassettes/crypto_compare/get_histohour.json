@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://min-api.cryptocompare.com/data/histohour?aggregate=2&e=BitTrex&fsym=BTC&limit=2&tsym=USD"
+    },
+    "response": {
+      "body": "{\"Response\":\"Success\",\"Type\":100,\"Aggregated\":true,\"Data\":[{\"time\":1514865600,\"close\":13121,\"high\":13431,\"low\":12893,\"open\":13300.5,\"volumefrom\":387.52,\"volumeto\":5072082.140000001},{\"time\":1514872800,\"close\":13347.87,\"high\":13357,\"low\":13044,\"open\":13121,\"volumefrom\":211.84,\"volumeto\":2805539.71},{\"time\":1514880000,\"close\":13400,\"high\":13443,\"low\":13300,\"open\":13347.87,\"volumefrom\":54.7,\"volumeto\":733705.5}],\"TimeTo\":1514880000,\"TimeFrom\":1514865600,\"FirstValueInArray\":true,\"ConversionType\":{\"type\":\"force_direct\",\"conversionSymbol\":\"\"}}",
+      "headers": {
+        "Server": "nginx/1.4.6 (Ubuntu)",
+        "Date": "Tue, 02 Jan 2018 08:33:36 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Vary": "Accept-Encoding",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Cache-Control": "public, max-age=29",
+        "CryptoCompare-Cache-HIT": "false"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

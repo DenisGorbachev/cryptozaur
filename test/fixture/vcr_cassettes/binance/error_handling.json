@@ -1,0 +1,29 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.binance.com/api/v1/aggTrades?symbol=ASDBTC"
+    },
+    "response": {
+      "body": "{\"code\":-1121,\"msg\":\"Invalid symbol.\"}",
+      "headers": {
+        "Date": "Sun, 21 Jan 2018 12:13:41 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Server": "nginx",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

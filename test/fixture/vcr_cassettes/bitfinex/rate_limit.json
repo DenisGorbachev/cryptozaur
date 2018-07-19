@@ -1,0 +1,26 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.bitfinex.com/v2/trades/tBTCUSD/hist"
+    },
+    "response": {
+      "body": "[\"error\",10010,\"ratelimit: error\"]",
+      "headers": {
+        "Date": "Mon, 04 Sep 2017 20:50:18 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dbb0f03ead8d0d664b042971ce0fb5d971504558217; expires=Tue, 04-Sep-18 20:50:17 GMT; path=/; domain=.bitfinex.com; HttpOnly",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3993d1fe1e4d4f50-DME"
+      },
+      "status_code": 500,
+      "type": "ok"
+    }
+  }
+]

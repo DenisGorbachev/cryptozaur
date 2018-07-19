@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "ed9edb7e574ed67cb04454b2cdd2f07bd968383b4c1edae8232655bd1426161ff6a328a15c3271441f3ee8569e226052ad75fff086672517c5cd0b554397249c"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/getdepositaddress?currency=MER&apikey=ab4c458ba4c440af9a6d88582c32b2b1&nonce=1511188490660206000"
+    },
+    "response": {
+      "body": "{\"success\":false,\"message\":\"ADDRESS_GENERATING\",\"result\":null}",
+      "headers": {
+        "Date": "Mon, 20 Nov 2017 14:34:50 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=df9c847329fab8d68700636d015e472c21511188490; expires=Tue, 20-Nov-18 14:34:50 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3c0c21e30f378d4d-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

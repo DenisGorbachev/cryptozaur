@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "116a3a72474ddbeca291c8855b1c39f02b999ec923fe95589407e0a5fddd200cdb3016af49b151497eb0bd0680301686c7ee59f55918f190930175bfa0d553e4"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/getorderhistory?market=BTC-NEO&apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504878506662661000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":[{\"OrderUuid\":\"a990106e-179a-41f4-b450-5ef8107931d8\",\"Exchange\":\"BTC-NEO\",\"TimeStamp\":\"2017-09-08T08:18:27.89\",\"OrderType\":\"LIMIT_BUY\",\"Limit\":0.00642100,\"Quantity\":0.10000000,\"QuantityRemaining\":0.00000000,\"Commission\":0.00000160,\"Price\":0.00064200,\"PricePerUnit\":0.00642000000000000000,\"IsConditional\":false,\"Condition\":\"NONE\",\"ConditionTarget\":null,\"ImmediateOrCancel\":false,\"Closed\":\"2017-09-08T08:18:28.063\"}]}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 13:48:28 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=de2734e0f9b4e0dc0a71111b09cbbc0421504878506; expires=Sat, 08-Sep-18 13:48:26 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b25d8af9638e31-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

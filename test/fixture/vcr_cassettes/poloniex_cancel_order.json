@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "command=cancelOrder&nonce=1500412218820542000&orderNumber=79126187728",
+      "headers": {
+        "Key": "0P3O5WYL-M92SI0CO-8TKWGKMK-MNWUGHD6",
+        "Sign": "8580c54c60cf7e953a27cb8722fc97b789093f276dd162624539b0ff02c5a7aa87cd3eb4f5ce753698425b7649b52f83cbe44a69760c2dd66b953764492ff970",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "body": "{\"success\":1,\"amount\":\"0.00100000\",\"message\":\"Order #79126187728 canceled.\"}",
+      "headers": {
+        "Date": "Tue, 18 Jul 2017 21:10:20 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dc71216713e449599b0d15ce3def3e17c1500412218; expires=Wed, 18-Jul-18 21:10:18 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "38086d508fe04f2c-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KEY": "__KEY__",
+        "SIGN": "__SIGN__"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://api.gate.io/api2/1/private/balances"
+    },
+    "response": {
+      "body": "{\"result\":\"true\",\"available\":[]}",
+      "headers": {
+        "Date": "Wed, 10 Jan 2018 07:46:05 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d0f02b0253c62b58a81e2ad60b537719d1515570365; expires=Thu, 10-Jan-19 07:46:05 GMT; path=/; domain=.gate.io; HttpOnly",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Powered-By": "CF ()",
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache, must-revalidate",
+        "Server": "cloudflare",
+        "CF-RAY": "3dae05415ef849f1-BKK"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

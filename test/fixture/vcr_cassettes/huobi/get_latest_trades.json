@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.huobi.pro/market/history/trade?size=1&symbol=ltcbtc"
+    },
+    "response": {
+      "body": "{\"status\":\"ok\",\"ch\":\"market.ltcbtc.trade.detail\",\"ts\":1517300036350,\"data\":[{\"id\":1708482140,\"ts\":1517300010434,\"data\":[{\"amount\":2.0000,\"ts\":1517300010434,\"id\":17084821401006066030,\"price\":0.016089,\"direction\":\"sell\"}]}]}",
+      "headers": {
+        "Date": "Tue, 30 Jan 2018 08:13:56 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d30ed3ca198bb967ff80f40719d814a171517300035; expires=Wed, 30-Jan-19 08:13:55 GMT; path=/; domain=.huobi.pro; HttpOnly",
+        "X-Request-ID": "54674c1fb087f40ddacfb16206a1d4ad",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e52f9847a4c8fb7-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

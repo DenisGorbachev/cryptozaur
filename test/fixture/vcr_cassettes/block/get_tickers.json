@@ -1,0 +1,28 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://data.block.cc/api/v1/tickers?market=bittrex&size=2"
+    },
+    "response": {
+      "body": "{\n  \"code\": 0,\n  \"message\": \"success\",\n  \"data\": {\n    \"page\": 1,\n    \"size\": 2,\n    \"total_page\": 136,\n    \"total_count\": 271,\n    \"list\": [\n      {\n        \"timestamps\": 1519115197891,\n        \"last\": 11438,\n        \"bid\": 11435.27315792,\n        \"ask\": 11438,\n        \"high\": 11639.99999999,\n        \"low\": 10731.1365568,\n        \"vol\": 4283.63002139,\n        \"base_volume\": 47684546.29393488,\n        \"change_daily\": 0.0891,\n        \"increase\": 0.0891,\n        \"market\": \"bittrex\",\n        \"symbol_pair\": \"BTC_USDT\",\n        \"has_kline\": true,\n        \"usd_rate\": 1.00018\n      },\n      {\n        \"timestamps\": 1519115195420,\n        \"last\": 0.00352993,\n        \"bid\": 0.00352811,\n        \"ask\": 0.00353109,\n        \"high\": 0.00375233,\n        \"low\": 0.00336,\n        \"vol\": 1018690.03967595,\n        \"base_volume\": 3615.70957199,\n        \"change_daily\": 0.07,\n        \"increase\": 0.07,\n        \"market\": \"bittrex\",\n        \"symbol_pair\": \"ETC_BTC\",\n        \"has_kline\": true,\n        \"usd_rate\": 11433.798308\n      }\n    ]\n  }\n}",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 20 Feb 2018 08:27:22 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "1033",
+        "Connection": "keep-alive",
+        "Vary": "Accept-Encoding"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

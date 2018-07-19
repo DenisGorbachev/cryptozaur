@@ -13,3 +13,7 @@ config :cryptozaur, Cryptozaur.Repo,
   username: "postgres",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :exvcr,
+  vcr_cassette_library_dir: "test/fixture/vcr_cassettes",
+  filter_url_params: false

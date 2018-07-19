@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "9c5aeec847a6b6918018f659c2a128250e25a1844ad9b5bdef2e593f91bd2add3f9509ebb2bec9cf3f73f5ca450f868289b14d8e1c011444f88826afb1e88a2e"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/market/getopenorders?apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504861008797401000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":[]}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 08:56:49 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=de503b65782dc505b82abd3529c479dec1504861008; expires=Sat, 08-Sep-18 08:56:48 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b0b259a9708d89-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1516998696972",
+        "KC-API-SIGNATURE": "e8debc77d633bfc906258849d40a91bd57414f18687bf127e8e8f374661b6f87"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/order?symbol=KCS-ETH&amount=1.0&price=1.0e-5&type=BUY"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"OK\",\"timestamp\":1516998698429,\"data\":{\"orderOid\":\"5a6b902a5e39302701af70f8\"}}",
+      "headers": {
+        "Date": "Fri, 26 Jan 2018 20:31:38 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

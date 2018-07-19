@@ -1,0 +1,42 @@
+[
+  {
+    "request": {
+      "body": "amount=0.10000000&api_key=93731de2-d7dc-46e2-b206-1070ec8cac60&price=0.00001000&sign=8382BDB30BFF5F9511C9A016F961A517&symbol=ltc_eth&type=buy",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://www.okex.com/api/v1/trade.do?"
+    },
+    "response": {
+      "body": "{\"result\":true,\"order_id\":30872494}",
+      "headers": {
+        "Date": "Sat, 17 Feb 2018 16:40:10 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "35",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dcf8151f4a3c6025ef6be6a30a3b4785d1518885610; expires=Sun, 17-Feb-19 16:40:10 GMT; path=/; domain=.okex.com; HttpOnly",
+        "X-Content-Type-Options": "nosniff",
+        "X-XSS-Protection": "1; mode=block",
+        "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "X-Frame-Options": "DENY",
+        "X-RateLimit-Limit": "20",
+        "X-RateLimit-Remaining": "19",
+        "X-RateLimit-Used": "1",
+        "X-RateLimit-Reset": "1518885612663",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3eea2fda3c45631f-BKK"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

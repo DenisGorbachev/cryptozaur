@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "command=returnOpenOrders&currencyPair=BTC_LTC&nonce=1500461091886052000",
+      "headers": {
+        "Key": "0P3O5WYL-M92SI0CO-8TKWGKMK-MNWUGHD6",
+        "Sign": "36fda1f8cd5e3e9b821a21dcda0d3b9f10f3f8a8aba30ef046a642aba5ae996406e6663ca7a40e8e1fc3ab847ccf94d69a7040f3c39eac5747c8863d8103db91",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "body": "[]",
+      "headers": {
+        "Date": "Wed, 19 Jul 2017 10:44:52 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d003f934c9d7cfd1306067095842d8f7c1500461092; expires=Thu, 19-Jul-18 10:44:52 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "380d16812c614eba-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "ae75984d7e87463e5cdce7684ca22054646565fc7a452e2385c63e87aed80c78549da1ebdb8a2794d2509063268d7d62af047643bee7e6f6f6848d79af83b8d1"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/market/getopenorders?market=BTC-OMG&apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504861151838136000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":[{\"Uuid\":null,\"OrderUuid\":\"9adefb97-2802-4d16-b986-bd646fc0c2b0\",\"Exchange\":\"BTC-OMG\",\"OrderType\":\"LIMIT_BUY\",\"Quantity\":0.50000000,\"QuantityRemaining\":0.50000000,\"Limit\":0.00100000,\"CommissionPaid\":0.00000000,\"Price\":0.00000000,\"PricePerUnit\":null,\"Opened\":\"2017-09-08T08:58:56.473\",\"Closed\":null,\"CancelInitiated\":false,\"ImmediateOrCancel\":false,\"IsConditional\":false,\"Condition\":\"NONE\",\"ConditionTarget\":null}]}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 08:59:12 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d5697827867a9ae2541a6deacc09422bd1504861151; expires=Sat, 08-Sep-18 08:59:11 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b0b5d7cf468d4d-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

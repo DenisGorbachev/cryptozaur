@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "40ce58a69172c2fb0e75096e67739fd8b71acdcd747fc5c33326e685a8a5728e5a2ad04b48cafc9f8d0149d845ba30963fe81bf164225d76e07da1d89bd98a1c"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/market/cancel?uuid=5177a54c-7d30-4772-8c63-6d19ea971f82&apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504865853485695000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":null}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 10:17:33 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=de04bd542ada0fed7212ac6b2389b63cf1504865853; expires=Sat, 08-Sep-18 10:17:33 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b128a08fb44e0c-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

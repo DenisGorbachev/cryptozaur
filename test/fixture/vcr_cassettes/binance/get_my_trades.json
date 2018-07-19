@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "X-MBX-APIKEY": "Wl8p5QMSOI8FZBJMvWrdfkKQG9ilCYJh4JfoyvEF5iGhe8Mzyv5WSExapOJq1fAJ"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.binance.com/api/v3/myTrades?recvWindow=5000&symbol=TRXETH&timestamp=1517580444099&signature=6c995e92a652c240982cb0dd1df079076f0f5335b8064cac8b8b0f52874646dc"
+    },
+    "response": {
+      "body": "[{\"id\":7190890,\"orderId\":15163752,\"price\":\"0.00004310\",\"qty\":\"1.00000000\",\"commission\":\"0.00100000\",\"commissionAsset\":\"TRX\",\"time\":1517579526858,\"isBuyer\":true,\"isMaker\":false,\"isBestMatch\":true}]",
+      "headers": {
+        "Date": "Fri, 02 Feb 2018 14:07:25 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Server": "nginx",
+        "Vary": "Accept-Encoding",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -6,11 +6,15 @@ defmodule Cryptozaur.MixProject do
       app: :cryptozaur,
       version: "1.0.0",
       elixir: "~> 1.6",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases()
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do
@@ -20,6 +24,7 @@ defmodule Cryptozaur.MixProject do
       ] ++ if Mix.env() == "dev", do: [:remix], else: []
 
     [
+      mod: {Cryptozaur.Application, []},
       extra_applications: extra_applications
     ]
   end
@@ -44,6 +49,7 @@ defmodule Cryptozaur.MixProject do
       {:ex_rated, "~> 1.3.1"},
       {:exconstructor, ">= 1.1.0"},
       {:deep_merge, "~> 0.1.0"},
+      {:ex_fixer, "~> 1.0.0", only: :dev},
       {:exvcr, "~> 0.8", only: :test},
       {:mock, "~> 0.2.0", only: :test},
       {:timex, "~> 3.0"},

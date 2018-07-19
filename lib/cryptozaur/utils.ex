@@ -274,7 +274,7 @@ defmodule Cryptozaur.Utils do
   end
 
   def execute_for_symbols(module, args) do
-    Application.get_env(:coin_hunter, :symbols, [])
+    Application.get_env(:cryptozaur, :symbols, [])
     |> Enum.map(&Task.async(module, :execute, [&1 | args]))
     |> Enum.map(&Task.await(&1, :infinity))
   end
@@ -412,7 +412,7 @@ defmodule Cryptozaur.Utils do
   end
 
   def is_backtest() do
-    Application.get_env(:coin_hunter, :env) == :test or Application.get_env(:coin_hunter, Cryptozaur.Backtester) != nil
+    Application.get_env(:cryptozaur, :env) == :test or Application.get_env(:cryptozaur, Cryptozaur.Backtester) != nil
   end
 
   def ohlc4(candle) do

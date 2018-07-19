@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.bitfinex.com/v2/ticker/tBTCUSD"
+    },
+    "response": {
+      "body": "[8001.4,68.63572272,8003.6,27.00050559,641,0.0871,8001,103681.92705866,8488.9,7175.1]",
+      "headers": {
+        "Date": "Thu, 08 Feb 2018 03:38:03 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d003fc04b2c4752d14b65cfbe7910f5761518061082; expires=Fri, 08-Feb-19 03:38:02 GMT; path=/; domain=.bitfinex.com; HttpOnly",
+        "Vary": "Accept-Encoding",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "X-BFX-APIKEY,X-BFX-PAYLOAD,X-BFX-SIGNATURE,Content-Type,X-CSRF-Token,bfx-token,bfx-signature,bfx-apikey,bfx-nonce,bfx-flags",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e9b8dc6f98f48e9-MDE"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

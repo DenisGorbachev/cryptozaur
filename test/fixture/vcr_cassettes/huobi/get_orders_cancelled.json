@@ -1,0 +1,34 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.huobi.pro/v1/order/orders?AccessKeyId=fc6aafe0-fcebd249-f30e4061-c60b8&Signature=%2BJYNxIcB1QSJyP9yoCUsWM7P7kZiUdWKmk2IRAeA64k%3D&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-01-30T14%3A24%3A14&states=pre-submitted%2Csubmitting%2Csubmitted%2Csubmitted%2Cpartial-filled%2Cpartial-canceled%2Cfilled%2Ccanceled"
+    },
+    "response": {
+      "body": "{\"status\":\"ok\",\"data\":[{\"id\":1009318443,\"symbol\":\"eoseth\",\"account-id\":2019764,\"amount\":\"1.000000000000000000\",\"price\":\"0.010000000000000000\",\"created-at\":1517314091356,\"type\":\"buy-limit\",\"field-amount\":\"0.0\",\"field-cash-amount\":\"0.0\",\"field-fees\":\"0.0\",\"finished-at\":1517322129959,\"source\":\"api\",\"state\":\"canceled\",\"canceled-at\":1517322129912}]}",
+      "headers": {
+        "Date": "Tue, 30 Jan 2018 14:24:16 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d072f11adbf8f4535da5f6454846a5e101517322255; expires=Wed, 30-Jan-19 14:24:15 GMT; path=/; domain=.huobi.pro; HttpOnly",
+        "X-Application-Context": "dawn-broker-pro:prd:8080",
+        "X-Request-ID": "f0f7385eee938259f2254ed3103b8896",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e5517fe88578f93-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

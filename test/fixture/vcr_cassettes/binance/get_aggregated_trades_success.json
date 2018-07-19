@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.binance.com/api/v1/aggTrades?limit=2&symbol=LTCBTC"
+    },
+    "response": {
+      "body": "[{\"a\":4969786,\"p\":\"0.01624400\",\"q\":\"0.53000000\",\"f\":5576148,\"l\":5576148,\"T\":1516538545703,\"m\":true,\"M\":true},{\"a\":4969787,\"p\":\"0.01627100\",\"q\":\"0.22000000\",\"f\":5576149,\"l\":5576149,\"T\":1516538546392,\"m\":false,\"M\":true}]",
+      "headers": {
+        "Date": "Sun, 21 Jan 2018 12:42:28 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Server": "nginx",
+        "Vary": "Accept-Encoding",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

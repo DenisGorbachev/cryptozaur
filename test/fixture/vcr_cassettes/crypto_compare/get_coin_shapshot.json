@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.cryptocompare.com/api/data/coinsnapshot?fsym=ADA&tsym=BTC"
+    },
+    "response": {
+      "body": "{\"Response\":\"Success\",\"Message\":\"This api will soon move to mi-api path.\",\"Data\":{\"Algorithm\":null,\"ProofType\":null,\"BlockNumber\":0,\"NetHashesPerSecond\":0.0,\"TotalCoinsMined\":25927070538.0,\"BlockReward\":0.0,\"AggregatedData\":{\"TYPE\":\"5\",\"MARKET\":\"CCCAGG\",\"FROMSYMBOL\":\"ADA\",\"TOSYMBOL\":\"BTC\",\"FLAGS\":\"4\",\"PRICE\":\"0.0000618\",\"LASTUPDATE\":\"1515338122\",\"LASTVOLUME\":\"100\",\"LASTVOLUMETO\":\"0.006331\",\"LASTTRADEID\":\"16869585\",\"VOLUMEDAY\":\"106476576.64550087\",\"VOLUMEDAYTO\":\"6422.598041509875\",\"VOLUME24HOUR\":\"167333671.41953588\",\"VOLUME24HOURTO\":\"10101.937907570002\",\"OPENDAY\":\"0.00005967\",\"HIGHDAY\":\"0.00006185\",\"LOWDAY\":\"0.00005869\",\"OPEN24HOUR\":\"0.00006282\",\"HIGH24HOUR\":\"0.00006313\",\"LOW24HOUR\":\"0.00005804\",\"LASTMARKET\":\"BitTrex\"},\"Exchanges\":[{\"TYPE\":\"2\",\"MARKET\":\"Binance\",\"FROMSYMBOL\":\"ADA\",\"TOSYMBOL\":\"BTC\",\"FLAGS\":\"1\",\"PRICE\":\"0.00005987\",\"LASTUPDATE\":\"1515338076\",\"LASTVOLUME\":\"26\",\"LASTVOLUMETO\":\"0.00155662\",\"LASTTRADEID\":\"2358042\",\"VOLUME24HOUR\":\"71011891\",\"VOLUME24HOURTO\":\"4273.5435651\",\"OPEN24HOUR\":\"0.0000611\",\"HIGH24HOUR\":\"0.00006197\",\"LOW24HOUR\":\"0.00005821\"},{\"TYPE\":\"2\",\"MARKET\":\"BitTrex\",\"FROMSYMBOL\":\"ADA\",\"TOSYMBOL\":\"BTC\",\"FLAGS\":\"4\",\"PRICE\":\"0.00006331\",\"LASTUPDATE\":\"1515338122\",\"LASTVOLUME\":\"100\",\"LASTVOLUMETO\":\"0.006331\",\"LASTTRADEID\":\"16869585\",\"VOLUME24HOUR\":\"96416252.41953588\",\"VOLUME24HOURTO\":\"5834.174635890002\",\"OPEN24HOUR\":\"0.0000638\",\"HIGH24HOUR\":\"0.00006399\",\"LOW24HOUR\":\"0.00005792\"}]},\"Type\":100}",
+      "headers": {
+        "Date": "Sun, 07 Jan 2018 15:17:03 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "1430",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d476ed7d7bdb091a23fdb398394a420a71515338223; expires=Mon, 07-Jan-19 15:17:03 GMT; path=/; domain=.cryptocompare.com; HttpOnly",
+        "Cache-Control": "public, max-age=900, s-maxage=900",
+        "CryptoCompare-VM": "2",
+        "CF-Cache-Status": "MISS",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3d97e1ba1b628e2b-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

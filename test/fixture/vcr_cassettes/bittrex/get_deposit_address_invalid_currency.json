@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "2492459898fe5b14ce62a6d791f94a6edd008707b31e8f5342cd0eff135afa6e1e01e355cee487ee5d54c2318bb44c7e8d1b5a3d5fb42aba17797fd912d3dbb6"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/getdepositaddress?currency=INVALID_CURRENCY&apikey=ab4c458ba4c440af9a6d88582c32b2b1&nonce=1511189134633024000"
+    },
+    "response": {
+      "body": "{\"success\":false,\"message\":\"CURRENCY_DOES_NOT_EXIST\",\"result\":null}",
+      "headers": {
+        "Date": "Mon, 20 Nov 2017 14:45:34 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d6fe741f8b9595fbfc5c81493892e8b6c1511189134; expires=Tue, 20-Nov-18 14:45:34 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3c0c319beb418f27-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

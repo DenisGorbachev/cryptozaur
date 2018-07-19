@@ -1,0 +1,37 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "api-key": "uVdUgeeiJnC8R8L8ji-knYDb",
+        "api-nonce": "1509108513137",
+        "api-signature": "AF95CA19EE0F723F370739AABB9988D4DC15407E0CC691EBE87589ACFE7EEBEF"
+      },
+      "method": "GET",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/user/wallet?currency=XBt"
+    },
+    "response": {
+      "body": "{\"account\":90042,\"currency\":\"XBt\",\"prevDeposited\":0,\"prevWithdrawn\":0,\"prevTransferIn\":0,\"prevTransferOut\":0,\"prevAmount\":0,\"prevTimestamp\":\"2017-10-26T12:00:00.000Z\",\"deltaDeposited\":450000,\"deltaWithdrawn\":0,\"deltaTransferIn\":0,\"deltaTransferOut\":0,\"deltaAmount\":450000,\"deposited\":450000,\"withdrawn\":0,\"transferIn\":0,\"transferOut\":0,\"amount\":450000,\"pendingCredit\":0,\"pendingDebit\":0,\"confirmedDebit\":0,\"timestamp\":\"2017-10-27T08:38:46.421Z\",\"addr\":\"3BMEX54NrJr5RDShprSLdfJ9a5Bx5RZHMX\",\"script\":\"534104220936c3245597b1513a9a7fe96d96facf1a840ee21432a1b73c2cf42c1810284dd730f21ded9d818b84402863a2b5cd1afe3a3d13719d524482592fb23c88a341042bda0510af4b27ebfc3f88c90d45b2f7514bb510ba9ecb4945076e2a49f7a4f02b4358832f0cf4ea3a6ad890899a108289d609070d21e2d7ef6cc25b2918fed0410472225d3abc8665cf01f703a270ee65be5421c6a495ce34830061eb0690ec27dfd1194e27b6b0b659418d9f91baec18923078aac18dc19699aae82583561fefe54104a24db5c0e8ed34da1fd3b6f9f797244981b928a8750c8f11f9252041daad7b2d95309074fed791af77dc85abdd8bb2774ed8d53379d28cd49f251b9c08cab7fc54ae\",\"withdrawalLock\":[]}",
+      "headers": {
+        "Content-Security-Policy": "script-src 'self'; frame-src 'self'; object-src 'self'; report-uri /cspReport;",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1509108514",
+        "X-Powered-By": "Profit",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "1055",
+        "ETag": "W/\"41f-b2UyHxq7dYvuxKR+B88tUPojJ30\"",
+        "Date": "Fri, 27 Oct 2017 12:48:33 GMT",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

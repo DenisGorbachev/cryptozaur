@@ -1,0 +1,37 @@
+[
+  {
+    "request": {
+      "body": "method=Trade&pair=etc_eth&type=buy&rate=0.01&amount=1.0&nonce=1510732474",
+      "headers": {
+        "Key": "DB84247A1D8D02CDE1F83B62FF4FB35C",
+        "Sign": "f32564a4f9c701b17ca18c297cf4ab103f2dfb8a028e4fe6bc56116e8cfcd8badd2826b1a8280e4e6b71a7be65b7c4274f1ce3f0d51edebe24a4b83c9b9144b3"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://yobit.net/tapi"
+    },
+    "response": {
+      "body": "{\"success\":1,\"return\":{\"received\":0,\"remains\":1.0,\"order_id\":102039300267695,\"funds\":{\"eth\":1.44799326,\"etc\":0},\"funds_incl_orders\":{\"eth\":1.45801326,\"etc\":0},\"server_time\":1510732497}}",
+      "headers": {
+        "Date": "Wed, 15 Nov 2017 07:54:57 GMT",
+        "Content-Type": "text/html; charset=utf8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d98bcb5de18765ddfec9607135b7b26951510732497; expires=Thu, 15-Nov-18 07:54:57 GMT; path=/; domain=.yobit.net; HttpOnly",
+        "Vary": "Accept-Encoding",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Content-Type-Options": "nosniff",
+        "X-XSS-Protection": "1; mode=block;",
+        "x-download-options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3be0a53b6db28b3a-KBP"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

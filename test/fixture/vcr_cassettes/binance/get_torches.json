@@ -1,0 +1,41 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.binance.com/api/v1/klines?endTime=1519916400000&interval=1h&startTime=1519905600000&symbol=TRXETH"
+    },
+    "response": {
+      "body": "[[1519905600000,\"0.00005152\",\"0.00005280\",\"0.00005122\",\"0.00005222\",\"35059726.00000000\",1519909199999,\"1813.80650519\",2122,\"29283383.00000000\",\"1514.57338614\",\"0\"],[1519909200000,\"0.00005238\",\"0.00005364\",\"0.00005182\",\"0.00005289\",\"47867600.00000000\",1519912799999,\"2528.09408946\",3797,\"40504050.00000000\",\"2139.17941565\",\"0\"],[1519912800000,\"0.00005289\",\"0.00005359\",\"0.00005288\",\"0.00005310\",\"44123292.00000000\",1519916399999,\"2349.51250852\",3207,\"36523647.00000000\",\"1945.10557672\",\"0\"],[1519916400000,\"0.00005312\",\"0.00005321\",\"0.00005211\",\"0.00005257\",\"38174019.00000000\",1519919999999,\"2008.21752155\",2600,\"31282237.00000000\",\"1645.61719666\",\"0\"]]",
+      "headers": {
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Date": "Thu, 31 May 2018 15:12:09 GMT",
+        "Server": "nginx",
+        "Vary": "Accept-Encoding",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Xss-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'self'",
+        "X-Content-Security-Policy": "default-src 'self'",
+        "X-WebKit-CSP": "default-src 'self'",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 a408fb980ddc8c01858bca0270aea38f.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "xTRXAmrcj19VyNpiIZGKN3aKuMsvk0o9cVRtP4DF6RJbRazCg__rEQ=="
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

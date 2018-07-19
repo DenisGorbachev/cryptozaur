@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1516518919049",
+        "KC-API-SIGNATURE": "4fb4c0a69ac0c954236c6d91508aa131183d594c88645f4e6ebb6dd5bf1517b8"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/account/ETH/balance?"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"Operation succeeded.\",\"timestamp\":1516518920690,\"data\":{\"coinType\":\"ETH\",\"balanceStr\":\"0.9953\",\"freezeBalance\":0.0,\"balance\":0.9953,\"freezeBalanceStr\":\"0.0\"}}",
+      "headers": {
+        "Date": "Sun, 21 Jan 2018 07:15:20 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

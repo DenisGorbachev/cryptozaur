@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "ef39b5ac1c467ef23754cc3167e146b2839d99190492ad885b778d97911b3fd344652aa539cc9a7654c655f34bfacd1d2e52c77799a0a8e3b06f94ea4d466259"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/withdraw?address=1MbLs7SnPUEkQpULzJEfw3jmFaRDBcy24E&currency=BCC&quantity=0.005&apikey=ab4c458ba4c440af9a6d88582c32b2b1&nonce=1511189633472671000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":{\"uuid\":\"3e0265cd-fa14-4960-9426-17a48b1d125f\"}}",
+      "headers": {
+        "Date": "Mon, 20 Nov 2017 14:53:53 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d8dd6e8ce682e2a697ac35855e1ba5bd31511189633; expires=Tue, 20-Nov-18 14:53:53 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3c0c3dc998a28e91-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

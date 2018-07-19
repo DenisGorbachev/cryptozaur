@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/public/getmarkethistory?market=BAD-BTC"
+    },
+    "response": {
+      "body": "{\"success\":false,\"message\":\"INVALID_MARKET\",\"result\":null}",
+      "headers": {
+        "Date": "Wed, 06 Sep 2017 13:50:54 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d243e8ec2ac025c5158766036da6112021504705852; expires=Thu, 06-Sep-18 13:50:52 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "public, max-age=30",
+        "Expires": "Wed, 06 Sep 2017 13:51:22 GMT",
+        "Last-Modified": "Wed, 06 Sep 2017 13:50:52 GMT",
+        "Vary": "*",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "CF-Cache-Status": "MISS",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39a1e6599bf34e0c-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

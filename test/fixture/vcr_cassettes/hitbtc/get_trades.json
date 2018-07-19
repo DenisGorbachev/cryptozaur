@@ -1,0 +1,27 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.hitbtc.com/api/2/public/trades/ETHBTC?by=id&from=164215036&limit=1000&offset=&sort=DESC&till=164215055"
+    },
+    "response": {
+      "body": "[{\"id\":164215055,\"price\":\"0.091256\",\"quantity\":\"0.061\",\"side\":\"sell\",\"timestamp\":\"2018-01-22T07:38:14.929Z\"},{\"id\":164215038,\"price\":\"0.091256\",\"quantity\":\"0.189\",\"side\":\"sell\",\"timestamp\":\"2018-01-22T07:38:13.653Z\"},{\"id\":164215037,\"price\":\"0.091259\",\"quantity\":\"0.005\",\"side\":\"sell\",\"timestamp\":\"2018-01-22T07:38:13.653Z\"},{\"id\":164215036,\"price\":\"0.091259\",\"quantity\":\"0.007\",\"side\":\"sell\",\"timestamp\":\"2018-01-22T07:38:13.653Z\"}]",
+      "headers": {
+        "Server": "nginx",
+        "Date": "Tue, 23 Jan 2018 01:34:21 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "433",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

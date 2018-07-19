@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "{\"price\":5500,\"orderQty\":2,\"orderID\":\"680dcacb-02ae-3c3e-4ef0-91b92a9c94cf\"}",
+      "headers": {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "api-key": "uVdUgeeiJnC8R8L8ji-knYDb",
+        "api-nonce": "1509793457531",
+        "api-signature": "AA519083146EB78FAE30369E2399921007E4AC63BB711840B7247732D496A6B9"
+      },
+      "method": "PUT",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "body": "{\"orderID\":\"680dcacb-02ae-3c3e-4ef0-91b92a9c94cf\",\"clOrdID\":\"\",\"clOrdLinkID\":\"\",\"account\":90042,\"symbol\":\"XBTUSD\",\"side\":\"Buy\",\"simpleOrderQty\":null,\"orderQty\":2,\"price\":5500,\"displayQty\":null,\"stopPx\":null,\"pegOffsetValue\":null,\"pegPriceType\":\"\",\"currency\":\"USD\",\"settlCurrency\":\"XBt\",\"ordType\":\"Limit\",\"timeInForce\":\"GoodTillCancel\",\"execInst\":\"\",\"contingencyType\":\"\",\"exDestination\":\"XBME\",\"ordStatus\":\"New\",\"triggered\":\"\",\"workingIndicator\":true,\"ordRejReason\":\"\",\"simpleLeavesQty\":0.0004,\"leavesQty\":2,\"simpleCumQty\":0,\"cumQty\":0,\"avgPx\":null,\"multiLegReportingType\":\"SingleSecurity\",\"text\":\"Amended orderQty price: Amended via API.\\nSubmitted via API.\",\"transactTime\":\"2017-11-04T11:04:18.004Z\",\"timestamp\":\"2017-11-04T11:04:18.004Z\"}",
+      "headers": {
+        "Content-Security-Policy": "script-src 'self'; frame-src 'self'; object-src 'self'; report-uri /cspReport;",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1509793458",
+        "X-Powered-By": "Profit",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "740",
+        "ETag": "W/\"2e4-xc/XLCUyjhsahVXYwI68q6WnWhE\"",
+        "Date": "Sat, 04 Nov 2017 11:04:18 GMT",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "40b255ee481d1b9d498b574bb0d4ccdab94ac571d78343db47f8d8f79597b73c5afa1cb5555654fb3670d848d036169e165d61de632ff71f51cc519daf3759f4"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/market/getopenorders?apikey=XXX&nonce=1504821311631566000"
+    },
+    "response": {
+      "body": "{\"success\":false,\"message\":\"APIKEY_INVALID\",\"result\":null}",
+      "headers": {
+        "Date": "Thu, 07 Sep 2017 21:55:12 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d0c30016ba6e48f3627ba5301883557931504821311; expires=Fri, 07-Sep-18 21:55:11 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39ace92eedac4e0c-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

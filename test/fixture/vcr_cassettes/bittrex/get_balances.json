@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "4fcd077eeb97630bdbed9d881cccdc06415bfb5413cfe2e314819fd7abf4e622b26a3961ab0692a8546de01a3054add303603f68d549dbaf695532e58ee936c9"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/getbalances?apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504860041462381000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":[{\"Currency\":\"BTC\",\"Balance\":0.00295640,\"Available\":0.00295640,\"Pending\":0.00000000,\"CryptoAddress\":\"1H4RYjAeXQKZa98B5gxDV1XAvrTWNDF49m\"},{\"Currency\":\"BURST\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"3e6eda17c931483abf04691eb2ac1104793463dd95b9414585312bc35e361921\"},{\"Currency\":\"DASH\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"XrbLz8oVkazU1Wm7T1K9KcMaerdPb5gxWK\"},{\"Currency\":\"DCR\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"DsU1picH6z4TRzhRNH4gzp1ZAQvqHLkQojx\"},{\"Currency\":\"ETH\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"0xa9cf54fd10c8204b1efd564dd0f5256a2ede9672\"},{\"Currency\":\"LBC\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"bV3aAXao8Kvw41AYZrsEGpBURcTw7UW2XP\"},{\"Currency\":\"LTC\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"LeA8F5j5tuHt2VAFqyWJkCyBpi41Asm6Jc\"},{\"Currency\":\"NEO\",\"Balance\":0.10000000,\"Available\":0.10000000,\"Pending\":0.00000000,\"CryptoAddress\":null},{\"Currency\":\"SC\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":null},{\"Currency\":\"STRAT\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"SYzwxiP1KNNofn1tmmnZcNjTShsVc2rRzX\"},{\"Currency\":\"USDT\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"1JDV1dGXA22sksVegcYa64H3nokaBxvp9c\"},{\"Currency\":\"XEM\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":\"2f394c9a97394ef1ac9\"},{\"Currency\":\"XRP\",\"Balance\":0.00000000,\"Available\":0.00000000,\"Pending\":0.00000000,\"CryptoAddress\":null}]}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 08:40:41 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d9221369bd33847e11ce7150e1f93e1c21504860041; expires=Sat, 08-Sep-18 08:40:41 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b09abba80c8fff-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

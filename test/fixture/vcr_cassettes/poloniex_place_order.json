@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "amount=0.001&command=buy&currencyPair=USDT_BTC&nonce=1500399024802510000&postOnly=1&rate=1000",
+      "headers": {
+        "Key": "0P3O5WYL-M92SI0CO-8TKWGKMK-MNWUGHD6",
+        "Sign": "7f47e4228d8cdd249918b366b78ea7353a141c866dc1c9f94f6fec183d554fd5beefe941eecd782893e3e6b25200da5235e96ebf606b817fccab6917a834f996",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "body": "{\"orderNumber\":\"79126187728\",\"resultingTrades\":[]}",
+      "headers": {
+        "Date": "Tue, 18 Jul 2017 17:30:25 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d89a3d2c3d6ac6f9b9911e3b92b9afb681500399024; expires=Wed, 18-Jul-18 17:30:24 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "38072b321ad34e54-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

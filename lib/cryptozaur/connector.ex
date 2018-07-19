@@ -1,6 +1,6 @@
 defmodule Cryptozaur.Connector do
   import Cryptozaur.Utils
-  import OK, only: [success: 1, failure: 1]
+  import OK, only: [success: 1, failure: 1, ~>>: 2]
 
   @exchanges [
     %{slug: "MTGOX", name: "MtGox", connector: Elixir.Cryptozaur.Connectors.Mtgox, maker_fee: 0.0025, taker_fee: 0.0040, is_public: false},
@@ -252,7 +252,7 @@ defmodule Cryptozaur.Connector do
       Code.ensure_loaded(module.connector)
       function_exported?(module.connector, function, arity)
     rescue
-      _e -> false
+      e -> false
     end
   end
 
@@ -278,7 +278,7 @@ defmodule Cryptozaur.Connector do
     @exchanges
   end
 
-  defp get_fallback_amount_precision(_exchange, _base, _quote) do
+  defp get_fallback_amount_precision(_exchange, base, quote) do
     8
   end
 

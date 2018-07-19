@@ -1,0 +1,37 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "f5e534627ea62176053edde3c03c45add933559f10cc21b7f4f5bea2b81adef3fc47a206b30270f1c318a42b3f2a0d9a267c2bafa2c1ef45a01cfad60338c730"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/public/getorderbook?market=USD-BTC&type=both"
+    },
+    "response": {
+      "body": "{\"success\":false,\"message\":\"INVALID_MARKET\",\"result\":null}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 10:39:43 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d065ae27da29c61a775e311549c1297641504867183; expires=Sat, 08-Sep-18 10:39:43 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "public, max-age=1",
+        "Expires": "Fri, 08 Sep 2017 10:39:44 GMT",
+        "Last-Modified": "Fri, 08 Sep 2017 10:39:43 GMT",
+        "Vary": "*",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "CF-Cache-Status": "MISS",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b149166fd18ea3-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

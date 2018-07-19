@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.bithumb.com/public/ticker/BTC?"
+    },
+    "response": {
+      "body": "{\"status\":\"0000\",\"data\":{\"opening_price\":\"9721000\",\"closing_price\":\"10038000\",\"min_price\":\"9642000\",\"max_price\":\"10220000\",\"average_price\":\"9934041.4787\",\"units_traded\":\"11326.63689343\",\"volume_1day\":\"11326.63689343\",\"volume_7day\":\"109018.77434314\",\"buy_price\":\"10036000\",\"sell_price\":\"10037000\",\"date\":\"1518494754829\"}}",
+      "headers": {
+        "Date": "Tue, 13 Feb 2018 04:05:55 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "320",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dd2d7d88972a94d578199b8f35712280c1518494755; expires=Wed, 13-Feb-19 04:05:55 GMT; path=/; domain=.bithumb.com; HttpOnly",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3ec4e97b0d8f2611-DFW"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

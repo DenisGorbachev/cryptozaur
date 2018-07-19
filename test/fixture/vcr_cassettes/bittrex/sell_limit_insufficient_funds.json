@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "65d0868f615dab8b7d8ce6a09b4d718666761daf5f2557c5513831b6f7347953ca4fb16523b4e835f183e18a49d45d26f0f1b4b5355d5e84e2a2ff6a50066745"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/market/selllimit?market=BTC-NEO&quantity=10&rate=0.1&apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504861872272609000"
+    },
+    "response": {
+      "body": "{\"success\":false,\"message\":\"INSUFFICIENT_FUNDS\",\"result\":null}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 09:11:12 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=da2c2a5217990268b426bdadbb6f3c1eb1504861872; expires=Sat, 08-Sep-18 09:11:12 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b0c76e6a968e31-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

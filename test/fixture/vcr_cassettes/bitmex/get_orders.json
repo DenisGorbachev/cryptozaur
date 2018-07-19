@@ -1,0 +1,37 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "api-key": "uVdUgeeiJnC8R8L8ji-knYDb",
+        "api-nonce": "1509110616214",
+        "api-signature": "5BAFE1B6B44C63095880DE09D448CC8849F8183A0EB083276883C791B42C7BB6"
+      },
+      "method": "GET",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "body": "[{\"orderID\":\"76a8cc9e-140d-4946-85bc-853d274b3333\",\"clOrdID\":\"\",\"clOrdLinkID\":\"\",\"account\":90042,\"symbol\":\"XBTUSD\",\"side\":\"Buy\",\"simpleOrderQty\":null,\"orderQty\":1,\"price\":5600,\"displayQty\":null,\"stopPx\":null,\"pegOffsetValue\":null,\"pegPriceType\":\"\",\"currency\":\"USD\",\"settlCurrency\":\"XBt\",\"ordType\":\"Limit\",\"timeInForce\":\"GoodTillCancel\",\"execInst\":\"ParticipateDoNotInitiate\",\"contingencyType\":\"\",\"exDestination\":\"XBME\",\"ordStatus\":\"New\",\"triggered\":\"\",\"workingIndicator\":true,\"ordRejReason\":\"\",\"simpleLeavesQty\":0.0002,\"leavesQty\":1,\"simpleCumQty\":0,\"cumQty\":0,\"avgPx\":null,\"multiLegReportingType\":\"SingleSecurity\",\"text\":\"Submission from www.bitmex.com\",\"transactTime\":\"2017-10-27T13:16:55.418Z\",\"timestamp\":\"2017-10-27T13:16:55.418Z\"}]",
+      "headers": {
+        "Content-Security-Policy": "script-src 'self'; frame-src 'self'; object-src 'self'; report-uri /cspReport;",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1509110617",
+        "X-Powered-By": "Profit",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "736",
+        "ETag": "W/\"2e0-GwlPpAL/MP2rRSCUM/9dIbdqBRs\"",
+        "Date": "Fri, 27 Oct 2017 13:23:36 GMT",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

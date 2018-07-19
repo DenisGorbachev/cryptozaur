@@ -1,0 +1,34 @@
+[
+  {
+    "request": {
+      "body": "{\"type\":\"buy-limit\",\"symbol\":\"eoseth\",\"source\":\"api\",\"price\":\"0.01\",\"amount\":\"1.0\",\"account-id\":\"2019764\"}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.huobi.pro/v1/order/orders/place?AccessKeyId=fc6aafe0-fcebd249-f30e4061-c60b8&Signature=3j%2BYF96u6zDsgNx%2BCwyP0lKO2imeg31dGBJTQgE4Sj8%3D&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2018-01-30T12%3A08%3A10"
+    },
+    "response": {
+      "body": "{\"status\":\"ok\",\"data\":\"1009318443\"}",
+      "headers": {
+        "Date": "Tue, 30 Jan 2018 12:08:11 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d1929d96f0427415ebaff29cf20ed10ca1517314091; expires=Wed, 30-Jan-19 12:08:11 GMT; path=/; domain=.huobi.pro; HttpOnly",
+        "X-Application-Context": "dawn-broker-pro:prd:8080",
+        "X-Request-ID": "c90a8fb0ad747652c385fb07e2ee5cb8",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e5450addc7a8d6b-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

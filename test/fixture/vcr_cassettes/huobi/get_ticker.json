@@ -1,0 +1,58 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "connect_timeout": 60000,
+        "recv_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.huobi.pro/market/detail?symbol=btcusdt"
+    },
+    "response": {
+      "body": "{\"status\":\"ok\",\"ch\":\"market.btcusdt.detail\",\"ts\":1516587690844,\"tick\":{\"amount\":8910.755080295874866149,\"open\":12417.700000000000000000,\"close\":11335.720000000000000000,\"high\":12588.870000000000000000,\"id\":1458950977,\"count\":150916,\"low\":11018.000000000000000000,\"version\":1458950977,\"vol\":104728499.175734951949020536660000000000000000}}",
+      "headers": {
+        "CF-RAY": "3e0f0a476b7249f1-BKK",
+        "Connection": "keep-alive",
+        "Date": "Mon, 22 Jan 2018 02:21:31 GMT",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "Set-Cookie": "__cfduid=d781ca9f4f4099cfe1895d204bc5884341516587690; expires=Tue, 22-Jan-19 02:21:30 GMT; path=/; domain=.huobi.pro; HttpOnly",
+        "Transfer-Encoding": "chunked",
+        "X-Request-ID": "464d1369dc8aacad5a971a5c2821a36b"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.huobi.pro/market/detail/merged?symbol=btcusdt"
+    },
+    "response": {
+      "body": "{\"status\":\"ok\",\"ch\":\"market.btcusdt.detail.merged\",\"ts\":1516588658766,\"tick\":{\"amount\":8960.533415813910443517,\"open\":12333.000000000000000000,\"close\":11370.100000000000000000,\"high\":12588.870000000000000000,\"id\":1459292454,\"count\":150803,\"low\":11018.000000000000000000,\"version\":1459292454,\"ask\":[11380.590000000000000000,0.017000000000000000],\"vol\":105207278.391323774505138573870000000000000000,\"bid\":[11370.100000000000000000,0.008800000000000000]}}",
+      "headers": {
+        "Date": "Mon, 22 Jan 2018 02:37:38 GMT",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dc918ef0d14c72941733d01c7f4e203321516588658; expires=Tue, 22-Jan-19 02:37:38 GMT; path=/; domain=.huobi.pro; HttpOnly",
+        "X-Request-ID": "e20a2a523f51ff976c8f16e48d739a20",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e0f21e8beec49f1-BKK"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

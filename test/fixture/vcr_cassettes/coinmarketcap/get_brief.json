@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.coinmarketcap.com/v1/ticker/?limit=2"
+    },
+    "response": {
+      "body": "[\n    {\n        \"id\": \"bitcoin\", \n        \"name\": \"Bitcoin\", \n        \"symbol\": \"BTC\", \n        \"rank\": \"1\", \n        \"price_usd\": \"14747.3\", \n        \"price_btc\": \"1.0\", \n        \"24h_volume_usd\": \"12842400000.0\", \n        \"market_cap_usd\": \"247280691273\", \n        \"available_supply\": \"16767862.0\", \n        \"total_supply\": \"16767862.0\", \n        \"max_supply\": \"21000000.0\", \n        \"percent_change_1h\": \"2.28\", \n        \"percent_change_24h\": \"-7.06\", \n        \"percent_change_7d\": \"-9.02\", \n        \"last_updated\": \"1514473761\"\n    }, \n    {\n        \"id\": \"ethereum\", \n        \"name\": \"Ethereum\", \n        \"symbol\": \"ETH\", \n        \"rank\": \"2\", \n        \"price_usd\": \"739.713\", \n        \"price_btc\": \"0.0510959\", \n        \"24h_volume_usd\": \"2336750000.0\", \n        \"market_cap_usd\": \"71473427270.0\", \n        \"available_supply\": \"96623187.0\", \n        \"total_supply\": \"96623187.0\", \n        \"max_supply\": null, \n        \"percent_change_1h\": \"1.91\", \n        \"percent_change_24h\": \"-3.52\", \n        \"percent_change_7d\": \"-11.45\", \n        \"last_updated\": \"1514473750\"\n    }\n]",
+      "headers": {
+        "Date": "Thu, 28 Dec 2017 15:13:30 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "1078",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d2f0eaa860b31721e7c1422841d4c2fb81514474010; expires=Fri, 28-Dec-18 15:13:30 GMT; path=/; domain=.coinmarketcap.com; HttpOnly; Secure",
+        "Access-Control-Allow-Origin": "*",
+        "CF-Cache-Status": "EXPIRED",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3d4576c3a8264e24-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

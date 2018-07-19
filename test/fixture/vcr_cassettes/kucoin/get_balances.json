@@ -1,0 +1,172 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1517202154277",
+        "KC-API-SIGNATURE": "4e75b369f8cb5b799d14c5c2ca6c9c8e635161fee03d7d80a4121c60790fea80"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/account/balances?limit=20&page=1"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"Operation succeeded.\",\"timestamp\":1517202155545,\"data\":{\"total\":89,\"datas\":[{\"coinType\":\"KCS\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BTC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"NEO\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"XRB\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"FOTA\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"AGI\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"AIX\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ENJ\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"RPX\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"LEND\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ACT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"CAN\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"CAT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DAT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DBC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DNA\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"INS\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"QLC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ETH\",\"balanceStr\":\"0.994374\",\"freezeBalance\":1.0E-5,\"balance\":0.994374,\"freezeBalanceStr\":\"1.0E-5\"},{\"coinType\":\"TNC\",\"balanceStr\":\"0.0\",\"freezeBalance\":2.997,\"balance\":0.0,\"freezeBalanceStr\":\"2.997\"}],\"currPageNo\":1,\"limit\":20,\"pageNos\":5}}",
+      "headers": {
+        "Date": "Mon, 29 Jan 2018 05:02:35 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1517202154278",
+        "KC-API-SIGNATURE": "dc809dac8f5eabcff996d8a5b6880976623fcddb023bf9b25fa35fcbc56b9c20"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/account/balances?limit=20&page=2"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"Operation succeeded.\",\"timestamp\":1517202155780,\"data\":{\"total\":89,\"datas\":[{\"coinType\":\"TEL\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DENT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"PURA\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"CV\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"KEY\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"OCN\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"POE\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"TIO\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"UTK\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"XLR\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DASH\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"PRL\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"TFL\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"AION\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"R\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"LA\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BCH\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"CAG\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"GOD\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"MOD\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"}],\"currPageNo\":2,\"limit\":20,\"pageNos\":5}}",
+      "headers": {
+        "Date": "Mon, 29 Jan 2018 05:02:35 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1517202154279",
+        "KC-API-SIGNATURE": "b616893adcc2d17968e65e86e50b5d0ce4962f1a5d2b4f23a9383ab565f964b0"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/account/balances?limit=20&page=3"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"Operation succeeded.\",\"timestamp\":1517202156117,\"data\":{\"total\":89,\"datas\":[{\"coinType\":\"PBL\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"PPT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"QSP\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"SNM\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"XAS\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ABTC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BNTY\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DRGN\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"NULS\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"POLL\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"POWR\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"SNOV\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ONION\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ETC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"AMB\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"STX\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ELIX\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"FLIXX\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"GVT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BCD\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"}],\"currPageNo\":3,\"limit\":20,\"pageNos\":5}}",
+      "headers": {
+        "Date": "Mon, 29 Jan 2018 05:02:36 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1517202154280",
+        "KC-API-SIGNATURE": "4151cee8a165b11bf01df3432790103afced6b79a3e2fea9f5b0f5665760f6ba"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/account/balances?limit=20&page=4"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"Operation succeeded.\",\"timestamp\":1517202156433,\"data\":{\"total\":89,\"datas\":[{\"coinType\":\"CFD\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"GAS\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"HST\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"RDN\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"SUB\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"UKG\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"WTC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"NEBL\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"RHOC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"VEN\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"USDT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BTG\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"DGB\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"EVX\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"HSR\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"KNC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"LTC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"MTH\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"OMG\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"REQ\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"}],\"currPageNo\":4,\"limit\":20,\"pageNos\":5}}",
+      "headers": {
+        "Date": "Mon, 29 Jan 2018 05:02:36 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "KC-API-KEY": "5a5ebe05da0f51270c9fbea1",
+        "KC-API-NONCE": "1517202154281",
+        "KC-API-SIGNATURE": "affb7fbeb8bb3eb502e6de3ac293069bc575aedbaaff43469f02e26b433757c6"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 60000,
+        "connect_timeout": 60000
+      },
+      "request_body": "",
+      "url": "https://api.kucoin.com/v1/account/balances?limit=20&page=5"
+    },
+    "response": {
+      "body": "{\"success\":true,\"code\":\"OK\",\"msg\":\"Operation succeeded.\",\"timestamp\":1517202156730,\"data\":{\"total\":89,\"datas\":[{\"coinType\":\"BCPT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"QTUM\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BTM\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"CVC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"ETF\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"PAY\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"EOS\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"SNT\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"},{\"coinType\":\"BHC\",\"balanceStr\":\"0.0\",\"freezeBalance\":0.0,\"balance\":0.0,\"freezeBalanceStr\":\"0.0\"}],\"currPageNo\":5,\"limit\":20,\"pageNos\":5}}",
+      "headers": {
+        "Date": "Mon, 29 Jan 2018 05:02:36 GMT",
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "https://www.kucoin.com",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Accept-Language",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE, PATCH",
+        "Access-Control-Max-Age": "86400",
+        "KC-NODE": "localhost"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

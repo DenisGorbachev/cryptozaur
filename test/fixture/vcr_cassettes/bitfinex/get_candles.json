@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.bitfinex.com/v2/candles/trade:1m:tBTCUSD/hist?limit=2"
+    },
+    "response": {
+      "body": "[[1518061620000,8080,8077.3,8080,8077.3,9.10864322],[1518061560000,8081.1,8081.63235209,8117,8080,75.04939746]]",
+      "headers": {
+        "Date": "Thu, 08 Feb 2018 03:47:32 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d689b76ab6c3cb4490ab3a56b36047a7e1518061652; expires=Fri, 08-Feb-19 03:47:32 GMT; path=/; domain=.bitfinex.com; HttpOnly",
+        "Vary": "Accept-Encoding",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "X-BFX-APIKEY,X-BFX-PAYLOAD,X-BFX-SIGNATURE,Content-Type,X-CSRF-Token,bfx-token,bfx-signature,bfx-apikey,bfx-nonce,bfx-flags",
+        "Expect-CT": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\"",
+        "Server": "cloudflare",
+        "CF-RAY": "3e9b9badba0d1098-MDE"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "X-MBX-APIKEY": "Wl8p5QMSOI8FZBJMvWrdfkKQG9ilCYJh4JfoyvEF5iGhe8Mzyv5WSExapOJq1fAJ"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 30000,
+        "connect_timeout": 30000
+      },
+      "request_body": "",
+      "url": "https://www.binance.com/api/v3/allOrders?recvWindow=5000&symbol=VIBETH&timestamp=1517154554626&signature=838635975a1c50ad0ad0fc592cbe0939c52180efbed503a829566430fa30b2d7"
+    },
+    "response": {
+      "body": "[{\"symbol\":\"VIBETH\",\"orderId\":4617719,\"clientOrderId\":\"aRaw4TYQaliMa3sdRHR7fH\",\"price\":\"0.00050330\",\"origQty\":\"1000.00000000\",\"executedQty\":\"0.00000000\",\"status\":\"CANCELED\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"stopPrice\":\"0.00000000\",\"icebergQty\":\"0.00000000\",\"time\":1517154388695,\"isWorking\":true},{\"symbol\":\"VIBETH\",\"orderId\":4618131,\"clientOrderId\":\"0whSa0EkQxetlHwtarCY1x\",\"price\":\"0.00050330\",\"origQty\":\"1000.00000000\",\"executedQty\":\"0.00000000\",\"status\":\"NEW\",\"timeInForce\":\"GTC\",\"type\":\"LIMIT\",\"side\":\"BUY\",\"stopPrice\":\"0.00000000\",\"icebergQty\":\"0.00000000\",\"time\":1517154546719,\"isWorking\":true}]",
+      "headers": {
+        "Date": "Sun, 28 Jan 2018 15:49:16 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Server": "nginx",
+        "Vary": "Accept-Encoding",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains",
+        "X-Frame-Options": "SAMEORIGIN"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

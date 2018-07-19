@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "timeout": "30000",
+        "recv_timeout": "30000"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.coinmarketcap.com/v1/ticker/?limit=2"
+    },
+    "response": {
+      "body": "[\n    {\n        \"id\": \"bitcoin\", \n        \"name\": \"Bitcoin\", \n        \"symbol\": \"BTC\", \n        \"rank\": \"1\", \n        \"price_usd\": \"14839.3\", \n        \"price_btc\": \"1.0\", \n        \"24h_volume_usd\": \"18883200000.0\", \n        \"market_cap_usd\": \"249024600002\", \n        \"available_supply\": \"16781425.0\", \n        \"total_supply\": \"16781425.0\", \n        \"max_supply\": \"21000000.0\", \n        \"percent_change_1h\": \"-0.27\", \n        \"percent_change_24h\": \"-1.6\", \n        \"percent_change_7d\": \"2.29\", \n        \"last_updated\": \"1515061161\"\n    }, \n    {\n        \"id\": \"ripple\", \n        \"name\": \"Ripple\", \n        \"symbol\": \"XRP\", \n        \"rank\": \"2\", \n        \"price_usd\": \"3.55573\", \n        \"price_btc\": \"0.0002424\", \n        \"24h_volume_usd\": \"8669070000.0\", \n        \"market_cap_usd\": \"137745939507\", \n        \"available_supply\": \"38739144847.0\", \n        \"total_supply\": \"99993093880.0\", \n        \"max_supply\": \"100000000000\", \n        \"percent_change_1h\": \"-2.74\", \n        \"percent_change_24h\": \"30.11\", \n        \"percent_change_7d\": \"162.77\", \n        \"last_updated\": \"1515061141\"\n    }\n]",
+      "headers": {
+        "Date": "Thu, 04 Jan 2018 10:24:06 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "1089",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d0b84b90af59df42cee938ce66cab39551515061444; expires=Fri, 04-Jan-19 10:24:04 GMT; path=/; domain=.coinmarketcap.com; HttpOnly; Secure",
+        "Access-Control-Allow-Origin": "*",
+        "CF-Cache-Status": "MISS",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3d7d7c6cbba86313-BKK"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

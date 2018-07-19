@@ -1,0 +1,31 @@
+[
+  {
+    "request": {
+      "body": "command=returnOpenOrders&currencyPair=USDT_BTC&nonce=1500459953782562000",
+      "headers": {
+        "Key": "0P3O5WYL-M92SI0CO-8TKWGKMK-MNWUGHD6",
+        "Sign": "ecc8ddfeac388002ff07e9ef5650f2bf321d0689b8c4e6cf48759c8f97009cd513adf2a16f15f1590561e525ecfeba89da11390db0c08ec2948f7e26e4f37d21",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/tradingApi"
+    },
+    "response": {
+      "body": "[{\"orderNumber\":\"79268263510\",\"type\":\"buy\",\"rate\":\"1000.00000000\",\"startingAmount\":\"0.00100000\",\"amount\":\"0.00100000\",\"total\":\"1.00000000\",\"date\":\"2017-07-19 06:26:19\",\"margin\":0}]",
+      "headers": {
+        "Date": "Wed, 19 Jul 2017 10:25:56 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d6dc3e6e0106475d34c8cb3ab7779a04c1500459953; expires=Thu, 19-Jul-18 10:25:53 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "380cfab46e2a4e7e-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

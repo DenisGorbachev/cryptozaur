@@ -1,0 +1,54 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/public?command=returnTradeHistory&currencyPair=BTC_DOGE&end=1411499069&start=1411499009"
+    },
+    "response": {
+      "body": "[{\"globalTradeID\":2133807,\"tradeID\":50501,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"39558.18721565\",\"total\":\"0.02848189\"},{\"globalTradeID\":2133806,\"tradeID\":50500,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"2474.30555556\",\"total\":\"0.00178150\"},{\"globalTradeID\":2133805,\"tradeID\":50499,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"601.59748349\",\"total\":\"0.00043315\"},{\"globalTradeID\":2133804,\"tradeID\":50498,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"807.35274530\",\"total\":\"0.00058129\"},{\"globalTradeID\":2133797,\"tradeID\":50497,\"date\":\"2014-09-23 19:03:43\",\"type\":\"buy\",\"rate\":\"0.00000074\",\"amount\":\"10000.00000000\",\"total\":\"0.00740000\"}]",
+      "headers": {
+        "Date": "Mon, 18 Sep 2017 13:24:38 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=d1e221e03e2fc981246363f652be6cf891505741077; expires=Tue, 18-Sep-18 13:24:37 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3a04a06799612d35-TXL"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://poloniex.com/public?command=returnTradeHistory&currencyPair=BTC_DOGE&end=1411499129&start=1411499069"
+    },
+    "response": {
+      "body": "[{\"globalTradeID\":2133807,\"tradeID\":50501,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"39558.18721565\",\"total\":\"0.02848189\"},{\"globalTradeID\":2133806,\"tradeID\":50500,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"2474.30555556\",\"total\":\"0.00178150\"},{\"globalTradeID\":2133805,\"tradeID\":50499,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"601.59748349\",\"total\":\"0.00043315\"},{\"globalTradeID\":2133804,\"tradeID\":50498,\"date\":\"2014-09-23 19:04:29\",\"type\":\"sell\",\"rate\":\"0.00000072\",\"amount\":\"807.35274530\",\"total\":\"0.00058129\"}]",
+      "headers": {
+        "Date": "Mon, 18 Sep 2017 13:24:39 GMT",
+        "Content-Type": "application/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=dc26ed4581f81067709fcb295ec9a7c991505741079; expires=Tue, 18-Sep-18 13:24:39 GMT; path=/; domain=.poloniex.com; HttpOnly",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3a04a0707c882d35-TXL"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

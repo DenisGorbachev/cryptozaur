@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "apisign": "cb68a24bcc5fa3fc0fb09d2ec3f332fd5e6db9939df1e36f4f32696ee958af031cbdf9f1fec79fd642f736c1a0ac98c5a4d318e5c5c42b5ce1d2f5360c9af6d4"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://bittrex.com/api/v1.1/account/getorder?uuid=a990106e-179a-41f4-b450-5ef8107931d8&apikey=319fabede47a40b2819525d8b7c0d1ce&nonce=1504859826549250000"
+    },
+    "response": {
+      "body": "{\"success\":true,\"message\":\"\",\"result\":{\"AccountId\":null,\"OrderUuid\":\"a990106e-179a-41f4-b450-5ef8107931d8\",\"Exchange\":\"BTC-NEO\",\"Type\":\"LIMIT_BUY\",\"Quantity\":0.10000000,\"QuantityRemaining\":0.00000000,\"Limit\":0.00642100,\"Reserved\":0.00064210,\"ReserveRemaining\":0.00064200,\"CommissionReserved\":0.00000160,\"CommissionReserveRemaining\":0.00000000,\"CommissionPaid\":0.00000160,\"Price\":0.00064200,\"PricePerUnit\":0.00642000000000000000,\"Opened\":\"2017-09-08T08:18:27.89\",\"Closed\":\"2017-09-08T08:18:28.063\",\"IsOpen\":false,\"Sentinel\":\"083e6a62-281f-4892-9e1e-fecfb92385d5\",\"CancelInitiated\":false,\"ImmediateOrCancel\":false,\"IsConditional\":false,\"Condition\":\"NONE\",\"ConditionTarget\":null}}",
+      "headers": {
+        "Date": "Fri, 08 Sep 2017 08:37:06 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=deec9843db77f349806f81b1de91eab181504859826; expires=Sat, 08-Sep-18 08:37:06 GMT; path=/; domain=.bittrex.com; HttpOnly",
+        "Cache-Control": "private",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "39b0957c8a5e908f-DME"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
