@@ -14,9 +14,11 @@ defmodule Cryptozaur.MixProject do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    extra_applications = [
-      :logger,
-    ] ++ (if (Mix.env == "dev"), do: [:remix], else: [])
+    extra_applications =
+      [
+        :logger
+      ] ++ if Mix.env() == "dev", do: [:remix], else: []
+
     [
       extra_applications: extra_applications
     ]
