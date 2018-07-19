@@ -1,6 +1,6 @@
 defmodule Cryptozaur.Connector do
   import Cryptozaur.Utils
-  import OK, only: [success: 1, failure: 1, ~>>: 2]
+  import OK, only: [success: 1, failure: 1]
 
   @exchanges [
     %{slug: "MTGOX", name: "MtGox", connector: Elixir.Cryptozaur.Connectors.Mtgox, maker_fee: 0.0025, taker_fee: 0.0040, is_public: false},
