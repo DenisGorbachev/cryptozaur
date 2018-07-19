@@ -4,7 +4,7 @@ defmodule Cryptozaur.Connectors.KucoinTest do
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
-  alias Cryptozaur.Model.{Trade, Order, Level, Summary, Ticker, Balance}
+  alias Cryptozaur.Model.{Order, Ticker, Balance}
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)

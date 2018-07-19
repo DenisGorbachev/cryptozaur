@@ -1,7 +1,6 @@
 defmodule Cryptozaur.Drivers.BithumbRestTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
-  import OK, only: [success: 1]
   alias Cryptozaur.Drivers.BithumbRest
 
   setup_all do

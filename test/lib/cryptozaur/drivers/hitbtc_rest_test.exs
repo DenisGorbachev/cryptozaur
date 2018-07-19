@@ -1,7 +1,7 @@
 defmodule Cryptozaur.Drivers.HitbtcRestTest do
   use ExUnit.Case
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
-  import OK, only: [success: 1, failure: 1]
+  import OK, only: [success: 1]
 
   setup_all do
     success(_) = HTTPoison.start()

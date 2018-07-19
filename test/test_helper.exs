@@ -6,7 +6,6 @@ Ecto.Adapters.SQL.Sandbox.mode(Cryptozaur.Repo, :manual)
 
 defmodule Cryptozaur.Case do
   use ExUnit.Case
-  alias Cryptozaur.Repo
 
   def raw(records) do
     records |> Enum.map(&Map.take(&1, &1.__struct__.fields()))

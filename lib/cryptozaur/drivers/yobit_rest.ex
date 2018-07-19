@@ -64,7 +64,6 @@ defmodule Cryptozaur.Drivers.YobitRest do
   #  defp send_public_request(url, parameters) do
   #    body = URI.encode_query parameters
   #
-  #    OK.with do
   #      task = GenRetry.Task.async(fn ->
   #        case get(url <> "?" <> body, [], timeout: @http_timeout, recv_timeout: @http_timeout) do
   #          failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
@@ -77,39 +76,36 @@ defmodule Cryptozaur.Drivers.YobitRest do
   #      payload = Task.await(task, @timeout)
   #      validate(payload)
   #    end
-  #  end
 
   defp send_private_request(url, parameters, %{key: key, secret: secret}) do
     signature_data = parameters |> URI.encode_query()
     signature = :crypto.hmac(:sha512, secret, signature_data) |> Base.encode16() |> String.downcase()
     headers = [Key: key, Sign: signature]
 
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case post(url, {:form, parameters}, headers, timeout: @http_timeout, recv_timeout: @http_timeout) do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Yobit.Rest.send_private_request(#{inspect(url)}, #{inspect(parameters)}) # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case post(url, {:form, parameters}, headers, timeout: @http_timeout, recv_timeout: @http_timeout) do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Yobit.Rest.send_private_request(#{inspect(url)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              # Retry on exception (#rationale: sometimes Yobit returns "The service is unavailable" instead of proper JSON)
-              success(response) ->
-                parse!(response.body)
-            end
-          end,
-          retries: 10,
-          delay: 2_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+            # Retry on exception (#rationale: sometimes Yobit returns "The service is unavailable" instead of proper JSON)
+            success(response) ->
+              parse!(response.body)
+          end
+        end,
+        retries: 10,
+        delay: 2_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   defp to_pair(base, quote), do: "#{String.downcase(base)}_#{String.downcase(quote)}"

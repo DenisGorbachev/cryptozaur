@@ -6,8 +6,6 @@ defmodule Cryptozaur.Connectors.BithumbTest do
   alias Cryptozaur.{Repo, Metronome, Connector}
   alias Cryptozaur.Model.Ticker
 
-  @any_secret "secret"
-
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
     Ecto.Adapters.SQL.Sandbox.mode(Repo, {:shared, self()})
