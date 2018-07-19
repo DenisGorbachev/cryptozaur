@@ -15,9 +15,16 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
 
 ## Contents
 
+* [Installation](#installation)
 * [Examples](#examples)
 * [Automated trading](#automated-trading)
-* [Terminology](#terminology)
+* [Architecture](#architecture)
+
+## Installation
+
+1. [Install Elixir](https://elixir-lang.org/install.html)
+1. [Download Cryptozaur](https://github.com/DenisGorbachev/cryptozaur/releases)
+1. **Recommended**: encrypt `~/.cryptozaur` directory ([guide](#encrypt-cryptozaur-directory))
 
 ## Examples
 
@@ -85,7 +92,11 @@ For example, if you want to accumulate a lowcap altcoin, you can add the followi
 
 This command will run every 15 minutes, maintaining 10 buy orders summing up to 10000.0 MSR, spreading them evenly between 5200-5800 sats, until it accumulates 190000.0 MSR.
 
-## Terminology
+## Architecture
+
+* Cryptozaur stores keys & secrets in `~/.cryptozaur/accounts.json`. We strongly recommend to encrypt `~/.cryptozaur` directory! ([guide](#encrypt-cryptozaur-directory))
+
+### Terminology
 
 * `account` - API key & secret pair (e.g. "leverex")
 * `market` - exchange partition that allows trading `base` asset against `quote` asset (e.g. "ETH:BTC" spot market or "ETHM18" futures market).
@@ -100,3 +111,26 @@ This command will run every 15 minutes, maintaining 10 buy orders summing up to 
 * `frame` - timestamps from `from` to `to`
 * `tick` - minimum price increment / decrement
 * `precision` - minimum price / amount precision (e.g. "8" for *most, but not all* ALTBTC pairs, since BTC is divisible by 8 digits) (different from `tick`: e.g. `tick = 0.5`, `precision = 1`)
+
+## Guides
+
+### Encrypt Cryptozaur directory
+
+MacOS / Linux:
+
+```
+### Setup (run once)
+mkdir -p ~/.cryptozaur.encfs ~/.cryptozaur
+
+### Mount (run every time you want to use cryptozaur)
+encfs ~/.cryptozaur.encfs ~/.cryptozaur
+
+### Unmount (run after you finished using cryptozaur)
+fusermount -u ~/.cryptozaur
+```
+
+Windows:
+
+```
+### Want to contribute? Click "edit" on top of this file.
+```
