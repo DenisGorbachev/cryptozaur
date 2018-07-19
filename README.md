@@ -10,7 +10,7 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
 * Use simple automated trading strategies:
   * Accumulate a lowcap altcoin by maintaining small buy orders within price range.
   * Optimize your stop-loss by selling off your position in small chunks instead of dumping it immediately.
-* See aggregated balances from all exchanges.
+* List aggregated balances from all exchanges.
 * Export trade history to CSV from all exchanges.
 
 ## Contents
