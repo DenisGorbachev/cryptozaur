@@ -4,7 +4,7 @@
 
 ## Developer's best friend
 
-Cryptozaur **saves your time** by providing a unified command-line interface for cryptoasset exchanges:
+Cryptozaur **saves your time** by providing a unified command-line interface for cryptocurrency exchanges:
 
 * Place orders without opening UI.
 * Use simple automated trading strategies:
