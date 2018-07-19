@@ -1,5 +1,7 @@
 # Cryptozaur CLI
 
+![Intro image](https://github.com/DenisGorbachev/cryptozaur/blob/master/images/intro.jpg)
+
 Cryptozaur **saves your time** by providing a unified command-line interface for cryptoasset exchanges:
 
 * Place orders without opening UI.
@@ -8,8 +10,6 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
   * Optimize your stop-loss by selling off your position in small chunks instead of dumping it immediately.
 * See aggregated balances from all exchanges.
 * Export trade history to CSV from all exchanges.
-
-![Intro image](https://github.com/DenisGorbachev/cryptozaur/blob/master/images/intro.jpg)
 
 # Contents
 
