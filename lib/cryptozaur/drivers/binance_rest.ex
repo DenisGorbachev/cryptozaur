@@ -236,33 +236,31 @@ defmodule Cryptozaur.Drivers.BinanceRest do
   defp send_public_request(path, parameters) do
     body = URI.encode_query(parameters)
 
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case get(path <> "?" <> body, [], timeout: @http_timeout, recv_timeout: @http_timeout) do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Binance.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case get(path <> "?" <> body, [], timeout: @http_timeout, recv_timeout: @http_timeout) do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Binance.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              success(response) ->
-                parse!(response.body)
+            success(response) ->
+              parse!(response.body)
 
-                # Retry on exception (#rationale: sometimes Bittrex returns "The service is unavailable" instead of proper JSON)
-            end
-          end,
-          retries: 10,
-          delay: 2_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+              # Retry on exception (#rationale: sometimes Bittrex returns "The service is unavailable" instead of proper JSON)
+          end
+        end,
+        retries: 10,
+        delay: 2_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   defp send_private_request(url, parameters, %{key: key, secret: secret}, method \\ :get) do
@@ -282,33 +280,31 @@ defmodule Cryptozaur.Drivers.BinanceRest do
     uri = url <> "?" <> full_parameters <> "&signature=" <> signature
     headers = ["X-MBX-APIKEY": key]
 
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case request(method, uri, "", headers, timeout: @http_timeout, recv_timeout: @http_timeout) do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Binance.Rest.send_private_request(#{inspect(url)}, #{inspect(parameters)}) # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case request(method, uri, "", headers, timeout: @http_timeout, recv_timeout: @http_timeout) do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Binance.Rest.send_private_request(#{inspect(url)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              success(response) ->
-                parse!(response.body)
+            success(response) ->
+              parse!(response.body)
 
-                # Retry on exception (#rationale: sometimes Bittrex returns "The service is unavailable" instead of proper JSON)
-            end
-          end,
-          retries: 10,
-          delay: 2_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+              # Retry on exception (#rationale: sometimes Bittrex returns "The service is unavailable" instead of proper JSON)
+          end
+        end,
+        retries: 10,
+        delay: 2_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   def validate(response) do

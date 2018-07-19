@@ -3,14 +3,16 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
   use GenServer
   require OK
   import OK, only: [success: 1, failure: 1]
+  import Logger
   import Cryptozaur.Utils
 
   @moduledoc """
   Wrapper around public Poloniex API
   """
 
-  # @timeout 20000
-  @huge_timeout 200_000
+  # For some reason, Poloniex requires large timeouts
+  @timeout 600_000
+  @http_timeout 200_000
 
   def start_link(state, opts \\ []) do
     GenServer.start_link(__MODULE__, state, opts)
@@ -20,7 +22,7 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
 
   def get_trade_history(pid, base, quote, start, finish) do
     # set GenServer call timeout to `infinity` since the request may time fuck a lot of time
-    GenServer.call(pid, {:get_trade_history, base, quote, start, finish}, @huge_timeout)
+    GenServer.call(pid, {:get_trade_history, base, quote, start, finish}, @timeout)
   end
 
   # Server
@@ -34,7 +36,7 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
     parameters = %{currencyPair: pair, start: start} |> Map.put(:end, finish)
 
     # set HTTP timeout to`infinity` since the request may time fuck a lot of time
-    result = send_public_request("returnTradeHistory", parameters, recv_timeout: @huge_timeout, timeout: @huge_timeout)
+    result = send_public_request("returnTradeHistory", parameters, recv_timeout: @http_timeout, timeout: @http_timeout)
 
     {:reply, result, state}
   end
@@ -124,14 +126,8 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
     query =
       parameters
       |> Map.put(:command, command)
-      |> URI.encode_query()
 
-    OK.with do
-      # TODO: implement retry
-      response <- get("https://poloniex.com/public?" <> query, [], opts)
-      payload = parse!(response.body)
-      validate(payload)
-    end
+    get("/public", query, opts)
   end
 
   #  defp send_private_request(key, secret, parameters) do
@@ -145,13 +141,43 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
   #      {"Sign", signanure},
   #      {"Content-Type", "application/x-www-form-urlencoded"},
   #    ]
-  #    OK.with do
   #      # TODO: implement retry
   #      response <- post("https://poloniex.com/tradingApi", body, headers)
   #      payload = parse!(response.body)
   #      validate(payload)
-  #    end
   #  end
+
+  defp get(path, params \\ [], headers \\ [], options \\ []) do
+    request(:get, path, "", headers, options ++ [params: params])
+  end
+
+  defp post(path, body \\ "", params \\ [], headers \\ [], options \\ []) do
+    request(:post, path, body, headers, options ++ [params: params])
+  end
+
+  defp request(method, path, body \\ "", headers \\ [], options \\ []) do
+    GenRetry.Task.async(request_task(method, path, body, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout]), retries: 10, delay: 2_000, jitter: 0.1, exp_base: 1.1)
+    |> Task.await(@timeout)
+    |> validate()
+  end
+
+  defp request_task(method, path, body \\ "", headers \\ [], options \\ []) do
+    url = "https://poloniex.com" <> path
+
+    fn ->
+      case HTTPoison.request(method, url, body, headers, options) do
+        failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+          warn("~~ PoloniexRest.request(#{inspect(method)}, #{inspect(url)}, #{inspect(body)}, #{inspect(headers)}, #{inspect(options)}) # timeout")
+          raise "retry"
+
+        failure(error) ->
+          failure(error)
+
+        success(response) ->
+          parse!(response.body)
+      end
+    end
+  end
 
   defp to_pair(base, quot), do: quot <> "_" <> base
 
