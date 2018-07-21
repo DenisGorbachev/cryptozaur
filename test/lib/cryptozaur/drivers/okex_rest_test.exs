@@ -6,9 +6,9 @@ defmodule Cryptozaur.Drivers.OkexRestTest do
   setup_all do
     HTTPoison.start()
 
-    credentials = Application.get_env(:cryptozaur, :okex, %{key: "", secret: ""})
+    credentials = Application.get_env(:cryptozaur, :okex, key: "", secret: "")
 
-    {:ok, driver} = Cryptozaur.Drivers.OkexRest.start_link(credentials)
+    {:ok, driver} = Cryptozaur.Drivers.OkexRest.start_link(Enum.into(credentials, %{}))
 
     %{driver: driver}
   end

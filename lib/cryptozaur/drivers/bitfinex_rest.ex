@@ -128,33 +128,31 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
       path = path <> "?" <> body
     end
 
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case get(path, timeout: @http_timeout, recv_timeout: @http_timeout) do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Bitfinex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case get(path, timeout: @http_timeout, recv_timeout: @http_timeout) do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Bitfinex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              success(response) ->
-                # Retry on exception
-                parse!(response.body)
-                |> handle_rate_limit()
-            end
-          end,
-          retries: 10,
-          delay: 6_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+            success(response) ->
+              # Retry on exception
+              parse!(response.body)
+              |> handle_rate_limit()
+          end
+        end,
+        retries: 10,
+        delay: 6_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   defp send_private_request(path, parameters, headers, %{key: key, secret: secret}) do
@@ -170,33 +168,31 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
     # debug
     headers = []
 
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case post("https://api.bitfinex.com" <> path, body, headers, timeout: @http_timeout, recv_timeout: @http_timeout) do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Bitfinex.Rest.send_private_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case post("https://api.bitfinex.com" <> path, body, headers, timeout: @http_timeout, recv_timeout: @http_timeout) do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Bitfinex.Rest.send_private_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              success(response) ->
-                # Retry on exception
-                parse!(response.body)
-                |> handle_rate_limit()
-            end
-          end,
-          retries: 10,
-          delay: 6_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+            success(response) ->
+              # Retry on exception
+              parse!(response.body)
+              |> handle_rate_limit()
+          end
+        end,
+        retries: 10,
+        delay: 6_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   defp from_symbols(pair) do

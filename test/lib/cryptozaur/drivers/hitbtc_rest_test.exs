@@ -5,7 +5,8 @@ defmodule Cryptozaur.Drivers.HitbtcRestTest do
 
   setup_all do
     success(_) = HTTPoison.start()
-    success(driver) = Cryptozaur.Drivers.HitbtcRest.start_link(Application.get_env(:cryptozaur, :hitbtc, %{key: "", secret: ""}))
+    credentials = Application.get_env(:cryptozaur, :hitbtc, key: "", secret: "")
+    success(driver) = Cryptozaur.Drivers.HitbtcRest.start_link(credentials |> Enum.into(%{}))
     %{driver: driver}
   end
 

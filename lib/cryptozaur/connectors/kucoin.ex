@@ -41,8 +41,8 @@ defmodule Cryptozaur.Connectors.Kucoin do
   def get_balances(key, secret) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
-      result <- Rest.get_balances(rest)
-      balances = Enum.map(result, &to_balance(&1))
+      %{"datas" => datas} <- Rest.get_balances(rest)
+      balances = Enum.map(datas, &to_balance(&1))
     after
       balances
     end

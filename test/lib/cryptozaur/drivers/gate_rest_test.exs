@@ -6,9 +6,9 @@ defmodule Cryptozaur.Drivers.GateRestTest do
   setup_all do
     HTTPoison.start()
 
-    credentials = Application.get_env(:cryptozaur, :gate, %{key: "", secret: ""})
+    credentials = Application.get_env(:cryptozaur, :gate, key: "", secret: "")
 
-    {:ok, driver} = Cryptozaur.Drivers.GateRest.start_link(credentials)
+    {:ok, driver} = Cryptozaur.Drivers.GateRest.start_link(Enum.into(credentials, %{}))
 
     %{driver: driver}
   end

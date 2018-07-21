@@ -6,9 +6,9 @@ defmodule Cryptozaur.Drivers.KucoinRestTest do
   setup_all do
     HTTPoison.start()
 
-    credentials = Application.get_env(:cryptozaur, :kucoin, %{key: "", secret: ""})
+    credentials = Application.get_env(:cryptozaur, :kucoin, key: "", secret: "")
 
-    {:ok, driver} = Cryptozaur.Drivers.KucoinRest.start_link(credentials)
+    {:ok, driver} = Cryptozaur.Drivers.KucoinRest.start_link(Enum.into(credentials, %{}))
 
     %{driver: driver}
   end
@@ -113,18 +113,20 @@ defmodule Cryptozaur.Drivers.KucoinRestTest do
     use_cassette "kucoin/get_balances", match_requests_on: [:query] do
       {:ok, result} = Cryptozaur.Drivers.KucoinRest.get_balances(driver)
 
-      assert [
-               %{
-                 "balance" => 0.0,
-                 "balanceStr" => "0.0",
-                 "coinType" => "BCPT",
-                 "freezeBalance" => 0.0,
-                 "freezeBalanceStr" => "0.0"
-               }
-               | _
-             ] = result
+      assert %{
+               "datas" => [
+                 %{
+                   "balance" => 0.0,
+                   "balanceStr" => "0.0",
+                   "coinType" => "BCPT",
+                   "freezeBalance" => 0.0,
+                   "freezeBalanceStr" => "0.0"
+                 }
+                 | _
+               ]
+             } = result
 
-      assert length(result) == 89
+      assert length(result["datas"]) == 89
     end
   end
 

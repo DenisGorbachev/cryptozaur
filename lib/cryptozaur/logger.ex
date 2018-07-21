@@ -26,15 +26,15 @@ defmodule Cryptozaur.Logger do
 
   defmacro log_conditional_breakpoint(data, keys, now, _level \\ :debug) do
     quote do
-      backtest_breakpoints = Application.get_env(:cryptozaur, :backtest_breakpoints, [])
+      breakpoints = Application.get_env(:cryptozaur, :breakpoints, [])
 
-      if unquote(now) in backtest_breakpoints and Application.get_env(:cryptozaur, :env) == :backtest do
+      if unquote(now) in breakpoints and Application.get_env(:cryptozaur, :env) == :backtest do
         [["now", unquote(now)] | unquote(keys) |> Enum.map(&[Atom.to_string(&1), Map.get(unquote(data), &1)])]
         |> TableRex.Table.new(["key", "value"])
         |> TableRex.Table.render!()
         |> IO.puts()
 
-        if !Application.put_env(:cryptozaur, :backtest_skip_notification, false), do: Mix.Tasks.Helpers.notify("Backtest breakpoint", "info")
+        if !Application.put_env(:cryptozaur, :breakpoints_skip_notification, false), do: Mix.Tasks.Helpers.notify("Breakpoint", "info")
         step = Task.async(fn -> IO.gets("(Enter) to continue, (number) to advance X minutes: ") end) |> Task.await(:infinity) |> String.trim()
 
         if String.length(step) > 0 do
@@ -44,9 +44,9 @@ defmodule Cryptozaur.Logger do
               :error -> 60
             end
 
-          backtest_breakpoints = [NaiveDateTime.add(unquote(now), step * 60) | backtest_breakpoints]
-          Application.put_env(:cryptozaur, :backtest_skip_notification, true)
-          Application.put_env(:cryptozaur, :backtest_breakpoints, backtest_breakpoints)
+          breakpoints = [NaiveDateTime.add(unquote(now), step * 60) | breakpoints]
+          Application.put_env(:cryptozaur, :breakpoints_skip_notification, true)
+          Application.put_env(:cryptozaur, :breakpoints, breakpoints)
         end
       end
     end
@@ -59,7 +59,7 @@ defmodule Cryptozaur.Logger do
 
   defmacro breakpoint(data, keys, now, level \\ :info) do
     quote do
-      Application.put_env(:cryptozaur, :backtest_breakpoints, Application.get_env(:cryptozaur, :backtest_breakpoints, []) ++ [unquote(now)])
+      Application.put_env(:cryptozaur, :breakpoints, Application.get_env(:cryptozaur, :breakpoints, []) ++ [unquote(now)])
       log_conditional_breakpoint(unquote(data), unquote(keys), unquote(now), unquote(level))
     end
   end

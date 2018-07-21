@@ -1,6 +1,6 @@
 defmodule Cryptozaur.Connectors.KucoinTest do
   use ExUnit.Case
-  import OK, only: [success: 1, failure: 1]
+  import OK, only: [success: 1]
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
@@ -41,22 +41,24 @@ defmodule Cryptozaur.Connectors.KucoinTest do
         [
           {
             {:get_balances},
-            success([
-              %{
-                "balance" => 0.9953,
-                "balanceStr" => "0.9953",
-                "coinType" => "ETH",
-                "freezeBalance" => 0.0,
-                "freezeBalanceStr" => "0.0"
-              },
-              %{
-                "balance" => 0.0,
-                "balanceStr" => "0.0",
-                "coinType" => "BHC",
-                "freezeBalance" => 0.0,
-                "freezeBalanceStr" => "0.0"
-              }
-            ])
+            success(%{
+              "datas" => [
+                %{
+                  "balance" => 0.9953,
+                  "balanceStr" => "0.9953",
+                  "coinType" => "ETH",
+                  "freezeBalance" => 0.0,
+                  "freezeBalanceStr" => "0.0"
+                },
+                %{
+                  "balance" => 0.0,
+                  "balanceStr" => "0.0",
+                  "coinType" => "BHC",
+                  "freezeBalance" => 0.0,
+                  "freezeBalanceStr" => "0.0"
+                }
+              ]
+            })
           }
         ],
         Cryptozaur.Drivers.KucoinRest

@@ -121,40 +121,38 @@ defmodule Cryptozaur.Drivers.BitmexRest do
   defp send_public_request(path, parameters) do
     body = URI.encode_query(parameters)
 
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case get(@base_url <> path <> "?" <> body, [], timeout: @http_timeout, recv_timeout: @http_timeout) do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Bitmex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case get(@base_url <> path <> "?" <> body, [], timeout: @http_timeout, recv_timeout: @http_timeout) do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Bitmex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
+
+            failure(error) ->
+              failure(error)
+
+            success(response) ->
+              if value(response.headers, "X-RateLimit-Remaining") == "0" do
+                {reset, ""} = Integer.parse(value(response.headers, "X-RateLimit-Reset"))
+                delay = reset - now_in_seconds()
+                warn("~~ Bitmex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # rate limit exceeded, sleeping for #{delay} seconds")
+                Process.sleep(delay * 1000)
                 raise "retry"
+              else
+                # Retry on exception (#rationale: sometimes Bittrex returns "The service is unavailable" instead of proper JSON)
+                parse!(response.body)
+              end
+          end
+        end,
+        retries: 10,
+        delay: 2_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-              failure(error) ->
-                failure(error)
-
-              success(response) ->
-                if value(response.headers, "X-RateLimit-Remaining") == "0" do
-                  {reset, ""} = Integer.parse(value(response.headers, "X-RateLimit-Reset"))
-                  delay = reset - now_in_seconds()
-                  warn("~~ Bitmex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # rate limit exceeded, sleeping for #{delay} seconds")
-                  Process.sleep(delay * 1000)
-                  raise "retry"
-                else
-                  # Retry on exception (#rationale: sometimes Bittrex returns "The service is unavailable" instead of proper JSON)
-                  parse!(response.body)
-                end
-            end
-          end,
-          retries: 10,
-          delay: 2_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
-
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   defp send_private_request(method, path, parameters, %{key: key, secret: secret}) do

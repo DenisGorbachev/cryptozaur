@@ -321,7 +321,7 @@ defmodule Cryptozaur.Connectors.BinanceTest do
   end
 
   test "get_torches" do
-    key =
+    _key =
       produce_driver(
         [
           {
@@ -404,7 +404,7 @@ defmodule Cryptozaur.Connectors.BinanceTest do
   end
 
   test "get_levels" do
-    key =
+    _key =
       produce_driver(
         [
           {

@@ -4,7 +4,7 @@ defmodule Cryptozaur.Connectors.BittrexTest do
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
-  alias Cryptozaur.Model.{Trade, Order, Level, Summary, Ticker}
+  alias Cryptozaur.Model.{Trade, Order, Level, Ticker}
 
   @any_secret "secret"
   @exchange "BITTREX"

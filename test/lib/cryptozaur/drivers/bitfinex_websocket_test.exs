@@ -92,7 +92,7 @@ defmodule Cryptozaur.Drivers.BitfinexWebsocketTest do
 
     TestServer.send_message(server, %{"event" => "info", "version" => 2})
 
-    success(client) = Task.await(task)
+    success(client) = Task.await(task, 10_000)
 
     %{
       client: client,

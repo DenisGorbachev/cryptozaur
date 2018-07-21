@@ -23,5 +23,6 @@ erl_crash.dump
 cryptozaur-*.tar
 
 /config/*.local.exs
+/config/*.secret.exs
 
 .deliver/releases/

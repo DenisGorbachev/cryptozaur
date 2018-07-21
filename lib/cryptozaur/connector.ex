@@ -4,6 +4,7 @@ defmodule Cryptozaur.Connector do
 
   @exchanges [
     %{slug: "MTGOX", name: "MtGox", connector: Elixir.Cryptozaur.Connectors.Mtgox, maker_fee: 0.0025, taker_fee: 0.0040, is_public: false},
+    %{slug: "LEVEREX", name: "LeverEX", connector: Elixir.Cryptozaur.Connectors.Leverex, maker_fee: 0.0010, taker_fee: 0.0010, is_public: true},
     %{slug: "BITTREX", name: "Bittrex", connector: Elixir.Cryptozaur.Connectors.Bittrex, maker_fee: 0.0025, taker_fee: 0.0025, is_public: true},
     %{slug: "BINANCE", name: "Binance", connector: Elixir.Cryptozaur.Connectors.Binance, maker_fee: 0.0010, taker_fee: 0.0010, is_public: true},
     %{slug: "BITMEX", name: "Bitmex", connector: Elixir.Cryptozaur.Connectors.Bitmex, maker_fee: -0.00025, taker_fee: 0.00075, is_public: false},
@@ -37,28 +38,15 @@ defmodule Cryptozaur.Connector do
     end
   end
 
-  def subscribe_ticker(exchange, base, quote) do
-    execute(exchange, :subscribe_ticker, [base, quote])
-  end
-
-  def subscribe_trades(exchange, base, quote) do
-    execute(exchange, :subscribe_trades, [base, quote])
-  end
-
-  def subscribe_levels(exchange, base, quote) do
-    execute(exchange, :subscribe_levels, [base, quote])
-  end
-
-  def subscribe_orders(exchange, base, quote, key, secret) do
-    execute(exchange, :subscribe_orders, [base, quote, key, secret])
-  end
-
-  def subscribe_positions(exchange, base, quote, key, secret) do
-    execute(exchange, :subscribe_positions, [base, quote, key, secret])
-  end
-
   def credentials_valid?(exchange, key, secret) do
-    execute(exchange, :credentials_valid?, [key, secret])
+    if is_supported(exchange, :credentials_valid?, 2) do
+      execute(exchange, :credentials_valid?, [key, secret])
+    else
+      case get_balances(exchange, key, secret) do
+        success(_) -> success(true)
+        failure(message) -> failure(message)
+      end
+    end
   end
 
   def pair_valid?(exchange, base, quote) do
@@ -182,6 +170,26 @@ defmodule Cryptozaur.Connector do
 
   def validate_order(exchange, base, quote, amount, price) do
     execute(exchange, :validate_order, [base, quote, amount, price])
+  end
+
+  def subscribe_ticker(exchange, base, quote) do
+    execute(exchange, :subscribe_ticker, [base, quote])
+  end
+
+  def subscribe_trades(exchange, base, quote) do
+    execute(exchange, :subscribe_trades, [base, quote])
+  end
+
+  def subscribe_levels(exchange, base, quote) do
+    execute(exchange, :subscribe_levels, [base, quote])
+  end
+
+  def subscribe_orders(exchange, base, quote, key, secret) do
+    execute(exchange, :subscribe_orders, [base, quote, key, secret])
+  end
+
+  def subscribe_positions(exchange, base, quote, key, secret) do
+    execute(exchange, :subscribe_positions, [base, quote, key, secret])
   end
 
   def get_min_price(exchange, base, quote) do

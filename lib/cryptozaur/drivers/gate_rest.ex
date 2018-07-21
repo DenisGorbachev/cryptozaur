@@ -71,30 +71,28 @@ defmodule Cryptozaur.Drivers.GateRest do
   end
 
   defp perform_request(request_function) do
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            case request_function.() do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ Gate.Rest.perform_request # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          case request_function.() do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ Gate.Rest.perform_request # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              # Retry on exception
-              success(response) ->
-                parse!(response.body)
-            end
-          end,
-          retries: 10,
-          delay: 2_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+            # Retry on exception
+            success(response) ->
+              parse!(response.body)
+          end
+        end,
+        retries: 10,
+        delay: 2_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      success(Task.await(task, @timeout))
-    end
+    success(Task.await(task, @timeout))
   end
 end

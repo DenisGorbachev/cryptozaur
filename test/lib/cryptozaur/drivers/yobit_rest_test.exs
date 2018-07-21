@@ -6,9 +6,9 @@ defmodule Cryptozaur.Drivers.YobitRestTest do
   setup_all do
     HTTPoison.start()
 
-    credentials = Application.get_env(:cryptozaur, :yobit, %{key: "", secret: ""})
+    credentials = Application.get_env(:cryptozaur, :yobit, key: "", secret: "")
 
-    {:ok, driver} = Cryptozaur.Drivers.YobitRest.start_link(credentials)
+    {:ok, driver} = Cryptozaur.Drivers.YobitRest.start_link(Enum.into(credentials, %{}))
 
     %{driver: driver}
   end

@@ -190,33 +190,31 @@ defmodule Cryptozaur.Drivers.CryptoCompareRest do
   end
 
   defp send_public_request(url, parameters) do
-    OK.with do
-      task =
-        GenRetry.Task.async(
-          fn ->
-            result = get(url <> "?" <> URI.encode_query(parameters), timeout: @http_timeout, recv_timeout: @http_timeout)
-            #          Apex.ap(result, numbers: false)
-            case result do
-              failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
-                warn("~~ CryptoCompare.Rest.send_public_request(#{inspect(url)}, #{inspect(parameters)}) # timeout")
-                raise "retry"
+    task =
+      GenRetry.Task.async(
+        fn ->
+          result = get(url <> "?" <> URI.encode_query(parameters), timeout: @http_timeout, recv_timeout: @http_timeout)
+          #          Apex.ap(result, numbers: false)
+          case result do
+            failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
+              warn("~~ CryptoCompare.Rest.send_public_request(#{inspect(url)}, #{inspect(parameters)}) # timeout")
+              raise "retry"
 
-              failure(error) ->
-                failure(error)
+            failure(error) ->
+              failure(error)
 
-              success(response) ->
-                parse!(response.body)
-            end
-          end,
-          retries: 10,
-          delay: 2_000,
-          jitter: 0.1,
-          exp_base: 1.1
-        )
+            success(response) ->
+              parse!(response.body)
+          end
+        end,
+        retries: 10,
+        delay: 2_000,
+        jitter: 0.1,
+        exp_base: 1.1
+      )
 
-      payload = Task.await(task, @timeout)
-      validate(payload)
-    end
+    payload = Task.await(task, @timeout)
+    validate(payload)
   end
 
   defp validate(response) do

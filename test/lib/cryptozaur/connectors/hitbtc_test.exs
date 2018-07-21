@@ -1,10 +1,10 @@
 defmodule Cryptozaur.Connectors.HitbtcTest do
   use ExUnit.Case
-  import OK, only: [success: 1, failure: 1]
+  import OK, only: [success: 1]
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
-  alias Cryptozaur.Model.{Trade, Order, Level, Summary, Ticker}
+  alias Cryptozaur.Model.{Trade}
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)

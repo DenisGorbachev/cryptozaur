@@ -52,6 +52,7 @@ defmodule Cryptozaur.MixProject do
       {:ex_fixer, "~> 1.0.0", only: :dev},
       {:exvcr, "~> 0.8", only: :test},
       {:mock, "~> 0.2.0", only: :test},
+      {:briefly, "~> 0.3", only: :test},
       {:timex, "~> 3.0"},
       {:ecto, "~> 2.1"},
       {:apex, "~> 1.1.0"},

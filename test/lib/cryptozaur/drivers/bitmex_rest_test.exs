@@ -8,9 +8,9 @@ defmodule Cryptozaur.Drivers.BitmexRestTest do
   setup_all do
     HTTPoison.start()
 
-    credentials = Application.get_env(:cryptozaur, :bitmex, %{key: "", secret: ""})
+    credentials = Application.get_env(:cryptozaur, :bitmex, key: "", secret: "")
 
-    success(driver) = Rest.start_link(credentials)
+    success(driver) = Rest.start_link(Enum.into(credentials, %{}))
 
     %{driver: driver}
   end

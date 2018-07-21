@@ -7,9 +7,9 @@ defmodule Cryptozaur.Drivers.HuobiRestTest do
   setup_all do
     HTTPoison.start()
 
-    credentials = Application.get_env(:cryptozaur, :huobi, %{key: "", secret: ""})
+    credentials = Application.get_env(:cryptozaur, :huobi, key: "", secret: "")
 
-    %{credentials: credentials}
+    %{credentials: credentials |> Enum.into(%{})}
   end
 
   test "init/1 should fetch trading account id", %{credentials: credentials} do
@@ -40,7 +40,7 @@ defmodule Cryptozaur.Drivers.HuobiRestTest do
     setup context do
       # set trading account explicitly to prevent extra call in init/1
       credentials = Map.put(context.credentials, :trading_account_id, "2019764")
-      success(driver) = HuobiRest.start_link(credentials)
+      success(driver) = HuobiRest.start_link(Enum.into(credentials, %{}))
 
       %{driver: driver, credentials: credentials}
     end

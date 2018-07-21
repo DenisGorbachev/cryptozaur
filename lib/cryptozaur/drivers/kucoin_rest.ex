@@ -85,7 +85,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   def handle_call({:get_closed_orders}, _from, state) do
     path = "/v1/order/dealt"
     parameters = %{limit: @max_balance_per_page, page: @first_fetch_page}
-    result = success(recursive_pagination_call({path, parameters}, state))
+    result = recursive_pagination_call({path, parameters}, state)
     {:reply, result, state}
   end
 
@@ -100,29 +100,32 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   def handle_call({:get_balances}, _from, state) do
     path = "/v1/account/balances"
     parameters = %{limit: @max_balance_per_page, page: @first_fetch_page}
-    %{"datas" => result} = recursive_pagination_call({path, parameters}, state)
-    {:reply, success(result), state}
+    result = recursive_pagination_call({path, parameters}, state)
+    {:reply, result, state}
   end
 
   def handle_call({:get_trades, _symbol, _limit, _since}, _from, state) do
     path = "/v1/account/balances"
     parameters = %{limit: @max_balance_per_page, page: @first_fetch_page}
-    result = success(recursive_pagination_call({path, parameters}, state))
+    result = recursive_pagination_call({path, parameters}, state)
     {:reply, result, state}
   end
 
   defp recursive_pagination_call({path, params}, state) do
     {nonce, state} = increment_nonce(state)
-    result = get(path, params, signature_headers(path, params, nonce, state))
-    success(response) = result
-    params = %{params | page: params.page + 1}
-    datasLength = length(response["datas"])
+    with success(response) <- get(path, params, signature_headers(path, params, nonce, state)) do
+      datasLength = length(response["datas"])
 
-    if datasLength < @max_balance_per_page do
-      response
-    else
-      resultRecursive = recursive_pagination_call({path, params}, state)
-      Map.update(response, "datas", resultRecursive["datas"], &List.flatten([resultRecursive["datas"] | &1]))
+      result = if datasLength < @max_balance_per_page do
+        response
+      else
+        params = %{params | page: params.page + 1}
+        with success(response_next) <- recursive_pagination_call({path, params}, state) do
+          response |> Map.update("datas", response["datas"], &(response_next["datas"] ++ &1))
+        end
+      end
+
+      success(result)
     end
   end
 

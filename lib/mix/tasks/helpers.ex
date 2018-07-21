@@ -9,4 +9,21 @@ defmodule Mix.Tasks.Helpers do
 
     # TODO: implement desktop notification for OSX
   end
+
+  def read_json(filename) do
+    case File.read(filename) do
+      {:ok, content} -> {:ok, Poison.decode!(content, keys: :atoms)}
+      {:error, :enoent} -> {:ok, %{}}
+      {:error, reason} -> {:error, %{message: "Can't read #{filename}", reason: reason}}
+    end
+  end
+
+  def write_json(filename, content) do
+    File.mkdir_p!(Path.dirname(filename))
+
+    case File.write(filename, Poison.encode!(content, pretty: true)) do
+      :ok -> :ok
+      {:error, reason} -> {:error, %{message: "Can't write #{filename}", reason: reason}}
+    end
+  end
 end

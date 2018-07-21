@@ -1,5 +1,4 @@
 defmodule Cryptozaur.Connectors.Block do
-
   alias Cryptozaur.Model.{Ticker}
   alias Cryptozaur.Drivers.BlockRest, as: Rest
 

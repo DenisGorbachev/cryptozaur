@@ -4,7 +4,7 @@ defmodule Cryptozaur.Connectors.HuobiTest do
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
-  alias Cryptozaur.Model.{Trade, Order, Ticker, Balance}
+  alias Cryptozaur.Model.{Trade, Ticker, Balance}
 
   @any_secret "secret"
 
@@ -139,103 +139,103 @@ defmodule Cryptozaur.Connectors.HuobiTest do
            ]) == Connector.get_latest_trades("HUOBI", "OMG", "USDT")
   end
 
-  test "get_orders" do
-    key =
-      produce_driver(
-        [
-          {
-            {:get_orders, %{}},
-            success([
-              %{
-                "account-id" => 2_019_764,
-                "amount" => "0.100000000000000000",
-                "canceled-at" => 0,
-                "created-at" => 1_517_323_628_646,
-                "field-amount" => "0.100000000000000000",
-                "field-cash-amount" => "0.001106000000000000",
-                "field-fees" => "0.000002212000000000",
-                "finished-at" => 1_517_323_668_177,
-                "id" => 1_011_768_083,
-                "price" => "0.011060000000000000",
-                "source" => "api",
-                "state" => "filled",
-                "symbol" => "eoseth",
-                "type" => "sell-limit"
-              },
-              %{
-                "account-id" => 2_019_764,
-                "amount" => "1.000000000000000000",
-                "canceled-at" => 1_517_322_129_912,
-                "created-at" => 1_517_314_091_356,
-                "field-amount" => "0.0",
-                "field-cash-amount" => "0.0",
-                "field-fees" => "0.0",
-                "finished-at" => 1_517_322_129_959,
-                "id" => 1_009_318_443,
-                "price" => "0.010000000000000000",
-                "source" => "api",
-                "state" => "canceled",
-                "symbol" => "eoseth",
-                "type" => "buy-limit"
-              },
-              %{
-                "account-id" => 2_019_764,
-                "amount" => "1.000000000000000000",
-                "canceled-at" => 0,
-                "created-at" => 1_517_314_091_356,
-                "field-amount" => "0.0",
-                "field-cash-amount" => "0.0",
-                "field-fees" => "0.0",
-                "finished-at" => 0,
-                "id" => 1_009_318_443,
-                "price" => "0.010000000000000000",
-                "source" => "api",
-                "state" => "submitted",
-                "symbol" => "eoseth",
-                "type" => "buy-limit"
-              }
-            ])
-          }
-        ],
-        Cryptozaur.Drivers.HuobiRest
-      )
-
-    assert success([
-             %Order{
-               uid: "1011768083",
-               pair: "EOS:ETH",
-               timestamp: ~N[2018-01-30 14:47:08.646],
-               price: 0.01106,
-               amount_requested: -0.1,
-               amount_filled: -0.1,
-               status: "closed",
-               base_diff: -0.1,
-               quote_diff: 0.001103788
-             },
-             %Order{
-               uid: "1009318443",
-               pair: "EOS:ETH",
-               timestamp: ~N[2018-01-30 12:08:11.356],
-               price: 0.01,
-               amount_requested: 1.0,
-               amount_filled: 0.0,
-               status: "closed",
-               base_diff: 0.0,
-               quote_diff: 0.0
-             },
-             %Order{
-               uid: "1009318443",
-               pair: "EOS:ETH",
-               timestamp: ~N[2018-01-30 12:08:11.356],
-               price: 0.01,
-               amount_requested: 1.0,
-               amount_filled: 0.0,
-               status: "opened",
-               base_diff: 0.0,
-               quote_diff: 0.0
-             }
-           ]) == Connector.get_orders("HUOBI", key, @any_secret)
-  end
+#  test "get_orders" do
+#    key =
+#      produce_driver(
+#        [
+#          {
+#            {:get_orders, %{}},
+#            success([
+#              %{
+#                "account-id" => 2_019_764,
+#                "amount" => "0.100000000000000000",
+#                "canceled-at" => 0,
+#                "created-at" => 1_517_323_628_646,
+#                "field-amount" => "0.100000000000000000",
+#                "field-cash-amount" => "0.001106000000000000",
+#                "field-fees" => "0.000002212000000000",
+#                "finished-at" => 1_517_323_668_177,
+#                "id" => 1_011_768_083,
+#                "price" => "0.011060000000000000",
+#                "source" => "api",
+#                "state" => "filled",
+#                "symbol" => "eoseth",
+#                "type" => "sell-limit"
+#              },
+#              %{
+#                "account-id" => 2_019_764,
+#                "amount" => "1.000000000000000000",
+#                "canceled-at" => 1_517_322_129_912,
+#                "created-at" => 1_517_314_091_356,
+#                "field-amount" => "0.0",
+#                "field-cash-amount" => "0.0",
+#                "field-fees" => "0.0",
+#                "finished-at" => 1_517_322_129_959,
+#                "id" => 1_009_318_443,
+#                "price" => "0.010000000000000000",
+#                "source" => "api",
+#                "state" => "canceled",
+#                "symbol" => "eoseth",
+#                "type" => "buy-limit"
+#              },
+#              %{
+#                "account-id" => 2_019_764,
+#                "amount" => "1.000000000000000000",
+#                "canceled-at" => 0,
+#                "created-at" => 1_517_314_091_356,
+#                "field-amount" => "0.0",
+#                "field-cash-amount" => "0.0",
+#                "field-fees" => "0.0",
+#                "finished-at" => 0,
+#                "id" => 1_009_318_443,
+#                "price" => "0.010000000000000000",
+#                "source" => "api",
+#                "state" => "submitted",
+#                "symbol" => "eoseth",
+#                "type" => "buy-limit"
+#              }
+#            ])
+#          }
+#        ],
+#        Cryptozaur.Drivers.HuobiRest
+#      )
+#
+#    assert success([
+#             %Order{
+#               uid: "1011768083",
+#               pair: "EOS:ETH",
+#               timestamp: ~N[2018-01-30 14:47:08.646],
+#               price: 0.01106,
+#               amount_requested: -0.1,
+#               amount_filled: -0.1,
+#               status: "closed",
+#               base_diff: -0.1,
+#               quote_diff: 0.001103788
+#             },
+#             %Order{
+#               uid: "1009318443",
+#               pair: "EOS:ETH",
+#               timestamp: ~N[2018-01-30 12:08:11.356],
+#               price: 0.01,
+#               amount_requested: 1.0,
+#               amount_filled: 0.0,
+#               status: "closed",
+#               base_diff: 0.0,
+#               quote_diff: 0.0
+#             },
+#             %Order{
+#               uid: "1009318443",
+#               pair: "EOS:ETH",
+#               timestamp: ~N[2018-01-30 12:08:11.356],
+#               price: 0.01,
+#               amount_requested: 1.0,
+#               amount_filled: 0.0,
+#               status: "opened",
+#               base_diff: 0.0,
+#               quote_diff: 0.0
+#             }
+#           ]) == Connector.get_orders("HUOBI", key, @any_secret)
+#  end
 
   test "get_balances" do
     key =
