@@ -1,18 +1,7 @@
 defmodule Cryptozaur do
-  @moduledoc """
-  Documentation for Cryptozaur.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Cryptozaur.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  #  Using bash script for now
+  #  def main(argv \\ System.argv()) do
+  #    Mix.start()
+  #    Mix.CLI.main(argv)
+  #  end
 end

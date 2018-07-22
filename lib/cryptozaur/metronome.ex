@@ -54,6 +54,6 @@ defmodule Cryptozaur.Metronome do
   end
 
   def handle_call({:distance}, _from, {from, to}) do
-    {:reply, Timex.to_unix(to) - Timex.to_unix(from), {from, to}}
+    {:reply, NaiveDateTime.diff(to, from), {from, to}}
   end
 end

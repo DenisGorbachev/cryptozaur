@@ -152,7 +152,7 @@ defmodule Cryptozaur.Connectors.CryptoCompare do
       symbol = "#{exchange}:#{base}:#{quote}"
       [cc_exchange, cc_base, cc_quote] <- to_cryptocompare_list(exchange, base, quote)
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
-      torches <- Rest.get_torches(rest, cc_exchange, cc_base, cc_quote, resolution, Timex.to_unix(to), true_limit)
+      torches <- Rest.get_torches(rest, cc_exchange, cc_base, cc_quote, resolution, to_unix(to), true_limit)
 
       result =
         torches
@@ -303,7 +303,7 @@ defmodule Cryptozaur.Connectors.CryptoCompare do
       close: to_float(close),
       volume: to_float(volume),
       resolution: resolution,
-      timestamp: DateTime.to_naive(Timex.from_unix(timestamp))
+      timestamp: from_unix(timestamp)
     }
   end
 

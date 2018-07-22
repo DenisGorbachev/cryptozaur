@@ -35,12 +35,12 @@ defmodule Cryptozaur.Utils do
     ~N[1970-01-01 00:00:00.000000]
   end
 
-  def now_in_seconds do
-    Timex.to_unix(Timex.now())
+  def from_unix(timestamp) do
+    DateTime.to_naive(DateTime.from_unix!(timestamp))
   end
 
   def to_unix(datetime) do
-    Timex.to_unix(datetime)
+    DateTime.to_unix(DateTime.from_naive!(datetime, "Etc/UTC"))
   end
 
   def from_now(period) do
@@ -81,7 +81,7 @@ defmodule Cryptozaur.Utils do
   end
 
   def milliseconds_from_beginning_of_day(datetime) do
-    timestamp = Timex.to_unix(datetime)
+    timestamp = to_unix(datetime)
     rem(timestamp, 24 * 60 * 60) * 1000
   end
 

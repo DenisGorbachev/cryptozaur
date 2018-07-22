@@ -139,7 +139,7 @@ defmodule Cryptozaur.Drivers.BitmexRest do
             success(response) ->
               if value(response.headers, "X-RateLimit-Remaining") == "0" do
                 {reset, ""} = Integer.parse(value(response.headers, "X-RateLimit-Reset"))
-                delay = reset - now_in_seconds()
+                delay = reset - to_unix(now())
                 warn("~~ Bitmex.Rest.send_public_request(#{inspect(path)}, #{inspect(parameters)}) # rate limit exceeded, sleeping for #{delay} seconds")
                 Process.sleep(delay * 1000)
                 raise "retry"

@@ -8,6 +8,7 @@ defmodule Cryptozaur.MixProject do
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
+      escript: escript(),
       deps: deps(),
       aliases: aliases()
     ]
@@ -26,6 +27,13 @@ defmodule Cryptozaur.MixProject do
     [
       mod: {Cryptozaur.Application, []},
       extra_applications: extra_applications
+    ]
+  end
+
+  def escript do
+    [
+      main_module: Cryptozaur,
+      path: "bin/cryptozaur"
     ]
   end
 
@@ -53,7 +61,6 @@ defmodule Cryptozaur.MixProject do
       {:exvcr, "~> 0.8", only: :test},
       {:mock, "~> 0.2.0", only: :test},
       {:briefly, "~> 0.3", only: :test},
-      {:timex, "~> 3.0"},
       {:ecto, "~> 2.1"},
       {:apex, "~> 1.1.0"},
       {:table_rex, "~> 2.0.0"},
