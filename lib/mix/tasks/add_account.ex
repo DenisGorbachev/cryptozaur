@@ -8,7 +8,7 @@ defmodule Mix.Tasks.Add.Account do
   @shortdoc "Add account"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config: config_filename, accounts: accounts_filename}, args: %{name: name, exchange: exchange, key: key, secret: secret}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{name: name, config: config_filename, accounts: accounts_filename}, args: %{exchange: exchange, key: key, secret: secret}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -18,11 +18,14 @@ defmodule Mix.Tasks.Add.Account do
     {:ok, _config} = read_json(config_filename)
     {:ok, accounts} = read_json(accounts_filename)
 
+    name = name || String.downcase(exchange)
+    exchange = String.upcase(exchange)
+
     result =
       case Connector.credentials_valid?(exchange, key, secret) do
         {:ok, true} ->
           if !Map.has_key?(accounts, String.to_atom(name)) do
-            accounts = accounts |> Map.put(name, %{exchange: exchange})
+            accounts = accounts |> Map.put(name, %{exchange: exchange, key: key, secret: secret})
             write_json(accounts_filename, accounts)
           else
             {:error, %{message: "Account already exists", name: name}}
@@ -46,16 +49,12 @@ defmodule Mix.Tasks.Add.Account do
       |> Enum.filter(& &1.is_public)
       |> pluck(:slug)
       |> Enum.sort()
+      |> Enum.map(&String.downcase(&1))
 
     Optimus.new!(
       allow_unknown_args: false,
       parse_double_dash: true,
       args: [
-        name: [
-          value_name: "name",
-          help: "Account name (arbitrary string used to identify account in Cryptozaur)",
-          required: true
-        ],
         exchange: [
           value_name: "exchange",
           help: "Exchange (supported: #{exchanges |> Enum.join(", ")})",
@@ -82,6 +81,13 @@ defmodule Mix.Tasks.Add.Account do
         ]
       ],
       options: [
+        name: [
+          value_name: "name",
+          short: "-n",
+          long: "--name",
+          help: "Account name (arbitrary string used to identify account in Cryptozaur) (default: exchange name)",
+          required: false
+        ],
         config: [
           value_name: "config",
           short: "-c",

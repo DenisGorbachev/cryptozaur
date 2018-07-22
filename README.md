@@ -35,7 +35,7 @@ First, get your API key & secret on credentials management page.
 Second, execute the following commands:
 
 ```
-cryptozaur add.account leverex LEVEREX [your_key] [your_secret]
+cryptozaur add.account leverex [your_key] [your_secret]
 
 cryptozaur activate leverex
 
@@ -70,7 +70,7 @@ Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 
 Some exchanges have recently implemented "[trans-fee mining](https://www.binaryoptions.net/what-is-trans-fee-mining-and-why-you-should-care/)". It's a profitable (although questionable) way of acquiring native exchange tokens via self-trade.
 
 ```
-cryptozaur add.account coinex COINEX [your_key] [your_secret]
+cryptozaur add.account coinex [your_key] [your_secret]
 
 cryptozaur mine --account coinex --market ETH:BTC --single-order-amount 0.1 --budget 0.5
 ### This command will self-trade on ETH:BTC market by concurrently placing buy & sell orders for 0.1 ETH at the same price until the budget of 0.5 BTC is exhausted

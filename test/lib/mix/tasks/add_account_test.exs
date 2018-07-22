@@ -31,9 +31,13 @@ defmodule Mix.Tasks.Add.AccountTest do
       accounts = accounts_filename |> File.read!() |> Poison.decode!(keys: :atoms)
       File.rm!(accounts_filename)
 
-      result = Mix.Tasks.Add.Account.run(opts ++ ["kucoin", accounts.kucoin.exchange, accounts.kucoin.key, accounts.kucoin.secret])
+      result = Mix.Tasks.Add.Account.run(opts ++ [accounts.kucoin.exchange, accounts.kucoin.key, accounts.kucoin.secret])
 
       assert result == {:ok, true}
+
+      accounts_new = accounts_filename |> File.read!() |> Poison.decode!(keys: :atoms)
+
+      assert accounts_new == accounts
     end
   end
 end

@@ -180,6 +180,10 @@ defmodule Cryptozaur.Utils do
     structs |> Enum.map(&to_map(&1))
   end
 
+  def to_map(list) when is_list(list) do
+    list |> Enum.into(%{})
+  end
+
   def to_map(%{__meta__: __meta__} = struct) do
     association_fields = struct.__struct__.__schema__(:associations)
     waste_fields = association_fields ++ [:__meta__]
