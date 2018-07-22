@@ -48,14 +48,14 @@ defmodule Cryptozaur.Drivers.HitbtcRest do
     {:reply, result, state}
   end
 
-  defp get(path, params \\ [], headers \\ [], options \\ []) do
+  defp get(path, params, headers \\ [], options \\ []) do
     request(:get, path, "", headers, options ++ [params: params])
   end
 
-  defp post(path, body \\ "", params \\ [], headers \\ [], options \\ []) do
-    request(:post, path, body, headers, options ++ [params: params])
-  end
-
+  #  defp post(path, body \\ "", params \\ [], headers \\ [], options \\ []) do
+  #    request(:post, path, body, headers, options ++ [params: params])
+  #  end
+  #
   defp request(method, path, body, headers, options) do
     GenRetry.Task.async(request_task(method, path, body, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout]), retries: 10, delay: 2_000, jitter: 0.1, exp_base: 1.1)
     |> Task.await(@timeout)

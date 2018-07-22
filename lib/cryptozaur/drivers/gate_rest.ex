@@ -65,7 +65,7 @@ defmodule Cryptozaur.Drivers.GateRest do
     end)
   end
 
-  defp post(url, parameters, headers \\ []) do
+  defp post(url, parameters, headers) do
     body = URI.encode_query(parameters)
 
     perform_request(fn ->

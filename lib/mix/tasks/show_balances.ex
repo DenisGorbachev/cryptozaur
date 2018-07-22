@@ -22,9 +22,14 @@ defmodule Mix.Tasks.Show.Balances do
     result =
       with {:ok, %{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
            {:ok, balances} <- Connector.get_balances(exchange, key, secret) do
+        balances =
+          if currency do
+            balances |> Enum.filter(&(&1.currency == currency))
+          else
+            balances |> Enum.filter(&(&1.total_amount != 0.0))
+          end
+
         balances
-        #        |> Enum.filter(&(&1.amount_deposited > 0.00000001 or &1.amount_pending > 0.00000001))
-        |> Enum.filter(&(&1.total_amount != 0.0))
         |> Enum.sort_by(& &1.currency)
         |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
         |> Table.new(["Currency", "Wallet", "Available", "Total"])

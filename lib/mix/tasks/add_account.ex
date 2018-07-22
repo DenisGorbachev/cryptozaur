@@ -111,44 +111,6 @@ defmodule Mix.Tasks.Add.Account do
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
         ]
-        #        quote: [
-        #          value_name: "quote",
-        #          short: "-q",
-        #          long: "--quote",
-        #          help: "Quote currency",
-        #          parser: :string,
-        #          required: false,
-        #          default: "BTC"
-        #        ],
-        #        destination: [
-        #          value_name: "destination",
-        #          short: "-d",
-        #          long: "--destination",
-        #          help: "Destination (clipboard, console)",
-        #          parser: :string,
-        #          required: false,
-        #          default: "console"
-        #        ],
-        #        only: [
-        #          value_name: "only",
-        #          short: "-o",
-        #          long: "--only",
-        #          help: "Only this symbol (may be specified multiple times)",
-        #          parser: :string,
-        #          multiple: true,
-        #          required: false,
-        #          default: []
-        #        ],
-        #        without: [
-        #          value_name: "without",
-        #          short: "-w",
-        #          long: "--without",
-        #          help: "Without this symbol (may be specified multiple times)",
-        #          parser: :string,
-        #          multiple: true,
-        #          required: false,
-        #          default: []
-        #        ],
         #        from: [
         #          value_name: "from",
         #          short: "-f",
@@ -176,15 +138,6 @@ defmodule Mix.Tasks.Add.Account do
         #          end,
         #          required: false,
         #          default: now()
-        #        ],
-        #        limit: [
-        #          value_name: "limit",
-        #          short: "-l",
-        #          long: "--limit",
-        #          help: "Limit results",
-        #          parser: :integer,
-        #          required: false,
-        #          default: 0
         #        ],
       ]
     )

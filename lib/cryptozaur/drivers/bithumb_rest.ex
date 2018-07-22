@@ -46,13 +46,13 @@ defmodule Cryptozaur.Drivers.BithumbRest do
     request(:get, path, "", headers, options ++ [params: params])
   end
 
-  defp request(method, path, body \\ "", headers \\ [], options \\ []) do
+  defp request(method, path, body, headers, options) do
     GenRetry.Task.async(fn -> request_task(method, path, body, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout]) end, retries: 10, delay: 2_000, jitter: 0.1, exp_base: 1.1)
     |> Task.await(@timeout)
     |> validate()
   end
 
-  defp request_task(method, path, body \\ "", headers \\ [], options \\ []) do
+  defp request_task(method, path, body, headers, options) do
     url = @base_url <> path
 
     case HTTPoison.request(method, url, body, headers, options) do
@@ -68,9 +68,9 @@ defmodule Cryptozaur.Drivers.BithumbRest do
     end
   end
 
-  defp to_symbol(base, quote) do
-    "#{base}_#{quote}" |> String.downcase()
-  end
+  #  defp to_symbol(base, quote) do
+  #    "#{base}_#{quote}" |> String.downcase()
+  #  end
 
   defp validate(response) do
     case response do

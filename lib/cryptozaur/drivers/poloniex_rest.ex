@@ -126,12 +126,12 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
     end
   end
 
-  defp send_public_request(command, parameters, opts) do
+  defp send_public_request(command, parameters, options) do
     query =
       parameters
       |> Map.put(:command, command)
 
-    get("/public", query, opts)
+    get("/public", query, [], options)
   end
 
   #  defp send_private_request(key, secret, parameters) do
@@ -151,21 +151,21 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
   #      validate(payload)
   #  end
 
-  defp get(path, params \\ [], headers \\ [], options \\ []) do
+  defp get(path, params, headers, options) do
     request(:get, path, "", headers, options ++ [params: params])
   end
 
-  defp post(path, body \\ "", params \\ [], headers \\ [], options \\ []) do
-    request(:post, path, body, headers, options ++ [params: params])
-  end
-
-  defp request(method, path, body \\ "", headers \\ [], options \\ []) do
+  #  defp post(path, body, params \\ [], headers \\ [], options \\ []) do
+  #    request(:post, path, body, headers, options ++ [params: params])
+  #  end
+  #
+  defp request(method, path, body, headers, options) do
     GenRetry.Task.async(request_task(method, path, body, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout]), retries: 10, delay: 2_000, jitter: 0.1, exp_base: 1.1)
     |> Task.await(@timeout)
     |> validate()
   end
 
-  defp request_task(method, path, body \\ "", headers \\ [], options \\ []) do
+  defp request_task(method, path, body, headers, options) do
     url = "https://poloniex.com" <> path
 
     fn ->

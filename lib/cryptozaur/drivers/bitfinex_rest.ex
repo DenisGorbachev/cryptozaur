@@ -72,8 +72,8 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
     {:reply, result, state}
   end
 
-  def handle_call({:get_tickers}, _from, state) do
-    {_, result, _} = handle_call({:get_symbols}, _from, state)
+  def handle_call({:get_tickers}, from, state) do
+    {_, result, _} = handle_call({:get_symbols}, from, state)
     success(symbols) = result
     symbols = symbols |> Enum.map(&from_symbols(&1)) |> Enum.join(",")
     # this seems extremely hacky but when sending symbols string separated by commas, the parser changes it
@@ -125,12 +125,15 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
   end
 
   defp send_public_request(path, parameters \\ []) do
-    body = URI.encode_query(parameters)
+    query = URI.encode_query(parameters)
     path = "https://api.bitfinex.com" <> path
 
-    if String.length(body) > 0 do
-      path = path <> "?" <> body
-    end
+    path =
+      if String.length(query) > 0 do
+        path <> "?" <> query
+      else
+        path
+      end
 
     task =
       GenRetry.Task.async(
@@ -163,14 +166,9 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
     nonce = headers |> value("bfx-nonce")
     body = parameters |> Poison.encode!()
     signature_data = "/api/#{path}#{nonce}#{body}"
-    Apex.ap(body, numbers: false)
 
     signature = :crypto.hmac(:sha384, secret, signature_data) |> Base.encode16() |> String.downcase()
     headers = headers ++ [{"bfx-apikey", key}, {"bfx-signature", signature}]
-    IO.puts(inspect(headers))
-
-    # debug
-    headers = []
 
     task =
       GenRetry.Task.async(
@@ -207,8 +205,6 @@ defmodule Cryptozaur.Drivers.BitfinexRest do
   end
 
   defp to_pair(base, quote), do: "t#{base}#{quote}"
-
-  defp to_symbol(base, quote), do: "#{base}#{quote}"
 
   defp validate(response) do
     case response do

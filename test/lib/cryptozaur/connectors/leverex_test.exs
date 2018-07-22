@@ -4,7 +4,7 @@ defmodule Cryptozaur.Connectors.LeverexTest do
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
-  alias Cryptozaur.Model.{Order, Ticker, Balance}
+  alias Cryptozaur.Model.{Balance}
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)

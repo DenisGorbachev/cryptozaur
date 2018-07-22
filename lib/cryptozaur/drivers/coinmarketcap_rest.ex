@@ -18,7 +18,9 @@ defmodule Cryptozaur.Drivers.CoinmarketcapRest do
   end
 
   def init(state) do
-    {:ok, state}
+    # reset rate limitation
+    ExRated.delete_bucket(__MODULE__)
+    success(state)
   end
 
   # Client
@@ -28,12 +30,6 @@ defmodule Cryptozaur.Drivers.CoinmarketcapRest do
   end
 
   # Server
-
-  def init(opts) do
-    # reset rate limitation
-    ExRated.delete_bucket(__MODULE__)
-    success(opts)
-  end
 
   def handle_call({:get_briefs, opts}, _from, state) do
     result =

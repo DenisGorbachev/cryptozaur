@@ -19,15 +19,15 @@ defmodule Cryptozaur.Drivers.HuobiRest do
   end
 
   # to provide universal REST interface it's necessary to fetch current account ID before the first request
-  def init(params) do
+  def init(state) do
     # don't fetch account id for public driver
-    if params.key == :public do
-      success(params)
+    if state.key == :public do
+      success(state)
     else
       OK.try do
-        account_id <- get_trading_account_id(params)
+        account_id <- get_trading_account_id(state)
       after
-        Map.put(params, :trading_account_id, account_id) |> success()
+        Map.put(state, :trading_account_id, account_id) |> success()
       rescue
         error -> {:stop, error}
       end
@@ -71,11 +71,12 @@ defmodule Cryptozaur.Drivers.HuobiRest do
 
   # Server
 
-  defp get_trading_account_id(params) do
-    if Map.has_key?(params, :trading_account_id) do
-      success(params.trading_account_id)
+  defp get_trading_account_id(state) do
+    if Map.has_key?(state, :trading_account_id) do
+      success(state.trading_account_id)
     else
-      account = do_get_accounts(params) ~>> Enum.find(&(&1["type"] == "spot" and &1["state"] == "working"))
+      {:reply, result, _state} = handle_call({:get_accounts}, self(), state)
+      account = result ~>> Enum.find(&(&1["type"] == "spot" and &1["state"] == "working"))
       if account, do: success(Integer.to_string(account["id"])), else: failure("No active trading account")
     end
   end
@@ -89,13 +90,9 @@ defmodule Cryptozaur.Drivers.HuobiRest do
   end
 
   def handle_call({:get_accounts}, _from, state) do
-    result = do_get_accounts(state)
-    {:reply, result, state}
-  end
-
-  defp do_get_accounts(state) do
     path = "/v1/account/accounts"
-    signed_get(state, path)
+    result = signed_get(state, path)
+    {:reply, result, state}
   end
 
   def handle_call({:get_balances}, _from, %{trading_account_id: account_id} = state) do
@@ -180,7 +177,7 @@ defmodule Cryptozaur.Drivers.HuobiRest do
     request(:post, path, body, headers, options ++ [params: signed_params])
   end
 
-  defp request(method, path, body \\ "", headers \\ [], options \\ []) do
+  defp request(method, path, body, headers, options) do
     # not application/x-www-form-urlencoded as it's written in docs
     headers = [{"Content-Type", "application/json"} | headers]
 
@@ -189,7 +186,7 @@ defmodule Cryptozaur.Drivers.HuobiRest do
     |> validate()
   end
 
-  defp request_task(method, path, body \\ "", headers \\ [], options \\ []) do
+  defp request_task(method, path, body, headers, options) do
     url = "https://api.huobi.pro" <> path
 
     fn ->

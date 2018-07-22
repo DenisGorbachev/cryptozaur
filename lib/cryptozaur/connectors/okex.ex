@@ -108,7 +108,7 @@ defmodule Cryptozaur.Connectors.Okex do
   end
 
   defp to_balance(currency, funds) do
-    borrow_amount = to_float(funds["borrow"][currency])
+    _borrow_amount = to_float(funds["borrow"][currency])
     frozen_amount = to_float(funds["freezed"][currency])
     available_amount = to_float(funds["free"][currency])
     %Balance{currency: String.upcase(currency), total_amount: available_amount + frozen_amount, available_amount: available_amount}

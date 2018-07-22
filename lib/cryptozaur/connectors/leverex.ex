@@ -1,9 +1,7 @@
 defmodule Cryptozaur.Connectors.Leverex do
   require OK
-  import Cryptozaur.Utils
-  alias Cryptozaur.Model.{Ticker, Balance, Order}
+  alias Cryptozaur.Model.{Balance}
   alias Cryptozaur.Drivers.LeverexRest, as: Rest
-  alias Cryptozaur.Connector
 
   def get_balances(key, secret) do
     OK.for do
@@ -19,14 +17,14 @@ defmodule Cryptozaur.Connectors.Leverex do
     %Balance{currency: currency, total_amount: total_amount, available_amount: available_amount}
   end
 
-  defp to_symbol(base, quote) do
-    "LEVEREX:#{to_pair(base, quote)}"
-  end
-
-  defp to_pair(base, quote) do
-    "#{base}:#{quote}"
-  end
-
+  #  defp to_symbol(base, quote) do
+  #    "LEVEREX:#{to_pair(base, quote)}"
+  #  end
+  #
+  #  defp to_pair(base, quote) do
+  #    "#{base}:#{quote}"
+  #  end
+  #
   def get_min_amount(base, _price) do
     case base do
       _ -> 0.00000001
@@ -49,10 +47,6 @@ defmodule Cryptozaur.Connectors.Leverex do
     case quote do
       _ -> 0.00000001
     end
-  end
-
-  defp parse_timestamp(string) do
-    NaiveDateTime.from_iso8601!(string)
   end
 
   def get_link(base, quote) do

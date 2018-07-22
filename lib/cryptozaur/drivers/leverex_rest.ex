@@ -95,7 +95,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     headers
   end
 
-  defp build_options(options \\ []) do
+  defp build_options(options \\ [is_signed: false]) do
     options
   end
 
