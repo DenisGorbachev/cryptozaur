@@ -83,10 +83,10 @@ defmodule Cryptozaur.Connectors.Huobi do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
       %{"list" => balances} <- Rest.get_balances(rest)
+      balances = balances |> Enum.group_by(& &1["currency"])
     after
-      balances
-      |> Enum.filter(&(&1["type"] == "trade"))
-      |> Enum.map(&to_balance/1)
+      # TODO: subtract type = frozen from type = trade
+      balances |> Enum.map(&to_balance/1)
     end
   end
 
@@ -107,9 +107,15 @@ defmodule Cryptozaur.Connectors.Huobi do
     end
   end
 
-  defp to_balance(%{"balance" => balance_string, "currency" => currency}) do
-    balance = Float.parse(balance_string) |> elem(0)
-    %Balance{currency: String.upcase(currency), amount: balance}
+  defp to_balance({currency, balances}) do
+    [
+      %{"type" => "trade", "balance" => available_balance_string},
+      %{"type" => "frozen", "balance" => frozen_balance_string}
+    ] = balances
+
+    available_balance = available_balance_string |> to_float()
+    frozen_balance = frozen_balance_string |> to_float()
+    %Balance{currency: String.upcase(currency), total_amount: available_balance + frozen_balance, available_amount: available_balance}
   end
 
   defp to_ticker(%{"bid" => [bid, _bid_amount], "ask" => [ask, _ask_amount], "amount" => volume_24h_base, "vol" => volume_24h_quote}, base, quote) do

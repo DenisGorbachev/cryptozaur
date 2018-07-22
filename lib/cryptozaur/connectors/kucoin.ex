@@ -162,8 +162,8 @@ defmodule Cryptozaur.Connectors.Kucoin do
     }
   end
 
-  defp to_balance(%{"coinType" => currency, "balance" => balance}) do
-    %Balance{currency: currency, amount: balance}
+  defp to_balance(%{"coinType" => currency, "balance" => available_amount, "freezeBalance" => frozen_amount}) do
+    %Balance{wallet: "exchange", currency: currency, total_amount: available_amount + frozen_amount, available_amount: available_amount}
   end
 
   defp to_symbol(base, quote) do
@@ -199,10 +199,6 @@ defmodule Cryptozaur.Connectors.Kucoin do
     case quote do
       _ -> 0.00000001
     end
-  end
-
-  defp parse_timestamp(string) do
-    NaiveDateTime.from_iso8601!(string)
   end
 
   defp get_sign(%{"direction" => "BUY"}), do: 1

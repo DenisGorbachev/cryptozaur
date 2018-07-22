@@ -21,18 +21,18 @@ defmodule Cryptozaur.Connectors.KucoinTest do
           {
             {:get_balance, "ETH"},
             success(%{
-              "balance" => 0.9953,
-              "balanceStr" => "0.9953",
+              "balance" => 0.9034,
+              "balanceStr" => "0.9034",
               "coinType" => "ETH",
-              "freezeBalance" => 0.0,
-              "freezeBalanceStr" => "0.0"
+              "freezeBalance" => 0.0100,
+              "freezeBalanceStr" => "0.0100"
             })
           }
         ],
         Cryptozaur.Drivers.KucoinRest
       )
 
-    assert success(%Balance{amount: 0.9953, currency: "ETH"}) = Connector.get_balance("KUCOIN", key, "secret", "ETH")
+    assert success(%Balance{available_amount: 0.9034, total_amount: 0.9134, currency: "ETH"}) = Connector.get_balance("KUCOIN", key, "secret", "ETH")
   end
 
   test "get_balances" do
@@ -44,11 +44,11 @@ defmodule Cryptozaur.Connectors.KucoinTest do
             success(%{
               "datas" => [
                 %{
-                  "balance" => 0.9953,
-                  "balanceStr" => "0.9953",
+                  "balance" => 0.9034,
+                  "balanceStr" => "0.9034",
                   "coinType" => "ETH",
-                  "freezeBalance" => 0.0,
-                  "freezeBalanceStr" => "0.0"
+                  "freezeBalance" => 0.0100,
+                  "freezeBalanceStr" => "0.0100"
                 },
                 %{
                   "balance" => 0.0,
@@ -65,8 +65,8 @@ defmodule Cryptozaur.Connectors.KucoinTest do
       )
 
     assert success([
-             %Balance{amount: 0.9953, currency: "ETH"},
-             %Balance{amount: 0.0, currency: "BHC"}
+             %Balance{available_amount: 0.9034, total_amount: 0.9134, currency: "ETH"},
+             %Balance{available_amount: 0.0, total_amount: 0.0, currency: "BHC"}
            ]) = Connector.get_balances("KUCOIN", key, "secret")
   end
 

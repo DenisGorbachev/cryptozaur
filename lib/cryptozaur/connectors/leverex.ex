@@ -15,8 +15,8 @@ defmodule Cryptozaur.Connectors.Leverex do
     end
   end
 
-  defp to_balance(%{"asset" => currency, "available_amount" => _available_amount, "total_amount" => total_amount}) do
-    %Balance{currency: currency, amount: total_amount}
+  defp to_balance(%{"asset" => currency, "available_amount" => available_amount, "total_amount" => total_amount}) do
+    %Balance{currency: currency, total_amount: total_amount, available_amount: available_amount}
   end
 
   defp to_symbol(base, quote) do

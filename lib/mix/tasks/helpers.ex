@@ -21,9 +21,16 @@ defmodule Mix.Tasks.Helpers do
   def write_json(filename, content) do
     File.mkdir_p!(Path.dirname(filename))
 
-    case File.write(filename, Poison.encode!(content, pretty: true)) do
+    case File.write(filename, Poison.encode!(content, pretty: true) <> "\n") do
       :ok -> {:ok, true}
       {:error, reason} -> {:error, %{message: "Can't write #{filename}", reason: reason}}
+    end
+  end
+
+  def get_account(account_name, accounts) do
+    case accounts[String.to_atom(account_name)] do
+      nil -> {:error, %{message: "Account not found", account_name: account_name}}
+      account -> {:ok, account}
     end
   end
 end

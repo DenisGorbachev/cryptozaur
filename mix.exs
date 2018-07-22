@@ -56,7 +56,7 @@ defmodule Cryptozaur.MixProject do
       {:timex, "~> 3.0"},
       {:ecto, "~> 2.1"},
       {:apex, "~> 1.1.0"},
-      {:table_rex, "~> 0.10"},
+      {:table_rex, "~> 2.0.0"},
       {:csv, "~> 2.0.0"},
       {:postgrex, ">= 0.12.2"},
       {:signaturex, "~> 1.3.0"},

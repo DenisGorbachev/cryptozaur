@@ -8,7 +8,7 @@ defmodule Mix.Tasks.Add.Account do
   @shortdoc "Add account"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{name: name, config: config_filename, accounts: accounts_filename}, args: %{exchange: exchange, key: key, secret: secret}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{account_name: account_name, config_filename: config_filename, accounts_filename: accounts_filename}, args: %{exchange: exchange, key: key, secret: secret}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -18,29 +18,36 @@ defmodule Mix.Tasks.Add.Account do
     {:ok, _config} = read_json(config_filename)
     {:ok, accounts} = read_json(accounts_filename)
 
-    name = name || String.downcase(exchange)
+    name = account_name || String.downcase(exchange)
     exchange = String.upcase(exchange)
 
     result =
-      case Connector.credentials_valid?(exchange, key, secret) do
-        {:ok, true} ->
-          if !Map.has_key?(accounts, String.to_atom(name)) do
-            accounts = accounts |> Map.put(name, %{exchange: exchange, key: key, secret: secret})
-            write_json(accounts_filename, accounts)
-          else
-            {:error, %{message: "Account already exists", name: name}}
-          end
-
-        {:error, reason} ->
-          {:error, %{message: "Invalid credentials: request for balances failed", reason: reason}}
+      with {:ok, true} <- validate_account_name_unique(name, accounts),
+           {:ok, true} <- validate_credentials(exchange, key, secret) do
+        accounts = Map.put(accounts, name, %{exchange: exchange, key: key, secret: secret})
+        write_json(accounts_filename, accounts)
       end
 
     case result do
       {:ok, value} -> {:ok, value}
-      {:error, error} -> Mix.shell().info(build_step_message(error))
+      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(error))
     end
 
     result
+  end
+
+  def validate_account_name_unique(name, accounts) do
+    case !Map.has_key?(accounts, String.to_atom(name)) do
+      true -> {:ok, true}
+      false -> {:error, %{message: "Account already exists", name: name}}
+    end
+  end
+
+  def validate_credentials(exchange, key, secret) do
+    case Connector.credentials_valid?(exchange, key, secret) do
+      {:ok, true} -> {:ok, true}
+      {:error, reason} -> {:error, %{message: "Invalid credentials: request for balances failed", reason: reason}}
+    end
   end
 
   def parse_args(argv) do
@@ -81,24 +88,24 @@ defmodule Mix.Tasks.Add.Account do
         ]
       ],
       options: [
-        name: [
-          value_name: "name",
-          short: "-n",
-          long: "--name",
+        account_name: [
+          value_name: "account_name",
+          short: "-a",
+          long: "--account",
           help: "Account name (arbitrary string used to identify account in Cryptozaur) (default: exchange name)",
           required: false
         ],
-        config: [
-          value_name: "config",
+        config_filename: [
+          value_name: "config_filename",
           short: "-c",
           long: "--config",
           help: "Config filename",
           default: "#{System.user_home!()}/.cryptozaur/config.json",
           required: false
         ],
-        accounts: [
-          value_name: "accounts",
-          short: "-a",
+        accounts_filename: [
+          value_name: "accounts_filename",
+          short: "-u",
           long: "--accounts",
           help: "Accounts filename",
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",

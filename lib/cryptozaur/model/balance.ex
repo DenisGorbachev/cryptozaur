@@ -11,8 +11,12 @@ defmodule Cryptozaur.Model.Balance do
   alias Cryptozaur.Model.Account
 
   schema "balances" do
+    # wallet: exchange, margin, funding, trade, borrow, ... (depends on exchange)
+    # equivalent types: exchange, trade
+    field(:wallet, :string, default: "exchange")
     field(:currency, :string)
-    field(:amount, :float)
+    field(:total_amount, :float)
+    field(:available_amount, :float)
 
     belongs_to(:account, Account)
   end

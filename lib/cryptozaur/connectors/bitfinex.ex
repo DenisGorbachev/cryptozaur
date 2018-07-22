@@ -245,9 +245,9 @@ defmodule Cryptozaur.Connectors.Bitfinex do
     %Level{price: float_price, amount: float_amount, symbol: symbol}
   end
 
-  # type: exchange, margin, funding
-  defp to_balance([_type, currency, amount, _unsettled_interest, _balance_available]) do
-    %Balance{currency: currency, amount: amount}
+  defp to_balance([wallet, currency, total_amount, _unsettled_interest, available_amount]) do
+    # wallet: exchange, margin, funding
+    %Balance{wallet: wallet, currency: currency, total_amount: total_amount, available_amount: available_amount}
   end
 
   defp to_candle([unix, open, close, high, low, _volume], symbol, resolution) do

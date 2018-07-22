@@ -139,8 +139,8 @@ defmodule Cryptozaur.Connectors.OkexTest do
       )
 
     assert success([
-             %Balance{amount: 0.0, currency: "HOT"},
-             %Balance{amount: 0.53243, currency: "NEO"}
+             %Balance{available_amount: 0.0, total_amount: 0.0, currency: "HOT"},
+             %Balance{available_amount: 0.53243, total_amount: 0.53243 + 0.190, currency: "NEO"}
            ]) == Connector.get_balances("OKEX", key, "secret")
   end
 

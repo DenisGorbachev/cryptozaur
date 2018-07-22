@@ -194,8 +194,8 @@ defmodule Cryptozaur.Connectors.Bittrex do
     %Level{amount: sign * amount, price: price, symbol: symbol, timestamp: timestamp}
   end
 
-  defp to_balance(%{"Currency" => currency, "Balance" => amount_full, "Available" => _amount_available, "Pending" => _amount_pending}) do
-    %Balance{currency: currency, amount: amount_full}
+  defp to_balance(%{"Currency" => currency, "Balance" => total_amount, "Available" => available_amount, "Pending" => _amount_pending}) do
+    %Balance{wallet: "exchange", currency: currency, total_amount: total_amount, available_amount: available_amount}
   end
 
   defp to_order_from_closed_order(proto) do

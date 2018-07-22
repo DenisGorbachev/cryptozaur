@@ -38,8 +38,8 @@ defmodule Cryptozaur.Connectors.LeverexTest do
       )
 
     assert success([
-             %Balance{amount: 10.0, currency: "BTCT"},
-             %Balance{amount: 1000.0, currency: "ETHT"}
+             %Balance{available_amount: 5.0, total_amount: 10.0, currency: "BTCT"},
+             %Balance{available_amount: 500.0, total_amount: 1000.0, currency: "ETHT"}
            ]) = Connector.get_balances("LEVEREX", key, "secret")
   end
 end

@@ -252,7 +252,7 @@ defmodule Cryptozaur.Connectors.HuobiTest do
                   "type" => "trade"
                 },
                 %{
-                  "balance" => "0.000000000000000000",
+                  "balance" => "0.100000000000000000",
                   "currency" => "act",
                   "type" => "frozen"
                 },
@@ -260,6 +260,11 @@ defmodule Cryptozaur.Connectors.HuobiTest do
                   "balance" => "0.500000000000000000",
                   "currency" => "eth",
                   "type" => "trade"
+                },
+                %{
+                  "balance" => "0.000000000000000000",
+                  "currency" => "eth",
+                  "type" => "frozen"
                 }
               ],
               "state" => "working",
@@ -273,11 +278,13 @@ defmodule Cryptozaur.Connectors.HuobiTest do
     assert success([
              %Balance{
                currency: "ACT",
-               amount: 0.0
+               total_amount: 0.1,
+               available_amount: 0.0
              },
              %Balance{
                currency: "ETH",
-               amount: 0.5
+               total_amount: 0.5,
+               available_amount: 0.5
              }
            ]) == Connector.get_balances("HUOBI", key, @any_secret)
   end

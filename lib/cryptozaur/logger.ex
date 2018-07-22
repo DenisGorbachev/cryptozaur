@@ -108,6 +108,10 @@ defmodule Cryptozaur.Logger do
   defmacro to_data(map) when is_map(map), do: quote(do: unquote(map))
   defmacro to_data(data), do: quote(do: %{data: inspect(unquote(data))})
 
+  def to_verbose_string(data) when is_map(data) do
+    "#{Map.get(data, :message)} #{Apex.Format.format(data |> Map.drop([:message]), numbers: false)}" |> String.trim()
+  end
+
   def truncate_module_name(name), do: name |> Atom.to_string() |> String.replace_prefix("Elixir.", "")
 
   def set_context(context) when is_map(context), do: Logger.reset_metadata(context: inspect(context), timber_context: %{custom: %{application: deep_convert_dates(context)}})
