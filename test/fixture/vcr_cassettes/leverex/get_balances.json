@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "[]",
+      "headers": {
+        "X-Key": "guog6SbTzyO4QYBmFBTfUMhaAwqtI37j",
+        "X-Signature": "9b0fdead2324591a88e0a8239abaf860dbb8fb4ff4ba4a80e2466ddfe6fe6e96",
+        "X-Nonce": "1532254534217",
+        "X-Timestamp": "1532254534"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "http://0.0.0.0:4000/api/v1/my/balances?"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"total_amount\":10.0,\"available_amount\":10.0,\"asset\":\"BTCT\"},{\"total_amount\":1.0e3,\"available_amount\":1.0e3,\"asset\":\"ETHT\"}]",
+      "headers": {
+        "server": "Cowboy",
+        "date": "Sun, 22 Jul 2018 10:15:34 GMT",
+        "content-length": "125",
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

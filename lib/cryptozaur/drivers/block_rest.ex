@@ -34,10 +34,6 @@ defmodule Cryptozaur.Drivers.BlockRest do
 
   # Server
 
-  def init(opts) do
-    success(opts)
-  end
-
   defp send_public_request(url, parameters \\ %{}) do
     parameters = Map.put_new(parameters, :size, @limit)
 
