@@ -13,6 +13,10 @@ defmodule Cryptozaur.Drivers.BithumbRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
 
   def get_ticker(pid, base, quote) do

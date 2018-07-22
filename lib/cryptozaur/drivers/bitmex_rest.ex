@@ -13,6 +13,10 @@ defmodule Cryptozaur.Drivers.BitmexRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
 
   def get_trades(pid, base, quote, extra \\ %{}) do

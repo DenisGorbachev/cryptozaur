@@ -18,6 +18,10 @@ defmodule Cryptozaur.Drivers.PoloniexRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
 
   def get_trade_history(pid, base, quote, start, finish) do

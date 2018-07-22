@@ -17,6 +17,10 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
 
   def get_balances(pid) do

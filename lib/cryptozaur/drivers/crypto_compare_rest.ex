@@ -20,6 +20,12 @@ defmodule Cryptozaur.Drivers.CryptoCompareRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(opts) do
+    # reset rate limitation
+    ExRated.delete_bucket(__MODULE__)
+    success(opts)
+  end
+
   # Client
 
   def get_coin_shapshot(pid, base, quote) do
@@ -51,12 +57,6 @@ defmodule Cryptozaur.Drivers.CryptoCompareRest do
   end
 
   # Server
-
-  def init(opts) do
-    # reset rate limitation
-    ExRated.delete_bucket(__MODULE__)
-    success(opts)
-  end
 
   def handle_call({:get_torches, exchange, base, quote, resolution, to, limit}, _from, state) do
     result =

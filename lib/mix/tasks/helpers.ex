@@ -22,7 +22,7 @@ defmodule Mix.Tasks.Helpers do
     File.mkdir_p!(Path.dirname(filename))
 
     case File.write(filename, Poison.encode!(content, pretty: true)) do
-      :ok -> :ok
+      :ok -> {:ok, true}
       {:error, reason} -> {:error, %{message: "Can't write #{filename}", reason: reason}}
     end
   end

@@ -6,10 +6,8 @@ defmodule Cryptozaur.Connectors.CryptoCompare do
   alias Cryptozaur.Model.{Ticker, Torch}
   alias Cryptozaur.Drivers.CryptoCompareRest, as: Rest
 
-  @seconds_in_day 86400
-  @seconds_in_hour 3600
   @actual_limit 2000
-  @minute_candle_limit 1440
+#  @minute_candle_limit 1440
   # Update @exchanges: mix run -e 'Cryptozaur.Connectors.CryptoCompare.get_exchanges() |> elem(1) |> IO.inspect(limit: :infinity)'
   @exchanges [
     %{name: "BitMarket", slug: "BITMARKET"},

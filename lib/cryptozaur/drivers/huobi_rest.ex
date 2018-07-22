@@ -18,6 +18,22 @@ defmodule Cryptozaur.Drivers.HuobiRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  # to provide universal REST interface it's necessary to fetch current account ID before the first request
+  def init(params) do
+    # don't fetch account id for public driver
+    if params.key == :public do
+      success(params)
+    else
+      OK.try do
+        account_id <- get_trading_account_id(params)
+      after
+        Map.put(params, :trading_account_id, account_id) |> success()
+      rescue
+        error -> {:stop, error}
+      end
+    end
+  end
+
   # Client
 
   def get_symbols(pid) do
@@ -54,22 +70,6 @@ defmodule Cryptozaur.Drivers.HuobiRest do
   end
 
   # Server
-
-  # to provide universal REST interface it's necessary to fetch current account ID before the first request
-  def init(params) do
-    # don't fetch account id for public driver
-    if params.key == :public do
-      success(params)
-    else
-      OK.try do
-        account_id <- get_trading_account_id(params)
-      after
-        Map.put(params, :trading_account_id, account_id) |> success()
-      rescue
-        error -> {:stop, error}
-      end
-    end
-  end
 
   defp get_trading_account_id(params) do
     if Map.has_key?(params, :trading_account_id) do

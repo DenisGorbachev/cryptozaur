@@ -14,6 +14,10 @@ defmodule Cryptozaur.Drivers.YobitRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
 
   def get_info(pid) do

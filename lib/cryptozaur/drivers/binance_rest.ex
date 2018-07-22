@@ -16,6 +16,10 @@ defmodule Cryptozaur.Drivers.BinanceRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
   def get_aggregated_trades(pid, base, quote, opts \\ %{}) do
     GenServer.call(pid, {:get_aggregated_trades, base, quote, opts}, @timeout)

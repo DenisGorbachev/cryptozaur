@@ -15,15 +15,15 @@ defmodule Mix.Tasks.Add.Account do
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
     {:ok, _pid} = DriverSupervisor.start_link([])
 
-    {:ok, config} = read_json(config_filename)
+    {:ok, _config} = read_json(config_filename)
     {:ok, accounts} = read_json(accounts_filename)
 
     result =
       case Connector.credentials_valid?(exchange, key, secret) do
         {:ok, true} ->
-          if !Map.key_exists?(accounts, String.to_atom(name)) do
+          if !Map.has_key?(accounts, String.to_atom(name)) do
             accounts = accounts |> Map.put(name, %{exchange: exchange})
-            :ok = write_json(accounts_filename, accounts)
+            write_json(accounts_filename, accounts)
           else
             {:error, %{message: "Account already exists", name: name}}
           end
@@ -33,9 +33,11 @@ defmodule Mix.Tasks.Add.Account do
       end
 
     case result do
-      {:ok, value} -> :noop
+      {:ok, value} -> {:ok, value}
       {:error, error} -> error_step(error)
     end
+
+    result
   end
 
   def parse_args(argv) do

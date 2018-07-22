@@ -14,6 +14,10 @@ defmodule Cryptozaur.Drivers.HitbtcRest do
     GenServer.start_link(__MODULE__, state, opts)
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   # Client
 
   # `from` & `till` may be either timestamps or
