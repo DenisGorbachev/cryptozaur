@@ -79,7 +79,7 @@ defmodule Mix.Tasks.Add.Account do
           long: "--verbose",
           help: "Print extra information",
           required: false
-        ],
+        ]
       ],
       options: [
         config: [

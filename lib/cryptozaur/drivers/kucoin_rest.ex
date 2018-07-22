@@ -11,7 +11,11 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   @max_balance_per_page 20
 
   def start_link(state, opts \\ []) do
-    state = Map.put(state, :nonce, :os.system_time(:milli_seconds))
+    state =
+      state
+      |> Map.put(:url, "https://api.kucoin.com")
+      |> Map.put(:nonce, :os.system_time(:milli_seconds))
+
     GenServer.start_link(__MODULE__, state, opts)
   end
 
@@ -54,7 +58,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   def handle_call({:get_tickers}, _from, state) do
     path = "/v1/market/open/symbols"
     params = %{}
-    result = get(path, params, [], [is_signed: false], state)
+    result = get(path, params, headers([]), [is_signed: false], state)
     {:reply, result, state}
   end
 
@@ -62,7 +66,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
     path = "/v1/order"
     params = %{symbol: symbol, amount: amount, price: price, type: type}
     body = []
-    result = post(path, body, params, [], [is_signed: true], state)
+    result = post(path, body, params, headers([]), [is_signed: true], state)
     {:reply, result, state}
   end
 
@@ -71,42 +75,42 @@ defmodule Cryptozaur.Drivers.KucoinRest do
     path = "/v1/cancel-order"
     params = %{orderOid: orderOid, symbol: symbol, type: type}
     body = []
-    result = post(path, body, params, [], [is_signed: true], state)
+    result = post(path, body, params, headers([]), [is_signed: true], state)
     {:reply, result, state}
   end
 
   def handle_call({:get_open_orders}, _from, state) do
     path = "/v1/order/active-map"
     params = %{}
-    result = get(path, params, [], [is_signed: true], state)
+    result = get(path, params, headers([]), [is_signed: true], state)
     {:reply, result, state}
   end
 
   def handle_call({:get_closed_orders}, _from, state) do
     path = "/v1/order/dealt"
     params = %{limit: @max_balance_per_page, page: @first_fetch_page}
-    result = recursive_pagination_call(path, params, [], [is_signed: true], state)
+    result = recursive_pagination_call(path, params, headers([]), [is_signed: true], state)
     {:reply, result, state}
   end
 
   def handle_call({:get_balance, currency}, _from, state) do
     path = "/v1/account/#{currency}/balance"
     params = %{}
-    result = get(path, params, [], [is_signed: true], state)
+    result = get(path, params, headers([]), [is_signed: true], state)
     {:reply, result, state}
   end
 
   def handle_call({:get_balances}, _from, state) do
     path = "/v1/account/balances"
     params = %{limit: @max_balance_per_page, page: @first_fetch_page}
-    result = recursive_pagination_call(path, params, [], [is_signed: true], state)
+    result = recursive_pagination_call(path, params, headers([]), [is_signed: true], state)
     {:reply, result, state}
   end
 
   def handle_call({:get_trades, _symbol, _limit, _since}, _from, state) do
     path = "/v1/account/balances"
     params = %{limit: @max_balance_per_page, page: @first_fetch_page}
-    result = recursive_pagination_call(path, params, [], [is_signed: false], state)
+    result = recursive_pagination_call(path, params, headers([]), [is_signed: false], state)
     {:reply, result, state}
   end
 
@@ -118,6 +122,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
         success(response)
       else
         params = %{params | page: params.page + 1}
+
         with success(response_next) <- recursive_pagination_call(path, params, headers, options, state) do
           success(response |> Map.update("datas", response["datas"], &(response_next["datas"] ++ &1)))
         end
@@ -140,13 +145,12 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   end
 
   defp request_task(method, path, body, params, headers, options, state) do
-    url = "https://api.kucoin.com" <> path
+    url = state.url <> path
 
     fn ->
-      # Add Kucoin-specific header
-      headers = [{:"Accept-Language", "zh_CN"} | headers]
       headers = if Keyword.get(options, :is_signed, false), do: headers |> Keyword.merge(signature_headers(path, body, params, state)), else: headers
       body = if is_list(body) or is_map(body), do: Poison.encode!(body), else: body
+
       case HTTPoison.request(method, url, body, headers, options ++ [params: params]) do
         failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
           warn("~~ KucoinRest.request(#{inspect(method)}, #{inspect(url)}, #{inspect(body)}, #{inspect(headers)}, #{inspect(options)}) # timeout")
@@ -159,11 +163,18 @@ defmodule Cryptozaur.Drivers.KucoinRest do
           case parse!(response.body) do
             # Kucoin is throttling requests to their API backend, which results in stale nonce sometimes
             # I know, this is utterly insane
-            %{"code" => "UNAUTH", "success" => false, "msg" => "Invalid nonce"} -> raise "retry"
-            result -> result
+            %{"code" => "UNAUTH", "success" => false, "msg" => "Invalid nonce"} ->
+              raise "retry"
+
+            result ->
+              result
           end
       end
     end
+  end
+
+  defp headers(headers) do
+    [{:"Accept-Language", "zh_CN"} | headers]
   end
 
   defp signature_headers(path, _body, params, state) do

@@ -8,11 +8,19 @@ defmodule Mix.Tasks.Add.AccountTest do
     {:ok, config_filename} = Briefly.create()
     File.write!(config_filename, Poison.encode!(context[:config]))
     {:ok, accounts_filename} = Briefly.create()
-    File.write!(accounts_filename, Poison.encode!(context[:accounts] |> Map.put(:kucoin, %{
-      exchange: "KUCOIN",
-      key: key,
-      secret: secret
-    })))
+
+    File.write!(
+      accounts_filename,
+      Poison.encode!(
+        context[:accounts]
+        |> Map.put(:kucoin, %{
+          exchange: "KUCOIN",
+          key: key,
+          secret: secret
+        })
+      )
+    )
+
     context
     |> Map.put(:opts, ["--config", config_filename, "--accounts", accounts_filename])
   end
@@ -28,5 +36,4 @@ defmodule Mix.Tasks.Add.AccountTest do
       assert result == {:ok, true}
     end
   end
-
 end

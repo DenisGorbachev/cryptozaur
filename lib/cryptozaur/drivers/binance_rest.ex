@@ -7,7 +7,6 @@ defmodule Cryptozaur.Drivers.BinanceRest do
   import Logger
   import Cryptozaur.Utils
 
-  @url "https://www.binance.com/api/"
   @timeout 600_000
   @http_timeout 30000
   @recv_window 5000

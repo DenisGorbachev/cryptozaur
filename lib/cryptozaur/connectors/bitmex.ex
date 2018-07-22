@@ -448,9 +448,9 @@ defmodule Cryptozaur.Connectors.Bitmex do
     end
   end
 
-#  defp to_pair(base, quote) do
-#    "#{base}#{quote}"
-#  end
+  #  defp to_pair(base, quote) do
+  #    "#{base}#{quote}"
+  #  end
 
   defp to_symbol(base, quote) do
     "BITMEX:#{base}:#{quote}"
