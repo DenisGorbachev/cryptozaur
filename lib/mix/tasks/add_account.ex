@@ -37,7 +37,7 @@ defmodule Mix.Tasks.Add.Account do
 
     case result do
       {:ok, value} -> {:ok, value}
-      {:error, error} -> error_step(error)
+      {:error, error} -> Mix.shell().info(build_step_message(error))
     end
 
     result

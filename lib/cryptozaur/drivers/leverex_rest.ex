@@ -10,10 +10,12 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   def start_link(state, opts \\ []) do
     state =
-      state
-      |> Map.put(:url, "https://www.leverex.io")
-      |> Map.put(:nonce, :os.system_time(:milli_seconds))
+      %{
+        url: "https://www.leverex.io",
+        nonce: :os.system_time(:milli_seconds)
+      }
       |> Map.merge(Application.get_env(:cryptozaur, :leverex, []) |> to_map())
+      |> Map.merge(state)
 
     GenServer.start_link(__MODULE__, state, opts)
   end

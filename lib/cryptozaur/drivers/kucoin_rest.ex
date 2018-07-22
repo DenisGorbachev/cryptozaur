@@ -12,10 +12,12 @@ defmodule Cryptozaur.Drivers.KucoinRest do
 
   def start_link(state, opts \\ []) do
     state =
-      state
-      |> Map.put(:url, "https://api.kucoin.com")
-      |> Map.put(:nonce, :os.system_time(:milli_seconds))
+      %{
+        url: "https://api.kucoin.com",
+        nonce: :os.system_time(:milli_seconds)
+      }
       |> Map.merge(Application.get_env(:cryptozaur, :kucoin, []) |> to_map())
+      |> Map.merge(state)
 
     GenServer.start_link(__MODULE__, state, opts)
   end

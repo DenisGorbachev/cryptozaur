@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "[]",
+      "headers": {
+        "X-Key": "wrong_key",
+        "X-Signature": "5f9d8d8060d347fb136b125b87adf150d87a0abbb8bedaca40de4dd64275458f",
+        "X-Nonce": "1532271238380",
+        "X-Timestamp": "1532271238"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "http://0.0.0.0:4000/api/v1/my/balances?"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"type\":\"invalid_key\",\"details\":{\"x-timestamp\":1532271238,\"x-signature\":\"5f9d8d8060d347fb136b125b87adf150d87a0abbb8bedaca40de4dd64275458f\",\"x-nonce\":1532271238380,\"x-key\":\"wrong_key\"}}",
+      "headers": {
+        "server": "Cowboy",
+        "date": "Sun, 22 Jul 2018 14:53:57 GMT",
+        "content-length": "184",
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

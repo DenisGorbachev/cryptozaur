@@ -100,8 +100,8 @@ defmodule Cryptozaur.Logger do
 
   defmacro to_data_string(nil), do: quote(do: "")
   defmacro to_data_string(string) when is_binary(string), do: quote(do: unquote(string))
-  defmacro to_data_string(map) when is_map(map), do: quote(do: "#{Map.get(unquote(map), :message)} #{inspect(unquote(map) |> Map.drop([:message]))}" |> String.trim())
-  defmacro to_data_string(data), do: quote(do: "#{inspect(unquote(data))}")
+  defmacro to_data_string(map) when is_map(map), do: quote(do: "#{Map.get(unquote(map), :message)} #{Apex.Format.format(unquote(map) |> Map.drop([:message]), numbers: false)}" |> String.trim())
+  defmacro to_data_string(data), do: quote(do: "#{Apex.Format.format(unquote(data), numbers: false)}")
 
   defmacro to_data(nil), do: quote(do: %{data: nil})
   defmacro to_data(string) when is_binary(string), do: quote(do: %{message: unquote(string)})

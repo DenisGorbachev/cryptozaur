@@ -84,7 +84,7 @@ defmodule Cryptozaur.Drivers.HuobiRest do
   def handle_call({:get_symbols}, _from, state) do
     path = "/v1/common/symbols"
     params = %{}
-    result = get(path, params)
+    result = get(path, params, [], [])
     {:reply, result, state}
   end
 
@@ -148,18 +148,18 @@ defmodule Cryptozaur.Drivers.HuobiRest do
   def handle_call({:get_ticker, base, quote}, _from, state) do
     path = "/market/detail/merged"
     params = %{symbol: to_symbol(base, quote)}
-    result = get(path, params)
+    result = get(path, params, [], [])
     {:reply, result, state}
   end
 
   def handle_call({:get_latest_trades, base, quote, size}, _from, state) do
     path = "/market/history/trade"
     params = %{symbol: to_symbol(base, quote), size: size}
-    result = get(path, params)
+    result = get(path, params, [], [])
     {:reply, result, state}
   end
 
-  defp get(path, params \\ %{}, headers \\ [], options \\ []) do
+  defp get(path, params, headers, options) do
     request(:get, path, "", headers, options ++ [params: params])
   end
 
