@@ -23,8 +23,13 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
 ## Installation
 
 1. [Install Elixir](https://elixir-lang.org/install.html)
-1. [Download Cryptozaur](https://github.com/DenisGorbachev/cryptozaur/releases)
-1. **Recommended**: encrypt `~/.cryptozaur` directory ([guide](#encrypt-cryptozaur-directory))
+1. `git clone https://github.com/DenisGorbachev/cryptozaur.git`
+1. `cd cryptozaur`
+1. `./cryptozaur add.account [EXCHANGE] [KEY] [SECRET]`
+
+**Optional**: add `cryptozaur` directory to `PATH` for easy invocation.
+ 
+**Recommended**: encrypt `~/.cryptozaur` directory ([guide](#encrypt-cryptozaur-directory)).
 
 ## Examples
 
