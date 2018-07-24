@@ -61,6 +61,10 @@ defmodule Cryptozaur.Connector do
     end
   end
 
+  def get_info(exchange, extra \\ %{}) do
+    execute(exchange, :get_info, [extra])
+  end
+
   def get_symbols(exchange) do
     if is_supported(exchange, :get_symbols, 0) do
       execute(exchange, :get_symbols, [])

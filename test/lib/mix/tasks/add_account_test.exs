@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Add.AccountTest do
 
       accounts_new = accounts_filename |> File.read!() |> Poison.decode!(keys: :atoms)
 
-      assert accounts_new == accounts
+      assert accounts_new == %{kucoin: accounts.kucoin}
     end
   end
 

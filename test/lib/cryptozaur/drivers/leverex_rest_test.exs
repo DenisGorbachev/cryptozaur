@@ -13,6 +13,12 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
     %{driver: driver}
   end
 
+  test "get_info", %{driver: driver} do
+    use_cassette "leverex/get_info", match_requests_on: [:query] do
+      {:ok, %{"assets" => %{"BTC" => %{"min_confirmation_count" => 3}, "ETH" => %{"min_confirmation_count" => 5}}, "markets" => %{"BTC:USDT" => %{"amount_precision" => 8, "base" => "BTC", "delisted_at" => nil, "listed_at" => "2018-06-08T12:00:00", "lot_size" => 0.00000001, "maker_fee" => 0.00100000, "price_precision" => 8, "quote" => "USDT", "taker_fee" => 0.00100000, "tick_size" => 0.00000001}, "ETHT:BTCT" => %{"amount_precision" => 8, "base" => "ETHT", "delisted_at" => nil, "listed_at" => "2018-06-08T12:00:00", "lot_size" => 0.00000001, "maker_fee" => 0.00100000, "price_precision" => 8, "quote" => "BTCT", "taker_fee" => 0.00100000, "tick_size" => 0.00000001}}}} = Cryptozaur.Drivers.LeverexRest.get_info(driver)
+    end
+  end
+
   test "get_balances", %{driver: driver} do
     use_cassette "leverex/get_balances", match_requests_on: [:query] do
       {:ok,

@@ -3,6 +3,15 @@ defmodule Cryptozaur.Connectors.Leverex do
   alias Cryptozaur.Model.{Balance}
   alias Cryptozaur.Drivers.LeverexRest, as: Rest
 
+  def get_info(extra \\ %{}) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
+      info <- Rest.get_info(rest, extra)
+    after
+      info
+    end
+  end
+
   def get_balances(key, secret) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)

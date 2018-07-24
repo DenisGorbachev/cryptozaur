@@ -1,15 +1,14 @@
-defmodule Mix.Tasks.Show.Balances do
+defmodule Mix.Tasks.Show.Info do
   use Mix.Task
   import Mix.Ecto
   import Mix.Tasks.Helpers
-  import Cryptozaur.{Utils, Logger}
-  alias TableRex.Table
+  import Cryptozaur.{Logger}
   alias Cryptozaur.{Repo, Connector, DriverSupervisor}
 
-  @shortdoc "Show balances"
+  @shortdoc "Show exchange info"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, currency: currency}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -20,24 +19,13 @@ defmodule Mix.Tasks.Show.Balances do
     {:ok, accounts} = read_json(accounts_filename)
 
     result =
-      with {:ok, %{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
-           {:ok, balances} <- Connector.get_balances(exchange, key, secret) do
-        balances =
-          if currency do
-            balances |> Enum.filter(&(&1.currency == currency))
-          else
-            balances |> Enum.filter(&(&1.total_amount != 0.0))
-          end
-
-        balances
-        |> Enum.sort_by(& &1.currency)
-        |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
-        |> Table.new(["Currency", "Wallet", "Available", "Total"])
-        |> Table.put_column_meta(2..5, align: :right)
-        |> Table.render!()
+      with {:ok, %{exchange: exchange}} <- get_account(account_name, accounts),
+           {:ok, info} <- Connector.get_info(exchange) do
+        info
+        |> Poison.encode!(pretty: true)
         |> Mix.shell().info()
 
-        {:ok, balances}
+        {:ok, info}
       end
 
     case result do
@@ -57,11 +45,6 @@ defmodule Mix.Tasks.Show.Balances do
           value_name: "account",
           help: "Account name",
           required: true
-        ],
-        currency: [
-          value_name: "currency",
-          help: "Currency",
-          required: false
         ]
       ],
       flags: [

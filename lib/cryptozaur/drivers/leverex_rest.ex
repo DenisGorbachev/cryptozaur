@@ -26,12 +26,23 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   # Client
 
+  def get_info(pid, extra \\ %{}) do
+    GenServer.call(pid, {:get_info, extra}, @timeout)
+  end
+
   def get_balances(pid) do
     GenServer.call(pid, {:get_balances}, @timeout)
   end
 
   def place_order(pid, symbol, amount, price, params \\ %{}) do
     GenServer.call(pid, {:place_order, symbol, amount, price, params}, @timeout)
+  end
+
+  def handle_call({:get_info, extra}, _from, state) do
+    path = "/api/v1/info"
+    params = [] ++ Map.to_list(extra)
+    {result, state} = get(path, params, build_headers(), build_options(is_signed: false), state)
+    {:reply, result, state}
   end
 
   def handle_call({:get_balances}, _from, state) do

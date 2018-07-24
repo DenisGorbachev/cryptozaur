@@ -14,6 +14,21 @@ defmodule Cryptozaur.Connectors.LeverexTest do
     %{metronome: metronome}
   end
 
+  test "get_info" do
+    produce_driver(
+      [
+        {
+          {:get_info, %{}},
+          success(%{"markets" => %{}, "assets" => %{}})
+        }
+      ],
+      Cryptozaur.Drivers.LeverexRest,
+      :public
+    )
+
+    assert success(%{"markets" => %{}, "assets" => %{}}) == Connector.get_info("LEVEREX")
+  end
+
   test "get_balances" do
     key =
       produce_driver(

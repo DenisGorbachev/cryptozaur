@@ -1,0 +1,28 @@
+[
+  {
+    "request": {
+      "body": "[]",
+      "headers": [],
+      "method": "get",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "http://0.0.0.0:4000/api/v1/info?"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"markets\":{\"ETHT:BTCT\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"BTCT\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-06-08T12:00:00\",\"delisted_at\":null,\"base\":\"ETHT\",\"amount_precision\":8},\"BTC:USDT\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"USDT\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-06-08T12:00:00\",\"delisted_at\":null,\"base\":\"BTC\",\"amount_precision\":8}},\"assets\":{\"ETH\":{\"min_confirmation_count\":5},\"BTC\":{\"min_confirmation_count\":3}}}",
+      "headers": {
+        "server": "Cowboy",
+        "date": "Tue, 24 Jul 2018 19:26:21 GMT",
+        "content-length": "512",
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
