@@ -1,3 +1,6 @@
 #!/usr/bin/env elixir
+
+File.cd!(__ENV__.file |> Path.dirname())
+
 Mix.start
 Mix.CLI.main
