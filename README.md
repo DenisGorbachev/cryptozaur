@@ -25,6 +25,8 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
 1. [Install Elixir](https://elixir-lang.org/install.html)
 1. `git clone https://github.com/DenisGorbachev/cryptozaur.git`
 1. `cd cryptozaur`
+1. `mix deps.get`
+1. `mix reset`
 1. `./cryptozaur add.account [EXCHANGE] [KEY] [SECRET]`
 
 **Optional**: add `cryptozaur` directory to `PATH` for easy invocation.
