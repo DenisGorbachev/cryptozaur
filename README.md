@@ -42,31 +42,29 @@ Second, execute the following commands:
 ```
 cryptozaur add.account leverex [your_key] [your_secret]
 
-cryptozaur activate leverex
-
-(leverex) get.deposit.address BTC
+cryptozaur get.deposit.address leverex BTC
 BTC: [your_deposit_address]
 ### Send BTC to [your_deposit_address]
 
-(leverex) get.deposits BTC
+cryptozaur get.deposits leverex BTC
 Amount  Timestamp               Confirmations   TXID
 0.5     2018-07-17 16:16:00     0               4b1613ae67ee0ebcd6f84d50f6d0d2eb4579e9c7f31c57cf79c333ba9a145c15       
 
-(leverex) await.deposit BTC
+cryptozaur await.deposit leverex BTC
 ### Wait until dialog window appears per https://superuser.com/questions/31917/is-there-a-way-to-show-notification-from-bash-script-in-ubuntu
 
-(leverex) show.spread LEX:BTC
+cryptozaur show.spread leverex LEX:BTC
 Ask: 0.00006530 150.0
 Bid: 0.00006510 35.5
 
-(leverex) buy LEX:BTC 0.00006530 20
+cryptozaur buy leverex LEX:BTC 0.00006530 20
 Buy 20.0 LEX at 0.00006530 BTC = 0.00130600 BTC (Filled 20.0 LEX) (Order ID: 43213253)
 
-(leverex) withdraw LEX 20.0 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4
+cryptozaur withdraw leverex LEX 20.0 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4
 Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 0) (Withdrawal ID: 138483)
 ### Wait until withdrawal is processed
 
-(leverex) show.withdrawal 138483
+cryptozaur show.withdrawal leverex 138483
 Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 4) (Withdrawal ID: 138483)
 ```
 
@@ -77,7 +75,7 @@ Some exchanges have recently implemented "[trans-fee mining](https://www.binaryo
 ```
 cryptozaur add.account coinex [your_key] [your_secret]
 
-cryptozaur mine --account coinex --market ETH:BTC --single-order-amount 0.1 --budget 0.5
+cryptozaur mine coinex ETH:BTC --single-order-amount 0.1 --budget 0.5
 ### This command will self-trade on ETH:BTC market by concurrently placing buy & sell orders for 0.1 ETH at the same price until the budget of 0.5 BTC is exhausted
 ```
 
