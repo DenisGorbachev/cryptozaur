@@ -45,7 +45,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   def handle_call({:get_info, extra}, _from, state) do
     path = "/api/v1/info"
-    params = [] ++ Map.to_list(extra)
+    params = [] ++ extra
     {result, state} = get(path, params, build_headers(), build_options(), state)
     {:reply, result, state}
   end

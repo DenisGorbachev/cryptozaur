@@ -38,6 +38,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
   end
 
   test "place_order", %{driver: driver} do
+    #    assert {:error, "error"} = Cryptozaur.Drivers.LeverexRest.place_order(driver, "ETH_D:BTC_D", 1.0, 0.00001)
     use_cassette "leverex/place_order" do
       {:ok,
        %{
@@ -56,7 +57,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
          "external_id" => nil,
          "called_amount" => 1.0,
          "filled_amount" => 0.0
-       }} = Cryptozaur.Drivers.LeverexRest.cancel_order(driver, 1)
+       }} = Cryptozaur.Drivers.LeverexRest.cancel_order(driver, "1")
     end
   end
 

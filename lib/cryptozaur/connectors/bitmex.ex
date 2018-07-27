@@ -22,9 +22,9 @@ defmodule Cryptozaur.Connectors.Bitmex do
     end
   end
 
-  def get_trades(base, quote, from, to, extra \\ %{}) do
+  def get_trades(base, quote, from, to, extra \\ []) do
     OK.for do
-      extra = Map.merge(extra, %{startTime: from, endTime: to})
+      extra = Map.merge(to_map(extra), %{startTime: from, endTime: to})
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
       trades <- Rest.get_trades(rest, base, quote, extra)
       symbol = to_symbol(base, quote)

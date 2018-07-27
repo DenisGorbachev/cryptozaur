@@ -7,6 +7,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
 
   @timeout 600_000
   @http_timeout 90000
+  @retries (Mix.env() == :test && 0) || 10
   @first_fetch_page 1
   @max_balance_per_page 20
 
@@ -142,7 +143,7 @@ defmodule Cryptozaur.Drivers.KucoinRest do
   end
 
   defp request(method, path, body, params, headers, options, state) do
-    GenRetry.Task.async(request_task(method, path, body, params, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout], state), retries: 10, delay: 2_000, jitter: 0.1, exp_base: 1.1)
+    GenRetry.Task.async(request_task(method, path, body, params, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout], state), retries: @retries, delay: 2_000, jitter: 0.1, exp_base: 1.1)
     |> Task.await(@timeout)
     |> validate()
   end

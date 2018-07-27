@@ -113,7 +113,7 @@ defmodule Cryptozaur.Connectors.BitmexTest do
       produce_driver(
         [
           {
-            {:place_order, "XBT", "USD", 1, 5000, %{}},
+            {:place_order, "XBT", "USD", 1, 5000, []},
             success(%{
               "side" => "Buy",
               "transactTime" => "2017-11-04T10:39:17.918Z",
@@ -162,7 +162,7 @@ defmodule Cryptozaur.Connectors.BitmexTest do
       produce_driver(
         [
           {
-            {:place_order, "XBT", "USD", 1, 5000, %{}},
+            {:place_order, "XBT", "USD", 1, 5000, []},
             success(%{
               "side" => "Buy",
               "transactTime" => "2017-11-04T10:39:17.918Z",
@@ -211,7 +211,7 @@ defmodule Cryptozaur.Connectors.BitmexTest do
       produce_driver(
         [
           {
-            {:change_order, "680dcacb-02ae-3c3e-4ef0-91b92a9c94cf", %{price: 5500, amount: 2}, %{}},
+            {:change_order, "680dcacb-02ae-3c3e-4ef0-91b92a9c94cf", %{price: 5500, amount: 2}, []},
             success(%{
               "side" => "Buy",
               "transactTime" => "2017-11-04T11:04:18.004Z",

@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "[]",
+      "body": "",
       "headers": [],
       "method": "get",
       "options": {
@@ -9,16 +9,17 @@
         "connect_timeout": 90000
       },
       "request_body": "",
-      "url": "http://0.0.0.0:4000/api/v1/info?"
+      "url": "https://www.leverex.io/api/v1/info?"
     },
     "response": {
       "binary": false,
-      "body": "{\"markets\":{\"ETHT:BTCT\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"BTCT\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-06-08T12:00:00\",\"delisted_at\":null,\"base\":\"ETHT\",\"amount_precision\":8},\"BTC:USDT\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"USDT\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-06-08T12:00:00\",\"delisted_at\":null,\"base\":\"BTC\",\"amount_precision\":8}},\"assets\":{\"ETH\":{\"min_confirmation_count\":5},\"BTC\":{\"min_confirmation_count\":3}}}",
+      "body": "{\"markets\":{\"ETH_T:BTC_T\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"BTC_T\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-06-17T12:00:00\",\"delisted_at\":null,\"base\":\"ETH_T\",\"amount_precision\":8},\"ETH_D:BTC_D\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"BTC_D\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-07-27T12:00:00\",\"delisted_at\":null,\"base\":\"ETH_D\",\"amount_precision\":8},\"BTC:USDT\":{\"tick_size\":1.0e-8,\"taker_fee\":0.001,\"quote\":\"USDT\",\"price_precision\":8,\"maker_fee\":0.001,\"lot_size\":1.0e-8,\"listed_at\":\"2018-06-08T12:00:00\",\"delisted_at\":null,\"base\":\"BTC\",\"amount_precision\":8}},\"assets\":{\"PICK_D\":{\"min_confirmation_count\":2},\"ETH_D\":{\"min_confirmation_count\":2},\"ETH\":{\"min_confirmation_count\":12},\"BTC_T\":{\"min_confirmation_count\":3},\"BTC_D\":{\"min_confirmation_count\":2},\"BTC\":{\"min_confirmation_count\":3}}}",
       "headers": {
-        "server": "Cowboy",
-        "date": "Tue, 24 Jul 2018 19:26:21 GMT",
-        "content-length": "512",
-        "content-type": "application/json; charset=utf-8",
+        "Server": "nginx/1.14.0 (Ubuntu)",
+        "Date": "Fri, 27 Jul 2018 13:20:24 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "880",
+        "Connection": "keep-alive",
         "cache-control": "max-age=0, private, must-revalidate"
       },
       "status_code": 200,

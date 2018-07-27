@@ -1,12 +1,12 @@
 [
   {
     "request": {
-      "body": "[]",
+      "body": "",
       "headers": {
-        "X-Key": "guog6SbTzyO4QYBmFBTfUMhaAwqtI37j",
-        "X-Signature": "9b0fdead2324591a88e0a8239abaf860dbb8fb4ff4ba4a80e2466ddfe6fe6e96",
-        "X-Nonce": "1532254534217",
-        "X-Timestamp": "1532254534"
+        "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
+        "X-Signature": "e4ff528da75e47c893b2927502afbfcc0c3a4c751a0dc8790451e09cd363ec71",
+        "X-Nonce": "1532697805714",
+        "X-Timestamp": "1532697806"
       },
       "method": "get",
       "options": {
@@ -14,16 +14,17 @@
         "connect_timeout": 90000
       },
       "request_body": "",
-      "url": "http://0.0.0.0:4000/api/v1/my/balances?"
+      "url": "https://www.leverex.io/api/v1/my/balances?"
     },
     "response": {
       "binary": false,
-      "body": "[{\"total_amount\":10.0,\"available_amount\":10.0,\"asset\":\"BTCT\"},{\"total_amount\":1.0e3,\"available_amount\":1.0e3,\"asset\":\"ETHT\"}]",
+      "body": "[{\"total_amount\":10.0,\"available_amount\":10.0,\"asset\":\"BTC_D\"},{\"total_amount\":1.0e3,\"available_amount\":1.0e3,\"asset\":\"ETH_D\"}]",
       "headers": {
-        "server": "Cowboy",
-        "date": "Sun, 22 Jul 2018 10:15:34 GMT",
-        "content-length": "125",
-        "content-type": "application/json; charset=utf-8",
+        "Server": "nginx/1.14.0 (Ubuntu)",
+        "Date": "Fri, 27 Jul 2018 13:23:27 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "127",
+        "Connection": "keep-alive",
         "cache-control": "max-age=0, private, must-revalidate"
       },
       "status_code": 200,

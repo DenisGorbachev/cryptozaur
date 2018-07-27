@@ -61,7 +61,7 @@ defmodule Cryptozaur.Connector do
     end
   end
 
-  def get_info(exchange, extra \\ %{}) do
+  def get_info(exchange, extra \\ []) do
     execute(exchange, :get_info, [extra])
   end
 
@@ -125,7 +125,7 @@ defmodule Cryptozaur.Connector do
     bangify(get_latest_trades(exchange, base, quote))
   end
 
-  def get_trades(exchange, base, quote, from, to, extra \\ %{}) do
+  def get_trades(exchange, base, quote, from, to, extra \\ []) do
     execute(exchange, :get_trades, [base, quote, from, to, extra])
   end
 
@@ -164,11 +164,11 @@ defmodule Cryptozaur.Connector do
     execute(exchange, :get_deposit_address, [key, secret, currency])
   end
 
-  def place_order(exchange, key, secret, base, quote, amount, price, extra \\ %{}) do
+  def place_order(exchange, key, secret, base, quote, amount, price, extra \\ []) do
     execute(exchange, :place_order, [key, secret, base, quote, amount, price, extra])
   end
 
-  def change_order(exchange, key, secret, base, quote, uid, amount, price, extra \\ %{}) do
+  def change_order(exchange, key, secret, base, quote, uid, amount, price, extra \\ []) do
     execute(exchange, :change_order, [key, secret, base, quote, uid, amount, price, extra])
   end
 

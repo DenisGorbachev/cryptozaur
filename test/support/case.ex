@@ -30,7 +30,7 @@ defmodule Cryptozaur.Case do
     accounts = context[:accounts] || %{}
     [key: key, secret: secret] = Application.get_env(:cryptozaur, :kucoin, key: "", secret: "")
     accounts = accounts |> Map.put(:kucoin, %{exchange: "KUCOIN", key: key, secret: secret})
-    [url: _url, key: key, secret: secret] = Application.get_env(:cryptozaur, :leverex, key: "", secret: "")
+    [key: key, secret: secret] = Application.get_env(:cryptozaur, :leverex, key: "", secret: "")
     accounts = accounts |> Map.put(:leverex, %{exchange: "LEVEREX", key: key, secret: secret})
     context = context |> Map.put(:config, config)
     context = context |> Map.put(:accounts, accounts)

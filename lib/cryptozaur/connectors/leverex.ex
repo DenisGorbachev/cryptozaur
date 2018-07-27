@@ -3,7 +3,7 @@ defmodule Cryptozaur.Connectors.Leverex do
   alias Cryptozaur.Model.{Balance}
   alias Cryptozaur.Drivers.LeverexRest, as: Rest
 
-  def get_info(extra \\ %{}) do
+  def get_info(extra \\ []) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_public_driver(Rest)
       info <- Rest.get_info(rest, extra)
@@ -24,6 +24,24 @@ defmodule Cryptozaur.Connectors.Leverex do
 
   defp to_balance(%{"asset" => currency, "available_amount" => available_amount, "total_amount" => total_amount}) do
     %Balance{currency: currency, total_amount: total_amount, available_amount: available_amount}
+  end
+
+  def place_order(key, secret, base, quote, amount, price, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      %{"id" => uuid} <- Rest.place_order(rest, "#{base}:#{quote}", amount, price, extra)
+    after
+      to_string(uuid)
+    end
+  end
+
+  def cancel_order(key, secret, _base, _quote, uid, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      result <- Rest.cancel_order(rest, uid, extra)
+    after
+      result
+    end
   end
 
   #  defp to_symbol(base, quote) do
