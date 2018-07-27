@@ -50,6 +50,6 @@ defmodule Mix.Tasks.Helpers do
     exchange = order.account.exchange
     [base, quote] = to_list(order.pair)
     #    (Filled 20.0 LEX) (Order ID: 43213253)
-    "[UID: #{order.uid}] #{(order.amount > 0 && "Buy") || "Sell"} #{format_amount(exchange, base, quote, order.amount_requested)} #{base} at #{format_price(exchange, base, quote, order.price)} #{quote} = #{format_amount(exchange, quote, nil, order.amount_requested * order.price)} #{quote}"
+    "[UID: #{order.uid}] #{(order.amount_requested > 0 && "Buy") || "Sell"} #{format_amount(exchange, base, quote, order.amount_requested)} #{base} at #{format_price(exchange, base, quote, order.price)} #{quote} = #{format_amount(exchange, quote, nil, order.amount_requested * order.price)} #{quote}"
   end
 end
