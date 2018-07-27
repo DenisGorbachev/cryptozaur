@@ -24,12 +24,12 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
       {:ok,
        [
          %{
-           "asset" => "BTCT",
+           "asset" => "BTC_D",
            "available_amount" => 10.0,
            "total_amount" => 10.0
          },
          %{
-           "asset" => "ETHT",
+           "asset" => "ETH_D",
            "available_amount" => 1000.0,
            "total_amount" => 1000.0
          }

@@ -18,8 +18,15 @@ defmodule Mix.Tasks.Buy.Test do
     assert {:error, %{message: "Insufficient funds"}} = result
   end
 
-  #
-  #  test "user can't place a buy order on non-existent market", %{opts: opts} do
-  #    result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ULTRATRASH:MEGATRASH", "0.00000001", "20"])
-  #  end
+  test "user can't place a buy order on non-existent market", %{opts: opts} do
+    use_cassette "tasks/buy_error_invalid_symbol", match_requests_on: [:query] do
+      result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ULTRATRASH:MEGATRASH", "0.00000001", "20"])
+
+      assert {:error,
+              %{
+                "details" => %{"symbol" => "ULTRATRASH:MEGATRASH"},
+                "type" => "invalid_symbol"
+              }} = result
+    end
+  end
 end

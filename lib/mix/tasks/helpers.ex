@@ -52,4 +52,12 @@ defmodule Mix.Tasks.Helpers do
     #    (Filled 20.0 LEX) (Order ID: 43213253)
     "[UID: #{order.uid}] #{(order.amount_requested > 0 && "Buy") || "Sell"} #{format_amount(exchange, base, quote, order.amount_requested)} #{base} at #{format_price(exchange, base, quote, order.price)} #{quote} = #{format_amount(exchange, quote, nil, order.amount_requested * order.price)} #{quote}"
   end
+
+  def improve_error(error) do
+    if Map.has_key?(error, "type") do
+      error |> Map.put(:message, error["type"]) |> Map.drop(["type"])
+    else
+      error
+    end
+  end
 end
