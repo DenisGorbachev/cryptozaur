@@ -1,0 +1,34 @@
+[
+  {
+    "request": {
+      "body": "symbol=ETH_D%3aBTC_D&called_amount=1.00000000&limit_price=0.00001000",
+      "headers": {
+        "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
+        "X-Signature": "4c6f625bf71d8c09bf2e48b3d660c3e4413d19c672b216a47eadd110082fb53c",
+        "X-Nonce": "1532694592535",
+        "X-Timestamp": "1532694592"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "https://www.leverex.io/api/v1/my/orders?"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"updated_at\":\"2018-07-27T12:29:53.719988\",\"triggered_at\":\"2018-07-27T12:29:53.719643\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":1.0e-5,\"is_cancelled\":false,\"is_active\":true,\"inserted_at\":\"2018-07-27T12:29:53.719980\",\"id\":2,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"called_amount\":1.0}",
+      "headers": {
+        "Server": "nginx/1.14.0 (Ubuntu)",
+        "Date": "Fri, 27 Jul 2018 12:29:53 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "309",
+        "Connection": "keep-alive",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

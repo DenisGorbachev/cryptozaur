@@ -1,0 +1,34 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
+        "X-Signature": "b4d2cdb6bad8959097b286c6fa73e7398258f6ba34337591c8829ff475317a1b",
+        "X-Nonce": "1532696551127",
+        "X-Timestamp": "1532696551"
+      },
+      "method": "put",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "https://www.leverex.io/api/v1/my/orders/1/cancel?"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"updated_at\":\"2018-07-27T13:02:32.240608\",\"triggered_at\":\"2018-07-27T12:29:39.074304\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":1.0e-5,\"is_cancelled\":true,\"is_active\":false,\"inserted_at\":\"2018-07-27T12:29:39.074647\",\"id\":1,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"called_amount\":1.0}",
+      "headers": {
+        "Server": "nginx/1.14.0 (Ubuntu)",
+        "Date": "Fri, 27 Jul 2018 13:02:32 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "309",
+        "Connection": "keep-alive",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

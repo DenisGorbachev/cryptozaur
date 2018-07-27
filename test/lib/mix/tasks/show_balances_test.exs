@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Show.BalancesTest do
+defmodule Mix.Tasks.Show.Balances.Test do
   use Cryptozaur.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
 

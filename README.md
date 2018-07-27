@@ -60,14 +60,14 @@ Ask: 0.00006530 150.0
 Bid: 0.00006510 35.5
 
 cryptozaur buy leverex LEX:BTC 0.00006530 20
-Buy 20.0 LEX at 0.00006530 BTC = 0.00130600 BTC (Filled 20.0 LEX) (Order ID: 43213253)
+[UID: 43213253] Buy 20.0 LEX at 0.00006530 BTC = 0.00130600 BTC (Filled 20.0 LEX)
 
 cryptozaur withdraw leverex LEX 20.0 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4
-Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 0) (Withdrawal ID: 138483)
+[UID: 138483] Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 0)
 ### Wait until withdrawal is processed
 
 cryptozaur show.withdrawal leverex 138483
-Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 4) (Withdrawal ID: 138483)
+[UID: 138483] Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 4)
 ```
 
 ### Run trans-fee mining

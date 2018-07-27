@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Add.AccountTest do
+defmodule Mix.Tasks.Add.Account.Test do
   use Cryptozaur.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
 

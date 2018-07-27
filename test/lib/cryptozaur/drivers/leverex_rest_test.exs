@@ -37,17 +37,29 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
     end
   end
 
-  #  test "place_order", %{driver: driver} do
-  ##    use_cassette "leverex/place_order" do
-  #      {:ok, %{
-  #        "id" => 100,
-  #        "called_amount" => 1.0,
-  #        "filled_amount" => 0.0
-  #        # LeverEX returns full order; other properties are not listed
-  #      }}
-  #      = Cryptozaur.Drivers.LeverexRest.place_order(driver, "ETHT:BTCT", 1.0, 0.00001)
-  ##    end
-  #  end
+  test "place_order", %{driver: driver} do
+    use_cassette "leverex/place_order" do
+      {:ok,
+       %{
+         "external_id" => nil,
+         "called_amount" => 1.0,
+         "filled_amount" => 0.0
+         # LeverEX returns full order; other properties are not listed
+       }} = Cryptozaur.Drivers.LeverexRest.place_order(driver, "ETH_D:BTC_D", 1.0, 0.00001)
+    end
+  end
+
+  test "cancel_order", %{driver: driver} do
+    use_cassette "leverex/cancel_order" do
+      {:ok,
+       %{
+         "external_id" => nil,
+         "called_amount" => 1.0,
+         "filled_amount" => 0.0
+       }} = Cryptozaur.Drivers.LeverexRest.cancel_order(driver, 1)
+    end
+  end
+
   #
   #  test "get orders should get the active orders", %{driver: driver} do
   #    use_cassette "leverex/get_open_orders" do
@@ -116,10 +128,4 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
   #  end
   #
   #
-  #  test "placing a cancel BUY order should cancel a buy order in the system", %{driver: driver} do
-  #    use_cassette "leverex/cancel_order" do
-  #      {:ok, nil}
-  #      = Cryptozaur.Drivers.LeverexRest.cancel_order(driver, "KCS-ETH", "5a6b902a5e39302701af70f8", "BUY")
-  #    end
-  #  end
 end

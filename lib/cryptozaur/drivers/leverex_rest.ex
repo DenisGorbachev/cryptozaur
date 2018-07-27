@@ -7,6 +7,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   @timeout 600_000
   @http_timeout 90000
+  @retries (Mix.env() == :test && 0) || 10
 
   def start_link(state, opts \\ []) do
     state =
@@ -26,7 +27,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   # Client
 
-  def get_info(pid, extra \\ %{}) do
+  def get_info(pid, extra \\ []) do
     GenServer.call(pid, {:get_info, extra}, @timeout)
   end
 
@@ -34,14 +35,18 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     GenServer.call(pid, {:get_balances}, @timeout)
   end
 
-  def place_order(pid, symbol, amount, price, params \\ %{}) do
-    GenServer.call(pid, {:place_order, symbol, amount, price, params}, @timeout)
+  def place_order(pid, symbol, amount, price, extra \\ []) do
+    GenServer.call(pid, {:place_order, symbol, amount, price, extra}, @timeout)
+  end
+
+  def cancel_order(pid, uid, extra \\ []) do
+    GenServer.call(pid, {:cancel_order, uid, extra}, @timeout)
   end
 
   def handle_call({:get_info, extra}, _from, state) do
     path = "/api/v1/info"
     params = [] ++ Map.to_list(extra)
-    {result, state} = get(path, params, build_headers(), build_options(is_signed: false), state)
+    {result, state} = get(path, params, build_headers(), build_options(), state)
     {:reply, result, state}
   end
 
@@ -55,8 +60,16 @@ defmodule Cryptozaur.Drivers.LeverexRest do
   def handle_call({:place_order, symbol, amount, price, extra}, _from, state) do
     path = "/api/v1/my/orders"
     params = []
-    body = extra |> Map.merge(symbol: symbol, amount: amount, price: price)
+    body = extra |> Keyword.merge(symbol: symbol, called_amount: to_string(amount), limit_price: to_string(price))
     {result, state} = post(path, body, params, build_headers(), build_options(is_signed: true), state)
+    {:reply, result, state}
+  end
+
+  def handle_call({:cancel_order, uid, extra}, _from, state) do
+    path = "/api/v1/my/orders/#{uid}/cancel"
+    params = [] ++ extra
+    body = []
+    {result, state} = put(path, body, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
   end
 
@@ -68,8 +81,12 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     request(:post, path, body, params, headers, options, state)
   end
 
+  defp put(path, body, params, headers, options, state) do
+    request(:put, path, body, params, headers, options, state)
+  end
+
   defp request(method, path, body, params, headers, options, state) do
-    GenRetry.Task.async(request_task(method, path, body, params, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout], state), retries: 10, delay: 2_000, jitter: 0.1, exp_base: 1.1)
+    GenRetry.Task.async(request_task(method, path, body, params, headers, options ++ [timeout: @http_timeout, recv_timeout: @http_timeout], state), retries: @retries, delay: 2_000, jitter: 0.1, exp_base: 1.1)
     |> Task.await(@timeout)
     |> validate()
   end
@@ -83,10 +100,8 @@ defmodule Cryptozaur.Drivers.LeverexRest do
           {method, path, body, params, headers, options, state}
         end
 
-      body = if is_list(body) or is_map(body), do: Poison.encode!(body), else: body
-
       result =
-        case HTTPoison.request(method, state.url <> path, body, headers, options ++ [params: params]) do
+        case HTTPoison.request(method, state.url <> path, {:form, body}, headers, options ++ [params: params]) do
           failure(%HTTPoison.Error{reason: reason}) when reason in [:timeout, :connect_timeout, :closed, :enetunreach, :nxdomain] ->
             warn("~~ LeverexRest.request(#{inspect(method)}, #{inspect(state.url <> path)}, #{inspect(body)}, #{inspect(headers)}, #{inspect(options)}) # timeout")
             raise "retry"
