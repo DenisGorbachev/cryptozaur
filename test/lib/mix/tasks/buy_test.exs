@@ -12,10 +12,12 @@ defmodule Mix.Tasks.Buy.Test do
     end
   end
 
-  #
-  #  test "user can't place a buy order with insufficient funds", %{opts: opts} do
-  #    result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.1", "20000"])
-  #  end
+  test "user can't place a buy order with insufficient funds", %{opts: opts} do
+    result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.1", "2000000000"])
+
+    assert {:error, %{message: "Insufficient funds"}} = result
+  end
+
   #
   #  test "user can't place a buy order on non-existent market", %{opts: opts} do
   #    result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ULTRATRASH:MEGATRASH", "0.00000001", "20"])
