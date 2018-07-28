@@ -108,6 +108,8 @@ defmodule Cryptozaur.Logger do
   defmacro to_data(map) when is_map(map), do: quote(do: unquote(map))
   defmacro to_data(data), do: quote(do: %{data: inspect(unquote(data))})
 
+  def to_verbose_string(data) when is_binary(data), do: data
+
   def to_verbose_string(data) when is_map(data) do
     "#{Map.get(data, :message)} #{Apex.Format.format(data |> Map.drop([:message]), numbers: false)}" |> String.trim()
   end

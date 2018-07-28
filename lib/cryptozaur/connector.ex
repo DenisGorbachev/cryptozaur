@@ -237,12 +237,30 @@ defmodule Cryptozaur.Connector do
   end
 
   def get_orders(exchange, key, secret) do
+    # Some connectors may implement get_orders() as get_opened_orders() ++ get_closed_orders()
     execute(exchange, :get_orders, [key, secret])
   end
 
   def get_orders(exchange, key, secret, base, quote) do
+    # Some connectors may implement get_orders() as get_opened_orders() ++ get_closed_orders()
     execute(exchange, :get_orders, [key, secret, base, quote])
   end
+
+  #  def get_opened_orders(exchange, key, secret) do
+  #    execute(exchange, :get_opened_orders, [key, secret])
+  #  end
+  #
+  #  def get_opened_orders(exchange, key, secret, base, quote) do
+  #    execute(exchange, :get_opened_orders, [key, secret, base, quote])
+  #  end
+  #
+  #  def get_closed_orders(exchange, key, secret) do
+  #    execute(exchange, :get_closed_orders, [key, secret])
+  #  end
+  #
+  #  def get_closed_orders(exchange, key, secret, base, quote) do
+  #    execute(exchange, :get_closed_orders, [key, secret, base, quote])
+  #  end
 
   def get_link(exchange, base, quote) do
     execute(exchange, :get_link, [base, quote], "")

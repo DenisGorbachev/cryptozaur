@@ -34,7 +34,7 @@ defmodule Cryptozaur.Connectors.LeverexTest do
       produce_driver(
         [
           {
-            {:get_balances},
+            {:get_balances, []},
             success([
               %{
                 "asset" => "BTCT",

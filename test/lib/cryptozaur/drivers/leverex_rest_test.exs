@@ -61,72 +61,16 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
     end
   end
 
-  #
-  #  test "get orders should get the active orders", %{driver: driver} do
-  #    use_cassette "leverex/get_open_orders" do
-  #      {:ok,
-  #        %{
-  #          "BUY" => [
-  #            %{
-  #              "coinType" => "KCS",
-  #              "coinTypePair" => "ETH",
-  #              "createdAt" => 1516998699000,
-  #              "dealAmount" => 0.0,
-  #              "direction" => "BUY",
-  #              "oid" => "5a6b902a5e39302701af70f8",
-  #              "pendingAmount" => 1.0,
-  #              "price" => 1.0e-5,
-  #              "updatedAt" => 1516998699000,
-  #              "userOid" => nil
-  #            }
-  #          ],
-  #          "SELL" => []
-  #        }
-  #      }
-  #      = Cryptozaur.Drivers.LeverexRest.get_open_orders(driver)
-  #    end
-  #  end
-  #
-  #  test "get orders should get the closed orders", %{driver: driver} do
-  #    use_cassette "leverex/get_closed_orders", match_requests_on: [:query] do
-  #      {:ok,
-  #        %{
-  #          "datas" => [
-  #            %{
-  #              "amount" => 2.00000000,
-  #              "coinType" => "TNC",
-  #              "coinTypePair" => "ETH",
-  #              "createdAt" => 1517199222000,
-  #              "dealDirection" => "SELL",
-  #              "dealPrice" => 0.00030300,
-  #              "dealValue" => 0.00060600,
-  #              "direction" => "BUY",
-  #              "fee" => 0.00200000,
-  #              "feeRate" => 0.00100000,
-  #              "oid" => "5a6e9f7673fb6f11d627adeb",
-  #              "orderOid" => "5a6e9f6b87a12d4439beaa2a"
-  #            },
-  #            %{
-  #              "amount" => 1.00000000,
-  #              "coinType" => "TNC",
-  #              "coinTypePair" => "ETH",
-  #              "createdAt" => 1517199123000,
-  #              "dealDirection" => "BUY",
-  #              "dealPrice" => 0.00031000,
-  #              "dealValue" => 0.00031000,
-  #              "direction" => "BUY",
-  #              "fee" => 0.00100000,
-  #              "feeRate" => 0.00100000,
-  #              "oid" => "5a6e9f1373fb6f11d627adcf",
-  #              "orderOid" => "5a6e9f1273fb6f12b0588de5"
-  #            }
-  #          ],
-  #
-  #        }
-  #      }
-  #      = Cryptozaur.Drivers.LeverexRest.get_closed_orders(driver)
-  #    end
-  #  end
-  #
-  #
+  test "get_orders", %{driver: driver} do
+    use_cassette "leverex/get_orders" do
+      {:ok, orders} = Cryptozaur.Drivers.LeverexRest.get_orders(driver)
+
+      assert [
+               %{"called_amount" => 1.00000000, "external_id" => nil, "fee" => 0.00000000, "filled_amount" => 0.00000000, "id" => 20, "inserted_at" => "2018-07-28T07:06:03.808501", "is_active" => true, "is_cancelled" => false, "limit_price" => 0.07000000, "symbol" => "ETH_D:BTC_D", "trigger_price" => nil, "triggered_at" => "2018-07-28T07:06:03.808223", "updated_at" => "2018-07-28T07:06:03.808509"}
+               | _
+             ] = orders
+
+      assert length(orders) == 19
+    end
+  end
 end

@@ -1,15 +1,16 @@
-defmodule Mix.Tasks.Show.Balances do
+defmodule Mix.Tasks.Show do
   use Mix.Task
   import Mix.Ecto
   import Mix.Tasks.Helpers
   import Cryptozaur.{Utils, Logger}
   alias TableRex.Table
   alias Cryptozaur.{Repo, Connector, DriverSupervisor}
+  alias Cryptozaur.Model.{Account}
 
-  @shortdoc "Show balances"
+  @shortdoc "Show orders"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, currency: currency}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, market: market}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -19,27 +20,41 @@ defmodule Mix.Tasks.Show.Balances do
     {:ok, _config} = read_json(config_filename)
     {:ok, accounts} = read_json(accounts_filename)
 
-    with {:ok, %{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
-         {:ok, balances} <- Connector.get_balances(exchange, key, secret) do
-      balances =
-        if currency do
-          balances |> Enum.filter(&(&1.currency == currency))
-        else
-          balances |> Enum.filter(&(&1.total_amount != 0.0))
-        end
-
-      balances
-      |> Enum.sort_by(& &1.currency)
-      |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
-      |> Table.new(["Currency", "Wallet", "Available", "Total"])
-      |> Table.put_column_meta(2..5, align: :right)
+    with {:ok, %Account{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
+         {:ok, orders} <- get_orders(exchange, key, secret, market) do
+      orders
+      |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
+      |> Enum.map(&order_to_row(&1, exchange))
+      |> Table.new()
+      |> Table.put_column_meta(2..4, align: :right)
       |> Table.render!()
       |> Mix.shell().info()
-
-      {:ok, balances}
     else
       {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info()
     end
+  end
+
+  def get_orders(exchange, key, secret, market) do
+    if market do
+      with {:ok, [base, quote]} <- parse_market(market) do
+        Connector.get_orders(exchange, key, secret, base, quote)
+      end
+    else
+      Connector.get_orders(exchange, key, secret)
+    end
+  end
+
+  def order_to_row(order, exchange) do
+    [base, quote] = to_list(order.pair)
+
+    status =
+      case order.status do
+        "opened" -> "O"
+        "closed" -> "X"
+      end
+
+    side = if order.amount_requested > 0.0, do: "+", else: "-"
+    [status, side, format_price(exchange, base, quote, order.price), format_amount(exchange, base, quote, order.amount_filled), format_amount(exchange, base, quote, order.amount_requested), inspect(order.timestamp), order.uid]
   end
 
   def parse_args(argv) do
@@ -52,9 +67,9 @@ defmodule Mix.Tasks.Show.Balances do
           help: "Account name",
           required: true
         ],
-        currency: [
-          value_name: "currency",
-          help: "Currency",
+        market: [
+          value_name: "market",
+          help: "Market (e.g. LEX:BTC or ETHM18)",
           required: false
         ]
       ],
@@ -84,14 +99,6 @@ defmodule Mix.Tasks.Show.Balances do
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
         ]
-        #        without_dust: [
-        #          value_name: "without_dust",
-        #          short: "-d",
-        #          long: "--without-dust",
-        #          help: "Without dust (dust amount is specified in config)",
-        #          default: false,
-        #          required: false
-        #        ],
       ]
     )
     |> Optimus.parse!(argv)

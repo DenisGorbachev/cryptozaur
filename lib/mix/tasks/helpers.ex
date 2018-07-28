@@ -54,7 +54,7 @@ defmodule Mix.Tasks.Helpers do
   end
 
   def improve_error(error) do
-    if Map.has_key?(error, "type") do
+    if is_map(error) and Map.has_key?(error, "type") do
       error |> Map.put(:message, error["type"]) |> Map.drop(["type"])
     else
       error
