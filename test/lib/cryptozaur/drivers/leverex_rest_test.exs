@@ -62,6 +62,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
   end
 
   test "get_orders", %{driver: driver} do
+    Apex.ap("IMPLEMENT PAGINATION", numbers: false)
     use_cassette "leverex/get_orders" do
       {:ok, orders} = Cryptozaur.Drivers.LeverexRest.get_orders(driver)
 
