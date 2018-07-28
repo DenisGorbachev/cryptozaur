@@ -30,7 +30,7 @@ defmodule Mix.Tasks.Add.Account do
 
     case result do
       {:ok, value} ->
-        Mix.shell().info("[Name: #{name}] Added account #{key} for #{exchange} exchange")
+        Mix.shell().info("Added account \"#{name}\" with key #{key} for #{exchange} exchange")
         {:ok, value}
 
       {:error, error} ->

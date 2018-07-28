@@ -8,6 +8,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
   @timeout 600_000
   @http_timeout 90000
   @retries (Mix.env() == :test && 0) || 10
+  @default_limit 1000
 
   def start_link(state, opts \\ []) do
     state =
@@ -64,7 +65,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
   def handle_call({:get_orders, symbol, extra}, _from, state) do
     path = "/api/v1/my/orders"
     params = [symbol: symbol] ++ extra
-    {result, state} = get(path, params, build_headers(), build_options(is_signed: true), state)
+    {result, state} = get_with_pagination(path, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
   end
 
@@ -82,6 +83,23 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     body = []
     {result, state} = put(path, body, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
+  end
+
+  defp get_with_pagination(path, params, headers, options, state) do
+    Apex.ap("get", numbers: false)
+    with success(objects) <- get(path, params, headers, options, state) do
+      if length(objects) < Keyword.get(params, :limit, @default_limit) do
+        success(objects)
+      else
+        last_id = objects |> List.last() |> Keyword.get(:id)
+        params = params |> Keyword.put(:to_id, last_id - 1)
+        Apex.ap(last_id, numbers: false)
+
+        with success(objects_next) <- get_with_pagination(path, params, headers, options, state) do
+          success(objects ++ objects_next)
+        end
+      end
+    end
   end
 
   defp get(path, params, headers, options, state) do
