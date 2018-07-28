@@ -86,17 +86,15 @@ defmodule Cryptozaur.Drivers.LeverexRest do
   end
 
   defp get_with_pagination(path, params, headers, options, state) do
-    Apex.ap("get", numbers: false)
-    with success(objects) <- get(path, params, headers, options, state) do
+    with {success(objects), state} <- get(path, params, headers, options, state) do
       if length(objects) < Keyword.get(params, :limit, @default_limit) do
-        success(objects)
+        {success(objects), state}
       else
-        last_id = objects |> List.last() |> Keyword.get(:id)
+        last_id = objects |> List.last() |> Map.get("id")
         params = params |> Keyword.put(:to_id, last_id - 1)
-        Apex.ap(last_id, numbers: false)
 
-        with success(objects_next) <- get_with_pagination(path, params, headers, options, state) do
-          success(objects ++ objects_next)
+        with {success(objects_next), state} <- get_with_pagination(path, params, headers, options, state) do
+          {success(objects ++ objects_next), state}
         end
       end
     end

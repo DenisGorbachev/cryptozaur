@@ -62,16 +62,29 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
   end
 
   test "get_orders", %{driver: driver} do
-#    use_cassette "leverex/get_orders" do
-
+    use_cassette "leverex/get_orders" do
       {:ok, orders} = Cryptozaur.Drivers.LeverexRest.get_orders(driver)
 
       assert [
-               %{"called_amount" => 1.00000000, "external_id" => nil, "fee" => 0.00000000, "filled_amount" => 0.00000000, "id" => 20, "inserted_at" => "2018-07-28T07:06:03.808501", "is_active" => true, "is_cancelled" => false, "limit_price" => 0.07000000, "symbol" => "ETH_D:BTC_D", "trigger_price" => nil, "triggered_at" => "2018-07-28T07:06:03.808223", "updated_at" => "2018-07-28T07:06:03.808509"}
+               %{
+                 "called_amount" => 0.00000001,
+                 "external_id" => nil,
+                 "fee" => 0.00000000,
+                 "filled_amount" => 0.00000000,
+                 "id" => 1238,
+                 "inserted_at" => "2018-07-28T17:55:22.376743",
+                 "is_active" => true,
+                 "is_cancelled" => false,
+                 "limit_price" => 0.00000001,
+                 "symbol" => "ETH_D:BTC_D",
+                 "trigger_price" => nil,
+                 "triggered_at" => "2018-07-28T17:55:22.376485",
+                 "updated_at" => "2018-07-28T17:55:22.376750"
+               }
                | _
              ] = orders
 
-      assert length(orders) == 19
-#    end
+      assert length(orders) == 1236
+    end
   end
 end
