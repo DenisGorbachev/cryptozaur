@@ -29,8 +29,13 @@ defmodule Mix.Tasks.Add.Account do
       end
 
     case result do
-      {:ok, value} -> {:ok, value}
-      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error)))
+      {:ok, value} ->
+        Mix.shell().info("[Name: #{name}] Added account #{key} for #{exchange} exchange")
+        {:ok, value}
+
+      {:error, error} ->
+        Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error)))
+        {:error, error}
     end
 
     result

@@ -67,9 +67,9 @@ defmodule Cryptozaur.Connectors.Kucoin do
   def cancel_order(key, secret, base, quote, orderOid, type, _extra \\ %{}) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
-      result <- Rest.cancel_order(rest, "#{base}-#{quote}", orderOid, type)
+      true <- Rest.cancel_order(rest, "#{base}-#{quote}", orderOid, type)
     after
-      result
+      orderOid
     end
   end
 

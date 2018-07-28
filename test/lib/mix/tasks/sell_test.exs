@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Sell.Test do
   end
 
   test "user can't place a sell order with insufficient funds", %{opts: opts} do
-    result = Mix.Tasks.Sell.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.5", "2000000000"])
+    result = Mix.Tasks.Sell.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.5", "20000000"])
 
     assert {:error, %{message: "Insufficient funds"}} = result
   end

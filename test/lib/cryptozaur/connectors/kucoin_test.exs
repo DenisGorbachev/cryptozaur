@@ -205,7 +205,7 @@ defmodule Cryptozaur.Connectors.KucoinTest do
         Cryptozaur.Drivers.KucoinRest
       )
 
-    assert success(true) == Connector.cancel_order("KUCOIN", key, "secret", "KCS", "ETH", "5a644e9a5e39307a633db6c1", "BUY")
+    assert success("5a644e9a5e39307a633db6c1") == Connector.cancel_order("KUCOIN", key, "secret", "KCS", "ETH", "5a644e9a5e39307a633db6c1", "BUY")
   end
 
   test "get_tickers" do

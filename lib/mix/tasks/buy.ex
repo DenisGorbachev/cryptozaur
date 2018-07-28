@@ -4,6 +4,6 @@ defmodule Mix.Tasks.Buy do
   @shortdoc "Place a limit buy order"
 
   def run(args) do
-    Mix.Tasks.Place.Order.run(args, &abs(&1))
+    Mix.Tasks.Place.run(args, &abs(&1))
   end
 end

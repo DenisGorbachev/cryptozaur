@@ -93,12 +93,15 @@ defmodule Cryptozaur.Connectors.LeverexTest do
         [
           {
             {:cancel_order, "4", []},
-            success(true)
+            success(%{
+              "id" => 4
+              # LeverEX returns full order; other properties are not shown
+            })
           }
         ],
         Cryptozaur.Drivers.LeverexRest
       )
 
-    assert success(true) == Connector.cancel_order("LEVEREX", key, "secret", "ETH_D", "BTC_D", "4")
+    assert success("4") == Connector.cancel_order("LEVEREX", key, "secret", "ETH_D", "BTC_D", "4")
   end
 end

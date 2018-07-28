@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Buy.Test do
   end
 
   test "user can't place a buy order with insufficient funds", %{opts: opts} do
-    result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.1", "2000000000"])
+    result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.1", "20000000"])
 
     assert {:error, %{message: "Insufficient funds"}} = result
   end
@@ -22,11 +22,12 @@ defmodule Mix.Tasks.Buy.Test do
     use_cassette "tasks/buy_error_invalid_symbol", match_requests_on: [:query] do
       result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ULTRATRASH:MEGATRASH", "0.00000001", "20"])
 
-      assert {:error,
-              %{
-                "details" => %{"symbol" => "ULTRATRASH:MEGATRASH"},
-                "type" => "invalid_symbol"
-              }} = result
+      assert {:error, error} = result
+
+      assert error == %{
+               "details" => %{"symbol" => "ULTRATRASH:MEGATRASH"},
+               "type" => "invalid_symbol"
+             }
     end
   end
 end

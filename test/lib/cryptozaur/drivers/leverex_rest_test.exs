@@ -45,7 +45,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
          "external_id" => nil,
          "called_amount" => 1.0,
          "filled_amount" => 0.0
-         # LeverEX returns full order; other properties are not listed
+         # LeverEX returns full order; other properties are not shown
        }} = Cryptozaur.Drivers.LeverexRest.place_order(driver, "ETH_D:BTC_D", 1.0, 0.00001)
     end
   end

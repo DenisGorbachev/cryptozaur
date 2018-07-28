@@ -1,15 +1,15 @@
-defmodule Mix.Tasks.Place.Order do
+defmodule Mix.Tasks.Cancel do
   use Mix.Task
   import Mix.Ecto
   import Mix.Tasks.Helpers
-  import Cryptozaur.{Utils, Logger}
+  import Cryptozaur.{Logger}
   alias Cryptozaur.{Repo, Connector, DriverSupervisor}
-  alias Cryptozaur.Model.{Account, Order}
+  alias Cryptozaur.Model.{Account}
 
-  @shortdoc "Place an order"
+  @shortdoc "Cancel an order"
 
-  def run(args, amount_normalizer \\ &identity/1) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, market: market, price: price, amount: amount}} = parse_args(args)
+  def run(args) do
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, market: market, uid: uid}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -20,27 +20,14 @@ defmodule Mix.Tasks.Place.Order do
     {:ok, accounts} = read_json(accounts_filename)
 
     result =
-      with {:ok, %Account{exchange: exchange, key: key, secret: secret} = account} <- get_account(account_name, accounts),
-           {:ok, [base, quote]} <- parse_market(market),
-           amount = amount_normalizer.(amount),
-           {:ok, uid} <- Connector.place_order(exchange, key, secret, base, quote, amount, price) do
-        order = %Order{
-          uid: uid,
-          pair: "#{base}:#{quote}",
-          price: price,
-          amount_requested: amount,
-          account: account
-        }
-
-        render_order(order)
-        |> Mix.shell().info()
-
-        {:ok, order}
+      with {:ok, %Account{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
+           {:ok, [base, quote]} <- parse_market(market) do
+        Connector.cancel_order(exchange, key, secret, base, quote, uid)
       end
 
     case result do
-      {:ok, value} -> {:ok, value}
-      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error)))
+      {:ok, uid} -> "[UID: #{uid}] Cancelled order" |> Mix.shell().info()
+      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info()
     end
 
     result
@@ -59,19 +46,12 @@ defmodule Mix.Tasks.Place.Order do
         market: [
           value_name: "market",
           help: "Market (e.g. LEX:BTC or ETHM18)",
-          required: false
+          required: true
         ],
-        price: [
-          value_name: "price",
-          help: "Price",
-          required: false,
-          parser: :float
-        ],
-        amount: [
-          value_name: "amount",
-          help: "Amount",
-          required: false,
-          parser: :float
+        uid: [
+          value_name: "uid",
+          help: "Order UID",
+          required: true
         ]
       ],
       flags: [

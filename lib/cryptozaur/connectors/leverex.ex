@@ -29,18 +29,18 @@ defmodule Cryptozaur.Connectors.Leverex do
   def place_order(key, secret, base, quote, amount, price, extra \\ []) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
-      %{"id" => uuid} <- Rest.place_order(rest, "#{base}:#{quote}", amount, price, extra)
+      %{"id" => id} <- Rest.place_order(rest, "#{base}:#{quote}", amount, price, extra)
     after
-      to_string(uuid)
+      to_string(id)
     end
   end
 
   def cancel_order(key, secret, _base, _quote, uid, extra \\ []) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
-      result <- Rest.cancel_order(rest, uid, extra)
+      %{"id" => id} <- Rest.cancel_order(rest, uid, extra)
     after
-      result
+      to_string(id)
     end
   end
 
