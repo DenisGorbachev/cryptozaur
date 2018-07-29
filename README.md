@@ -72,7 +72,11 @@ cryptozaur show.withdrawal leverex 138483
 
 ### Place a stop-loss order
 
-With Cryptozaur, you can **save money** by offloading your position in small chunks instead of market-selling through the orderbook. 
+With Cryptozaur, you can **save money** by offloading your position in small chunks instead of market-selling through the orderbook.
+
+Additional benefits:
+* Protect your position from random spikes: single market-sells won't trigger your stop.
+* Protect your position from stop-runs: the exchange won't see your stops - instead, it will see regular limit / market orders after stop is triggered.
 
 ```
 cryptozaur stop.sell coinex ETH:BTC 0.068 350 10 600
