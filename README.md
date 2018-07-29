@@ -70,6 +70,17 @@ cryptozaur show.withdrawal leverex 138483
 [UID: 138483] Withdraw 20.0 LEX to 0x4fdd5eb2fb260149a3903859043e962ab89d8ed4 (Confirmations: 4)
 ```
 
+### Place a stop-loss order
+
+With Cryptozaur, you can **save money** by offloading your position in small chunks instead of market-selling through the orderbook. 
+
+```
+cryptozaur stop.sell coinex ETH:BTC 0.068 350 10 600
+
+### This command will start selling ETH if price goes below 0.068 from full position of 350 ETH in chunks of 10 ETH until the full position is sold (waiting for 600 seconds = 10 minutes between each sell)
+### This command will also maintain 10 ETH sell order trailing at ask, to ensure that any buying by other traders will hit your order.
+```
+
 ### Run trans-fee mining
 
 Some exchanges have recently implemented "[trans-fee mining](https://www.binaryoptions.net/what-is-trans-fee-mining-and-why-you-should-care/)". It's a profitable (although questionable) way of acquiring native exchange tokens via self-trade.
