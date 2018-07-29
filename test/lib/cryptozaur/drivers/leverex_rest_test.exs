@@ -38,7 +38,6 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
   end
 
   test "place_order", %{driver: driver} do
-    #    assert {:error, "error"} = Cryptozaur.Drivers.LeverexRest.place_order(driver, "ETH_D:BTC_D", 1.0, 0.00001)
     use_cassette "leverex/place_order" do
       {:ok,
        %{
@@ -61,8 +60,10 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
     end
   end
 
+  @tag timeout: 240_000
   test "get_orders", %{driver: driver} do
-    use_cassette "leverex/get_orders" do
+    # NOTE: use_cassette runs out of memory on large requests
+    use_cassette "leverex/get_orders", match_requests_on: [:query] do
       {:ok, orders} = Cryptozaur.Drivers.LeverexRest.get_orders(driver)
 
       assert [
@@ -84,7 +85,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
                | _
              ] = orders
 
-      assert length(orders) == 1236
+      assert length(orders) == 1237
     end
   end
 end

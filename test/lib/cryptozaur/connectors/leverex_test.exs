@@ -58,6 +58,39 @@ defmodule Cryptozaur.Connectors.LeverexTest do
            ]) = Connector.get_balances("LEVEREX", key, "secret")
   end
 
+  test "get_orders" do
+    key =
+      produce_driver(
+        [
+          {
+            {:get_orders, nil, []},
+            success([
+              %{
+                "called_amount" => 0.00000001,
+                "external_id" => nil,
+                "fee" => 0.00000000,
+                "filled_amount" => 0.00000000,
+                "id" => 1238,
+                "inserted_at" => "2018-07-28T17:55:22.376743",
+                "is_active" => true,
+                "is_cancelled" => false,
+                "limit_price" => 0.00000001,
+                "symbol" => "ETH_D:BTC_D",
+                "trigger_price" => nil,
+                "triggered_at" => "2018-07-28T17:55:22.376485",
+                "updated_at" => "2018-07-28T17:55:22.376750"
+              }
+            ])
+          }
+        ],
+        Cryptozaur.Drivers.LeverexRest
+      )
+
+    assert success([
+             %Balance{available_amount: 500.0, total_amount: 1000.0, currency: "ETHT"}
+           ]) = Connector.get_orders("LEVEREX", key, "secret")
+  end
+
   test "place_order" do
     key =
       produce_driver(

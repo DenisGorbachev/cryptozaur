@@ -91,7 +91,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
         {success(objects), state}
       else
         last_id = objects |> List.last() |> Map.get("id")
-        params = params |> Keyword.put(:to_id, last_id - 1)
+        params = params |> Keyword.put(:to_id, last_id)
 
         with {success(objects_next), state} <- get_with_pagination(path, params, headers, options, state) do
           {success(objects ++ objects_next), state}

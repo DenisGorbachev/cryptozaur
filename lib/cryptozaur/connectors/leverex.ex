@@ -26,6 +26,29 @@ defmodule Cryptozaur.Connectors.Leverex do
     %Balance{currency: currency, total_amount: total_amount, available_amount: available_amount}
   end
 
+  def get_orders(key, secret, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      orders <- Rest.get_orders(rest, nil, extra)
+    after
+      orders |> Enum.map(&to_order(&1))
+    end
+  end
+
+  defp to_order(order) do
+    %Order{
+      uid: order["id"],
+      pair: order["symbol"],
+      price: order["limit_price"],
+      base_diff: order["filled_amount"],
+      quote_diff: -1 * order["filled_amount"] - order["fee"],
+      amount_requested: order["called_amount"],
+      amount_filled: order["filled_amount"],
+      status: order["filled_amount"],
+      timestamp: timestamp
+    }
+  end
+
   def place_order(key, secret, base, quote, amount, price, extra \\ []) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
