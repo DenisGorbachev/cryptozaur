@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "symbol=ULTRATRASH%3aMEGATRASH&called_amount=20.00000000&limit_price=0.00000001",
+      "body": "symbol=ULTRATRASH%3aMEGATRASH&requested_amount=20.00000000&limit_price=0.00000001",
       "headers": {
         "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
         "X-Signature": "7099da6819dcc1b5b1fcde802c69b229b79d7e15f2aa68585925fc41c8a739ed",

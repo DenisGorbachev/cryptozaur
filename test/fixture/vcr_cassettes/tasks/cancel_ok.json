@@ -18,7 +18,7 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"updated_at\":\"2018-07-28T05:46:19.163350\",\"triggered_at\":\"2018-07-28T05:22:29.690254\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":0.5,\"is_cancelled\":true,\"is_active\":false,\"inserted_at\":\"2018-07-28T05:22:29.690513\",\"id\":16,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"called_amount\":-20.0}",
+      "body": "{\"updated_at\":\"2018-07-28T05:46:19.163350\",\"triggered_at\":\"2018-07-28T05:22:29.690254\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":0.5,\"is_cancelled\":true,\"is_active\":false,\"inserted_at\":\"2018-07-28T05:22:29.690513\",\"id\":16,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"requested_amount\":-20.0}",
       "headers": {
         "Server": "nginx/1.14.0 (Ubuntu)",
         "Date": "Sat, 28 Jul 2018 05:46:19 GMT",

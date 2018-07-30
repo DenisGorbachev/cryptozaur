@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "symbol=ETH_D%3aBTC_D&called_amount=-20.00000000&limit_price=0.50000000",
+      "body": "symbol=ETH_D%3aBTC_D&requested_amount=-20.00000000&limit_price=0.50000000",
       "headers": {
         "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
         "X-Signature": "9c9804497a515198c209ae6a433a45549b0bc08ebafba7490a15cd0a0dcd4dc6",
@@ -18,7 +18,7 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"updated_at\":\"2018-07-28T05:22:29.690521\",\"triggered_at\":\"2018-07-28T05:22:29.690254\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":0.5,\"is_cancelled\":false,\"is_active\":true,\"inserted_at\":\"2018-07-28T05:22:29.690513\",\"id\":16,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"called_amount\":-20.0}",
+      "body": "{\"updated_at\":\"2018-07-28T05:22:29.690521\",\"triggered_at\":\"2018-07-28T05:22:29.690254\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":0.5,\"is_cancelled\":false,\"is_active\":true,\"inserted_at\":\"2018-07-28T05:22:29.690513\",\"id\":16,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"requested_amount\":-20.0}",
       "headers": {
         "Server": "nginx/1.14.0 (Ubuntu)",
         "Date": "Sat, 28 Jul 2018 05:22:29 GMT",

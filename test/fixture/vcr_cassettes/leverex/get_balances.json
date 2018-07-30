@@ -3,10 +3,10 @@
     "request": {
       "body": "",
       "headers": {
-        "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
-        "X-Signature": "e4ff528da75e47c893b2927502afbfcc0c3a4c751a0dc8790451e09cd363ec71",
-        "X-Nonce": "1532697805714",
-        "X-Timestamp": "1532697806"
+        "X-Key": "LiC19EO1asbqQa03vmhJBdxQKQIVTl9p",
+        "X-Signature": "d184f4001d60968e0616ed71a6ae8b1a87ee53583b80eceb949c1b2feb26d90e",
+        "X-Nonce": "1532936202391",
+        "X-Timestamp": "1532936202"
       },
       "method": "get",
       "options": {
@@ -18,13 +18,14 @@
     },
     "response": {
       "binary": false,
-      "body": "[{\"total_amount\":10.0,\"available_amount\":10.0,\"asset\":\"BTC_D\"},{\"total_amount\":1.0e3,\"available_amount\":1.0e3,\"asset\":\"ETH_D\"}]",
+      "body": "[{\"withdrawn_amount\":0.0,\"placed_amount\":0.0,\"available_amount\":10.0,\"asset\":\"BTC_D\"},{\"withdrawn_amount\":0.0,\"placed_amount\":0.0,\"available_amount\":1.0e3,\"asset\":\"ETH_D\"}]",
       "headers": {
         "Server": "nginx/1.14.0 (Ubuntu)",
-        "Date": "Fri, 27 Jul 2018 13:23:27 GMT",
+        "Date": "Mon, 30 Jul 2018 07:36:43 GMT",
         "Content-Type": "application/json; charset=utf-8",
-        "Content-Length": "127",
+        "Content-Length": "172",
         "Connection": "keep-alive",
+        "set-cookie": "_leverex_key=SFMyNTY.g3QAAAABbQAAABJfdGltYmVyX3Nlc3Npb25faWRtAAAAIDM0NWVlMjQxZGFiYWJkOTRhYTEzMjhhOTliNTkxNzNh.zNopwz69hioxU0AVXC1cKFh5P-k3GOQ5h9TVd-3UQ9Y; path=/; HttpOnly",
         "cache-control": "max-age=0, private, must-revalidate"
       },
       "status_code": 200,

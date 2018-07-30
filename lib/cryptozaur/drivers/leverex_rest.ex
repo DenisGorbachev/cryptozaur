@@ -72,7 +72,7 @@ defmodule Cryptozaur.Drivers.LeverexRest do
   def handle_call({:place_order, symbol, amount, price, extra}, _from, state) do
     path = "/api/v1/my/orders"
     params = []
-    body = extra |> Keyword.merge(symbol: symbol, called_amount: to_string(amount), limit_price: to_string(price))
+    body = extra |> Keyword.merge(symbol: symbol, requested_amount: to_string(amount), limit_price: to_string(price))
     {result, state} = post(path, body, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
   end

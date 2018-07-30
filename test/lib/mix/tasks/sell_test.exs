@@ -12,11 +12,23 @@ defmodule Mix.Tasks.Sell.Test do
     end
   end
 
-  #  test "user can't place a sell order with insufficient funds", %{opts: opts} do
-  #    result = Mix.Tasks.Sell.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.5", "20000000"])
-  #
-  #    assert {:error, %{message: "Insufficient funds"}} = result
-  #  end
+  test "user can't place a sell order with insufficient funds", %{opts: opts} do
+    use_cassette "tasks/sell_error_not_enough_balance", match_requests_on: [:query] do
+      result = Mix.Tasks.Sell.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.5", "20000000"])
+
+      assert {:error,
+              %{
+                "details" => %{
+                  "asset" => "ETH_D",
+                  "available" => 1000.00000000,
+                  "requested" => 20_000_000.00000000,
+                  "symbol" => "ETH_D:BTC_D",
+                  "user_id" => 1
+                },
+                "type" => "not_enough_balance"
+              }} = result
+    end
+  end
 
   test "user can't place a sell order on non-existent market", %{opts: opts} do
     use_cassette "tasks/sell_error_invalid_symbol", match_requests_on: [:query] do

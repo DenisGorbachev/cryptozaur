@@ -22,7 +22,8 @@ defmodule Cryptozaur.Connectors.Leverex do
     end
   end
 
-  defp to_balance(%{"asset" => currency, "available_amount" => available_amount, "total_amount" => total_amount}) do
+  defp to_balance(%{"asset" => currency, "available_amount" => available_amount, "placed_amount" => placed_amount, "withdrawn_amount" => withdrawn_amount}) do
+    total_amount = available_amount + placed_amount + withdrawn_amount
     %Balance{currency: currency, total_amount: total_amount, available_amount: available_amount}
   end
 
@@ -42,9 +43,9 @@ defmodule Cryptozaur.Connectors.Leverex do
       price: order["limit_price"],
       base_diff: order["filled_amount"],
       quote_diff: -1 * order["filled_amount"] - order["fee"],
-      amount_requested: order["called_amount"],
+      amount_requested: order["requested_amount"],
       amount_filled: order["filled_amount"],
-      status: order["filled_amount"],
+      status: if(!order["cancelled_at"] and order["filled_amount"] != order["requested_amount"], do: "opened", else: "closed"),
       timestamp: NaiveDateTime.from_iso8601!(order["inserted_at"])
     }
   end

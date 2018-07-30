@@ -26,12 +26,14 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
          %{
            "asset" => "BTC_D",
            "available_amount" => 10.0,
-           "total_amount" => 10.0
+           "placed_amount" => 0.0,
+           "withdrawn_amount" => 0.0
          },
          %{
            "asset" => "ETH_D",
            "available_amount" => 1000.0,
-           "total_amount" => 1000.0
+           "placed_amount" => 0.0,
+           "withdrawn_amount" => 0.0
          }
        ]} = Cryptozaur.Drivers.LeverexRest.get_balances(driver)
     end
@@ -42,7 +44,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
       {:ok,
        %{
          "external_id" => nil,
-         "called_amount" => 1.0,
+         "requested_amount" => 1.0,
          "filled_amount" => 0.0
          # LeverEX returns full order; other properties are not shown
        }} = Cryptozaur.Drivers.LeverexRest.place_order(driver, "ETH_D:BTC_D", 1.0, 0.00001)
@@ -54,7 +56,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
       {:ok,
        %{
          "external_id" => nil,
-         "called_amount" => 1.0,
+         "requested_amount" => 1.0,
          "filled_amount" => 0.0
        }} = Cryptozaur.Drivers.LeverexRest.cancel_order(driver, "1")
     end
@@ -68,24 +70,24 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
 
       assert [
                %{
-                 "called_amount" => 0.00000001,
+                 "cancelled_at" => nil,
                  "external_id" => nil,
                  "fee" => 0.00000000,
                  "filled_amount" => 0.00000000,
-                 "id" => 1238,
-                 "inserted_at" => "2018-07-28T17:55:22.376743",
+                 "id" => 1201,
+                 "inserted_at" => "2018-07-30T09:03:11.490970",
                  "is_active" => true,
-                 "is_cancelled" => false,
                  "limit_price" => 0.00000001,
+                 "requested_amount" => 0.00000001,
                  "symbol" => "ETH_D:BTC_D",
                  "trigger_price" => nil,
-                 "triggered_at" => "2018-07-28T17:55:22.376485",
-                 "updated_at" => "2018-07-28T17:55:22.376750"
+                 "triggered_at" => "2018-07-30T09:03:11.490970",
+                 "updated_at" => "2018-07-30T09:03:11.490970"
                }
                | _
              ] = orders
 
-      assert length(orders) == 1237
+      assert length(orders) == 1201
     end
   end
 end

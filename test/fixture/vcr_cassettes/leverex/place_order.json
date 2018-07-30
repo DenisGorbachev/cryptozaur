@@ -1,12 +1,12 @@
 [
   {
     "request": {
-      "body": "symbol=ETH_D%3aBTC_D&called_amount=1.00000000&limit_price=0.00001000",
+      "body": "symbol=ETH_D%3aBTC_D&requested_amount=1.00000000&limit_price=0.00001000",
       "headers": {
-        "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
-        "X-Signature": "4c6f625bf71d8c09bf2e48b3d660c3e4413d19c672b216a47eadd110082fb53c",
-        "X-Nonce": "1532694592535",
-        "X-Timestamp": "1532694592"
+        "X-Key": "LiC19EO1asbqQa03vmhJBdxQKQIVTl9p",
+        "X-Signature": "f9b30a72b9c2ce127930fbba558f5dbdbae89d88da6b632f1a7b4a6f3f53541b",
+        "X-Nonce": "1532941197276",
+        "X-Timestamp": "1532941197"
       },
       "method": "post",
       "options": {
@@ -18,13 +18,14 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"updated_at\":\"2018-07-27T12:29:53.719988\",\"triggered_at\":\"2018-07-27T12:29:53.719643\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":1.0e-5,\"is_cancelled\":false,\"is_active\":true,\"inserted_at\":\"2018-07-27T12:29:53.719980\",\"id\":2,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"called_amount\":1.0}",
+      "body": "{\"updated_at\":\"2018-07-30T08:59:58.141484\",\"triggered_at\":\"2018-07-30T08:59:58.134503\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"requested_amount\":1.0,\"limit_price\":1.0e-5,\"is_active\":true,\"inserted_at\":\"2018-07-30T08:59:58.134764\",\"id\":1,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"cancelled_at\":null}",
       "headers": {
         "Server": "nginx/1.14.0 (Ubuntu)",
-        "Date": "Fri, 27 Jul 2018 12:29:53 GMT",
+        "Date": "Mon, 30 Jul 2018 08:59:58 GMT",
         "Content-Type": "application/json; charset=utf-8",
-        "Content-Length": "309",
+        "Content-Length": "311",
         "Connection": "keep-alive",
+        "set-cookie": "_leverex_key=SFMyNTY.g3QAAAABbQAAABJfdGltYmVyX3Nlc3Npb25faWRtAAAAIGY5YzY0NTljYTk2MDQ2Yjk3ODk1ODhmMWVmMzg0YTUx.8evsFxCjIG0vyEl4p2gC2iMDszmA5SB4D-edWUkBudo; path=/; HttpOnly",
         "cache-control": "max-age=0, private, must-revalidate"
       },
       "status_code": 200,

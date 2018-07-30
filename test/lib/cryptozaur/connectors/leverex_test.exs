@@ -39,12 +39,14 @@ defmodule Cryptozaur.Connectors.LeverexTest do
               %{
                 "asset" => "BTCT",
                 "available_amount" => 5.0,
-                "total_amount" => 10.0
+                "placed_amount" => 5.0,
+                "withdrawn_amount" => 0.0
               },
               %{
                 "asset" => "ETHT",
                 "available_amount" => 500.0,
-                "total_amount" => 1000.0
+                "placed_amount" => 200.0,
+                "withdrawn_amount" => 300.0
               }
             ])
           }
@@ -66,19 +68,49 @@ defmodule Cryptozaur.Connectors.LeverexTest do
             {:get_orders, nil, []},
             success([
               %{
-                "called_amount" => 0.00000001,
+                "cancelled_at" => nil,
                 "external_id" => nil,
                 "fee" => 0.00000000,
                 "filled_amount" => 0.00000000,
-                "id" => 1238,
-                "inserted_at" => "2018-07-28T17:55:22.376743",
+                "id" => 1201,
+                "inserted_at" => "2018-07-30T09:03:11.490970",
                 "is_active" => true,
-                "is_cancelled" => false,
                 "limit_price" => 0.00000001,
+                "requested_amount" => 0.00000001,
                 "symbol" => "ETH_D:BTC_D",
                 "trigger_price" => nil,
-                "triggered_at" => "2018-07-28T17:55:22.376485",
-                "updated_at" => "2018-07-28T17:55:22.376750"
+                "triggered_at" => "2018-07-30T09:03:11.490970",
+                "updated_at" => "2018-07-30T09:03:11.490970"
+              },
+              %{
+                "cancelled_at" => nil,
+                "external_id" => nil,
+                "fee" => 0.00000000,
+                "filled_amount" => 0.00000001,
+                "id" => 1200,
+                "inserted_at" => "2018-07-30T09:03:11.490970",
+                "is_active" => true,
+                "limit_price" => 0.00000001,
+                "requested_amount" => 0.00000001,
+                "symbol" => "ETH_D:BTC_D",
+                "trigger_price" => nil,
+                "triggered_at" => "2018-07-30T09:03:11.490970",
+                "updated_at" => "2018-07-30T09:03:11.490970"
+              },
+              %{
+                "cancelled_at" => "2018-07-30T11:34:24.343425",
+                "external_id" => nil,
+                "fee" => 0.00000000,
+                "filled_amount" => 0.00000000,
+                "id" => 1199,
+                "inserted_at" => "2018-07-30T09:03:11.490970",
+                "is_active" => true,
+                "limit_price" => 0.00000001,
+                "requested_amount" => 0.00000001,
+                "symbol" => "ETH_D:BTC_D",
+                "trigger_price" => nil,
+                "triggered_at" => "2018-07-30T09:03:11.490970",
+                "updated_at" => "2018-07-30T09:03:11.490970"
               }
             ])
           }
@@ -94,11 +126,33 @@ defmodule Cryptozaur.Connectors.LeverexTest do
                pair: "ETH_D:BTC_D",
                price: 0.00000001,
                quote_diff: 0.00000000,
-               status: 0.00000000,
-               timestamp: ~N[2018-07-28 17:55:22.376743],
-               uid: 1238
+               status: "opened",
+               timestamp: ~N[2018-07-30 09:03:11.490970],
+               uid: 1201
+             },
+             %Order{
+               amount_filled: 0.00000001,
+               amount_requested: 0.00000001,
+               base_diff: 0.00000001,
+               pair: "ETH_D:BTC_D",
+               price: 0.00000001,
+               quote_diff: -0.00000001,
+               status: "closed",
+               timestamp: ~N[2018-07-30 09:03:11.490970],
+               uid: 1200
+             },
+             %Order{
+               amount_filled: 0.00000000,
+               amount_requested: 0.00000001,
+               base_diff: 0.00000000,
+               pair: "ETH_D:BTC_D",
+               price: 0.00000001,
+               quote_diff: 0.00000000,
+               status: "closed",
+               timestamp: ~N[2018-07-30 09:03:11.490970],
+               uid: 1199
              }
-           ]) = Connector.get_orders("LEVEREX", key, "secret")
+           ]) == Connector.get_orders("LEVEREX", key, "secret")
   end
 
   test "place_order" do
@@ -108,7 +162,7 @@ defmodule Cryptozaur.Connectors.LeverexTest do
           {
             {:place_order, "ETH_D:BTC_D", 1, 0.0000100, []},
             success(%{
-              "called_amount" => 1.00000000,
+              "requested_amount" => 1.00000000,
               "external_id" => nil,
               "fee" => 0.00000000,
               "filled_amount" => 0.00000000,

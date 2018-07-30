@@ -29,6 +29,8 @@ defmodule Mix.Tasks.Show do
       |> Table.put_column_meta(2..4, align: :right)
       |> Table.render!()
       |> Mix.shell().info()
+
+      {:ok, orders}
     else
       {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info()
     end

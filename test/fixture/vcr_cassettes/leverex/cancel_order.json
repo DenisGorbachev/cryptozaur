@@ -3,10 +3,10 @@
     "request": {
       "body": "",
       "headers": {
-        "X-Key": "D7RIGs5kSkf70wpY9ySdiXuptYiY74NV",
-        "X-Signature": "b4d2cdb6bad8959097b286c6fa73e7398258f6ba34337591c8829ff475317a1b",
-        "X-Nonce": "1532696551127",
-        "X-Timestamp": "1532696551"
+        "X-Key": "LiC19EO1asbqQa03vmhJBdxQKQIVTl9p",
+        "X-Signature": "2c9f1b7c0869291a57b11eac3c2a52b6c0c3a1895ce1f47ffc38d7badcbef982",
+        "X-Nonce": "1532941206083",
+        "X-Timestamp": "1532941206"
       },
       "method": "put",
       "options": {
@@ -18,13 +18,14 @@
     },
     "response": {
       "binary": false,
-      "body": "{\"updated_at\":\"2018-07-27T13:02:32.240608\",\"triggered_at\":\"2018-07-27T12:29:39.074304\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"limit_price\":1.0e-5,\"is_cancelled\":true,\"is_active\":false,\"inserted_at\":\"2018-07-27T12:29:39.074647\",\"id\":1,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"called_amount\":1.0}",
+      "body": "{\"updated_at\":\"2018-07-30T09:00:06.973323\",\"triggered_at\":\"2018-07-30T08:59:58.134503\",\"trigger_price\":null,\"symbol\":\"ETH_D:BTC_D\",\"requested_amount\":1.0,\"limit_price\":1.0e-5,\"is_active\":false,\"inserted_at\":\"2018-07-30T08:59:58.134764\",\"id\":1,\"filled_amount\":0.0,\"fee\":0.0,\"external_id\":null,\"cancelled_at\":\"2018-07-30T09:00:06.973196\"}",
       "headers": {
         "Server": "nginx/1.14.0 (Ubuntu)",
-        "Date": "Fri, 27 Jul 2018 13:02:32 GMT",
+        "Date": "Mon, 30 Jul 2018 09:00:06 GMT",
         "Content-Type": "application/json; charset=utf-8",
-        "Content-Length": "309",
+        "Content-Length": "336",
         "Connection": "keep-alive",
+        "set-cookie": "_leverex_key=SFMyNTY.g3QAAAABbQAAABJfdGltYmVyX3Nlc3Npb25faWRtAAAAIDIwM2YxY2I3NjIyOTYzMzIwOWNlOGM3Zjc5ZGE5MWYz.C_KgkJDrUqtctTTFwXpqNSlZYpYApQF9A7qQbssUhrY; path=/; HttpOnly",
         "cache-control": "max-age=0, private, must-revalidate"
       },
       "status_code": 200,
