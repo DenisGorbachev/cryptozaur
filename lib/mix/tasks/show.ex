@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Show do
   @shortdoc "Show orders"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename, format: format}, args: %{account_name: account_name, market: market}} = parse_args(args)
+    %{flags: %{verbose: _verbose, short: short}, options: %{config_filename: config_filename, accounts_filename: accounts_filename, format: format}, args: %{account_name: account_name, market: market}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -27,8 +27,8 @@ defmodule Mix.Tasks.Show do
           if length(orders) > 0 do
             orders
             |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
-            |> Enum.map(&order_to_row(&1, exchange))
-            |> Table.new()
+            |> Enum.map(&to_row(&1, exchange, short))
+            |> Table.new([(short && "O/C") || "Status", (short && "B/S") || "Side", "Pair", "Price", "Amount", "Fill", "Timestamp", "ID"])
             |> Table.put_column_meta(2..4, align: :right)
             |> Table.render!()
           else
@@ -38,7 +38,7 @@ defmodule Mix.Tasks.Show do
         "json" ->
           orders
           |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
-          |> Enum.map(&order_to_row(&1, exchange))
+          |> Enum.map(&to_map(&1))
           |> Poison.encode!(pretty: true)
 
         other ->
@@ -62,17 +62,31 @@ defmodule Mix.Tasks.Show do
     end
   end
 
-  def order_to_row(order, exchange) do
+  def to_row(order, exchange, short) do
     [base, quote] = to_list(order.pair)
 
     status =
       case order.status do
-        "opened" -> "O"
-        "closed" -> "X"
+        "opened" -> (short && "O") || "Open"
+        "closed" -> (short && "X") || "Closed"
       end
 
-    side = if order.amount_requested > 0.0, do: "+", else: "-"
-    [status, side, format_price(exchange, base, quote, order.price), format_amount(exchange, base, quote, order.amount_filled), format_amount(exchange, base, quote, order.amount_requested), inspect(order.timestamp), order.uid]
+    side =
+      case order.amount_requested > 0.0 do
+        true -> (short && "B") || "Buy"
+        false -> (short && "S") || "Sell"
+      end
+
+    [
+      status,
+      side,
+      order.pair,
+      format_price(exchange, base, quote, order.price),
+      format_amount(exchange, base, quote, order.amount_requested),
+      format_amount(exchange, base, quote, order.amount_filled),
+      NaiveDateTime.to_string(drop_milliseconds(order.timestamp)),
+      order.uid
+    ]
   end
 
   def parse_args(argv) do
@@ -97,6 +111,13 @@ defmodule Mix.Tasks.Show do
           short: "-v",
           long: "--verbose",
           help: "Print extra information",
+          required: false
+        ],
+        short: [
+          value_name: "short",
+          short: "-s",
+          long: "--short",
+          help: "Improve readability by condensing output",
           required: false
         ]
       ],
