@@ -82,8 +82,8 @@ defmodule Mix.Tasks.Show do
       side,
       order.pair,
       format_price(exchange, base, quote, order.price),
-      format_amount(exchange, base, quote, order.amount_requested),
-      format_amount(exchange, base, quote, order.amount_filled),
+      format_amount(exchange, base, quote, abs(order.amount_requested)),
+      format_amount(exchange, base, quote, abs(order.amount_filled)),
       NaiveDateTime.to_string(drop_milliseconds(order.timestamp)),
       order.uid
     ]
