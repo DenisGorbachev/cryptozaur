@@ -4,7 +4,7 @@ defmodule Cryptozaur.Connectors.LeverexTest do
 
   import Cryptozaur.Case
   alias Cryptozaur.{Repo, Metronome, Connector}
-  alias Cryptozaur.Model.{Balance}
+  alias Cryptozaur.Model.{Balance, Order}
 
   setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
@@ -87,7 +87,17 @@ defmodule Cryptozaur.Connectors.LeverexTest do
       )
 
     assert success([
-             %Balance{available_amount: 500.0, total_amount: 1000.0, currency: "ETHT"}
+             %Order{
+               amount_filled: 0.00000000,
+               amount_requested: 0.00000001,
+               base_diff: 0.00000000,
+               pair: "ETH_D:BTC_D",
+               price: 0.00000001,
+               quote_diff: 0.00000000,
+               status: 0.00000000,
+               timestamp: ~N[2018-07-28 17:55:22.376743],
+               uid: 1238
+             }
            ]) = Connector.get_orders("LEVEREX", key, "secret")
   end
 

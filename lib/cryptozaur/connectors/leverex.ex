@@ -1,6 +1,6 @@
 defmodule Cryptozaur.Connectors.Leverex do
   require OK
-  alias Cryptozaur.Model.{Balance}
+  alias Cryptozaur.Model.{Balance, Order}
   alias Cryptozaur.Drivers.LeverexRest, as: Rest
 
   def get_info(extra \\ []) do
@@ -45,7 +45,7 @@ defmodule Cryptozaur.Connectors.Leverex do
       amount_requested: order["called_amount"],
       amount_filled: order["filled_amount"],
       status: order["filled_amount"],
-      timestamp: timestamp
+      timestamp: NaiveDateTime.from_iso8601!(order["inserted_at"])
     }
   end
 
