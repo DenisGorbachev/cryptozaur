@@ -28,12 +28,16 @@ defmodule Mix.Tasks.Show.Balances do
           balances |> Enum.filter(&(&1.total_amount != 0.0))
         end
 
-      balances
-      |> Enum.sort_by(& &1.currency)
-      |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
-      |> Table.new(["Currency", "Wallet", "Available", "Total"])
-      |> Table.put_column_meta(2..5, align: :right)
-      |> Table.render!()
+      if length(balances) > 0 do
+        balances
+        |> Enum.sort_by(& &1.currency)
+        |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
+        |> Table.new(["Currency", "Wallet", "Available", "Total"])
+        |> Table.put_column_meta(2..5, align: :right)
+        |> Table.render!()
+      else
+        "No balances" <> if currency, do: " for #{currency}", else: ""
+      end
       |> Mix.shell().info()
 
       {:ok, balances}

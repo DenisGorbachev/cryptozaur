@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Show do
   @shortdoc "Show orders"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, market: market}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename, format: format}, args: %{account_name: account_name, market: market}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
@@ -22,12 +22,28 @@ defmodule Mix.Tasks.Show do
 
     with {:ok, %Account{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
          {:ok, orders} <- get_orders(exchange, key, secret, market) do
-      orders
-      |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
-      |> Enum.map(&order_to_row(&1, exchange))
-      |> Table.new()
-      |> Table.put_column_meta(2..4, align: :right)
-      |> Table.render!()
+      case format do
+        "text" ->
+          if length(orders) > 0 do
+            orders
+            |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
+            |> Enum.map(&order_to_row(&1, exchange))
+            |> Table.new()
+            |> Table.put_column_meta(2..4, align: :right)
+            |> Table.render!()
+          else
+            "No orders" <> if market, do: " for #{market} market", else: ""
+          end
+
+        "json" ->
+          orders
+          |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
+          |> Enum.map(&order_to_row(&1, exchange))
+          |> Poison.encode!(pretty: true)
+
+        other ->
+          "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
+      end
       |> Mix.shell().info()
 
       {:ok, orders}
@@ -100,6 +116,14 @@ defmodule Mix.Tasks.Show do
           help: "Accounts filename",
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
+        ],
+        format: [
+          value_name: "format",
+          short: "-f",
+          long: "--format",
+          help: "Format (text, json)",
+          required: false,
+          default: "text"
         ]
       ]
     )

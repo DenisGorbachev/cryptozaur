@@ -16,8 +16,18 @@ defmodule Mix.Tasks.Show.Test do
     end
   end
 
-  #  test "user can see his orders placed on a particular market", %{opts: opts} do
-  #    #    use_cassette "tasks/show_ok", match_requests_on: [:query] do
+  test "user can see all active orders in JSON format", %{opts: opts} do
+    use_cassette "tasks/show_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Show.run(opts ++ ["--format", "json", "leverex"])
+
+      assert {:ok, _} = result
+      assert_received {:mix_shell, :info, [msg]}
+      assert length(Poison.decode!(msg)) == 1201
+    end
+  end
+
+  #  test "user can see his orders placed on a specific market", %{opts: opts} do
+  #    #    use_cassette "tasks/show_ok_specific_market", match_requests_on: [:query] do
   #    result = Mix.Tasks.Show.run(opts ++ ["leverex", "ETH_D:BTC_D"])
   #
   #    assert {:ok, uid} = result

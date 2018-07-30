@@ -381,6 +381,10 @@ defmodule Cryptozaur.Utils do
     result
   end
 
+  def wrap(result) do
+    {:ok, result}
+  end
+
   def check_success(tuple, error) do
     case tuple do
       amazing_success(result) -> amazing_success(result)
