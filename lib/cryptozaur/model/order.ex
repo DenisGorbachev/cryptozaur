@@ -31,7 +31,6 @@ defmodule Cryptozaur.Model.Order do
   end
 
   @fields [:uid, :pair, :price, :amount_requested, :amount_filled, :status, :timestamp, :account_id, :base_diff, :quote_diff]
-  @fields_without_uid @fields -- [:uid]
   @fields_for_maps [:price, :amount_requested, :amount_filled]
   @required @fields
   def fields, do: @fields
@@ -117,10 +116,6 @@ defmodule Cryptozaur.Model.Order do
       )
     end
     |> Repo.stream()
-  end
-
-  def get_as_map(id) do
-    __MODULE__ |> Repo.get(id) |> Map.take(@fields_without_uid)
   end
 
   def get_base_balance(orders, signs \\ [1.0, -1.0]) do
