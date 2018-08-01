@@ -46,7 +46,7 @@ defmodule Mix.Tasks.Helpers do
     end
   end
 
-  def render_order(order) do
+  def order_to_string(order) do
     exchange = order.account.exchange
     [base, quote] = to_list(order.pair)
     #    (Filled 20.0 LEX) (Order ID: 43213253)

@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Cancel.Test do
       assert uid == "16"
 
       assert_received {:mix_shell, :info, [msg]}
-      assert String.contains?(msg, "[UID: 16] Cancelled order")
+      assert String.contains?(msg, "[Order ID: 16] Cancelled successfully")
     end
   end
 

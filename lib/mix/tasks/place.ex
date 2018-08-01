@@ -32,7 +32,7 @@ defmodule Mix.Tasks.Place do
           account: account
         }
 
-        render_order(order)
+        order_to_string(order)
         |> Mix.shell().info()
 
         {:ok, order}

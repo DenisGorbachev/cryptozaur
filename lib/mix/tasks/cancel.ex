@@ -26,7 +26,7 @@ defmodule Mix.Tasks.Cancel do
       end
 
     case result do
-      {:ok, uid} -> "[UID: #{uid}] Cancelled order" |> Mix.shell().info()
+      {:ok, uid} -> "[Order ID: #{uid}] Cancelled successfully" |> Mix.shell().info()
       {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info()
     end
 
