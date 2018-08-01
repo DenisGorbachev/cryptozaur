@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Show.Test do
       assert length(orders) == 1201
 
       assert_received {:mix_shell, :info, [msg]}
-      assert String.contains?(msg, "| O | + | 0.00000001 | 0.00000000 | 0.00000001 | ~N[2018-07-30 09:01:10.836952] | 418  |")
+      assert String.contains?(msg, "| Open   | Buy  | ETH_D:BTC_D | 0.00000001 | 0.00000001 | 0.00000000 | 2018-07-30 09:01:10 | 20   |")
     end
   end
 
