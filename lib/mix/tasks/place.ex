@@ -16,8 +16,10 @@ defmodule Mix.Tasks.Place do
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
     {:ok, _pid} = DriverSupervisor.start_link([])
 
-    {:ok, _config} = read_json(config_filename)
+    {:ok, config} = read_json(config_filename)
     {:ok, accounts} = read_json(accounts_filename)
+
+    :ok = put_config(config)
 
     result =
       with {:ok, %Account{exchange: exchange, key: key, secret: secret} = account} <- get_account(account_name, accounts),

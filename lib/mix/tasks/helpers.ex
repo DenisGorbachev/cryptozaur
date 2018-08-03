@@ -30,6 +30,15 @@ defmodule Mix.Tasks.Helpers do
     end
   end
 
+  def put_config(config) do
+    for exchange <- [:leverex] do
+      old_exchange_config = Application.get_env(:cryptozaur, :leverex, [])
+      new_exchange_config = Map.get(config, Atom.to_string(exchange), %{}) |> Map.to_list()
+      Application.put_env(:cryptozaur, :leverex, Keyword.merge(old_exchange_config, new_exchange_config))
+    end
+    |> Enum.find(:ok, &(not (&1 == :ok)))
+  end
+
   def get_account(account_name, accounts) do
     case accounts[String.to_atom(account_name)] do
       nil -> {:error, %{message: "Account not found", account_name: account_name}}
