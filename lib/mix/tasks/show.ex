@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Show do
             |> Enum.sort_by(&to_unix(&1.timestamp), &>=/2)
             |> Enum.map(&to_row(&1, exchange, short))
             |> Table.new([(short && "O/C") || "Status", (short && "B/S") || "Side", "Pair", "Price", "Amount", "Fill", "Timestamp", "ID"])
-            |> Table.put_column_meta(2..4, align: :right)
+            |> Table.put_column_meta(3..5, align: :right)
             |> Table.render!()
           else
             "No orders" <> if market, do: " for #{market} market", else: ""
