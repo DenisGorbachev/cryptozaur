@@ -42,7 +42,7 @@ defmodule Cryptozaur.Connectors.Leverex do
       pair: order["symbol"],
       price: order["limit_price"],
       base_diff: order["filled_amount"],
-      quote_diff: -1 * order["filled_amount"] - order["fee"],
+      quote_diff: order["filled_total"] + order["fee"],
       amount_requested: order["requested_amount"],
       amount_filled: order["filled_amount"],
       status: if(!order["cancelled_at"] and order["filled_amount"] != order["requested_amount"], do: "opened", else: "closed"),

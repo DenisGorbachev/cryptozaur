@@ -74,6 +74,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
                  "external_id" => nil,
                  "fee" => 0.00000000,
                  "filled_amount" => 0.00000000,
+                 "filled_total" => 0.00000000,
                  "id" => 1201,
                  "inserted_at" => "2018-07-30T09:03:11.490970",
                  "is_active" => true,
@@ -82,7 +83,7 @@ defmodule Cryptozaur.Drivers.LeverexRestTest do
                  "symbol" => "ETH_D:BTC_D",
                  "trigger_price" => nil,
                  "triggered_at" => "2018-07-30T09:03:11.490970",
-                 "updated_at" => "2018-07-30T09:03:11.490970"
+                 "updated_at" => "2018-08-06T07:02:52.491043"
                }
                | _
              ] = orders
