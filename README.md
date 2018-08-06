@@ -137,7 +137,7 @@ This command will run every 15 minutes, maintaining 10 buy orders summing up to 
 ### Encrypt Cryptozaur directory with Keybase
 
 ```
-### Install Keybase
+### Install Keybase from https://keybase.io/
 
 ### Create .cryptozaur directory in Keybase filesystem
 mkdir /keybase/private/[your_username]/.cryptozaur
