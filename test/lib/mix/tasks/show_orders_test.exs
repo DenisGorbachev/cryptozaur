@@ -1,11 +1,11 @@
-defmodule Mix.Tasks.Show.Test do
+defmodule Mix.Tasks.Show.Orders.Test do
   use Cryptozaur.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
   alias Cryptozaur.Model.Order
 
   test "user can see all active orders", %{opts: opts} do
-    use_cassette "tasks/show_ok", match_requests_on: [:query] do
-      result = Mix.Tasks.Show.run(opts ++ ["leverex"])
+    use_cassette "tasks/show_orders_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Show.Orders.run(opts ++ ["leverex"])
 
       assert {:ok, orders} = result
       assert [%Order{} | _] = orders
@@ -17,8 +17,8 @@ defmodule Mix.Tasks.Show.Test do
   end
 
   test "user can see all active orders in JSON format", %{opts: opts} do
-    use_cassette "tasks/show_ok", match_requests_on: [:query] do
-      result = Mix.Tasks.Show.run(opts ++ ["--format", "json", "leverex"])
+    use_cassette "tasks/show_orders_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Show.Orders.run(opts ++ ["--format", "json", "leverex"])
 
       assert {:ok, _} = result
       assert_received {:mix_shell, :info, [msg]}
@@ -27,7 +27,7 @@ defmodule Mix.Tasks.Show.Test do
   end
 
   #  test "user can see his orders placed on a specific market", %{opts: opts} do
-  #    #    use_cassette "tasks/show_ok_specific_market", match_requests_on: [:query] do
+  #    #    use_cassette "tasks/show_orders_ok_specific_market", match_requests_on: [:query] do
   #    result = Mix.Tasks.Show.run(opts ++ ["leverex", "ETH_D:BTC_D"])
   #
   #    assert {:ok, uid} = result

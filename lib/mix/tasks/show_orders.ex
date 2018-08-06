@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Show do
+defmodule Mix.Tasks.Show.Orders do
   use Mix.Task
   import Mix.Ecto
   import Mix.Tasks.Helpers

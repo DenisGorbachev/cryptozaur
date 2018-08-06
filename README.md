@@ -33,6 +33,36 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
  
 **Recommended**: encrypt `~/.cryptozaur` directory with Keybase ([guide](#encrypt-cryptozaur-directory)).
 
+## Commands
+
+```
+cryptozaur add.account --help
+
+cryptozaur buy --help
+
+cryptozaur sell --help
+
+cryptozaur cancel --help
+
+cryptozaur show.orders --help
+
+cryptozaur show.balances --help
+
+cryptozaur show.info --help
+```
+
+## Aliases
+
+```
+### cryptozaur -> cz (works with any subcommand)
+
+cz orders --help
+
+cz balances --help
+
+cz info --help
+```
+
 ## Examples
 
 ### Buy LEX tokens on LeverEX

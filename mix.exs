@@ -79,7 +79,10 @@ defmodule Cryptozaur.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],
-      prepare: ["format", "clean", "compile"]
+      prepare: ["format", "clean", "compile"],
+      info: ["show.info"],
+      balances: ["show.balances"],
+      orders: ["show.orders"]
     ]
   end
 end
