@@ -31,7 +31,7 @@ Cryptozaur **saves your time** by providing a unified command-line interface for
 
 **Optional**: add `cryptozaur` directory to `PATH` for easy invocation.
  
-**Recommended**: encrypt `~/.cryptozaur` directory ([guide](#encrypt-cryptozaur-directory)).
+**Recommended**: encrypt `~/.cryptozaur` directory with Keybase ([guide](#encrypt-cryptozaur-directory)).
 
 ## Examples
 
@@ -134,23 +134,14 @@ This command will run every 15 minutes, maintaining 10 buy orders summing up to 
 
 ## Guides
 
-### Encrypt Cryptozaur directory
-
-MacOS / Linux:
+### Encrypt Cryptozaur directory with Keybase
 
 ```
-### Setup (run once)
-mkdir -p ~/.cryptozaur.encfs ~/.cryptozaur
+### Install Keybase
 
-### Mount (run every time you want to use cryptozaur)
-encfs ~/.cryptozaur.encfs ~/.cryptozaur
+### Create .cryptozaur directory in Keybase filesystem
+mkdir /keybase/private/[your_username]/.cryptozaur
 
-### Unmount (run after you finished using cryptozaur)
-fusermount -u ~/.cryptozaur
-```
-
-Windows:
-
-```
-### Want to contribute? Click "edit" on top of this file.
+### Create a symlink between ~/.cryptozaur and the directory in Keybase filesystem
+ln -s /keybase/private/[your_username]/.cryptozaur ~/.cryptozaur
 ```
