@@ -10,7 +10,6 @@ defmodule Mix.Tasks.Add.Account do
   def run(args) do
     %{flags: %{verbose: _verbose}, options: %{account_name: account_name, config_filename: config_filename, accounts_filename: accounts_filename}, args: %{exchange: exchange, key: key, secret: secret}} = parse_args(args)
     ensure_repo(Repo, [])
-    {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
     {:ok, _pid} = DriverSupervisor.start_link([])

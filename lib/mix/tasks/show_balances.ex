@@ -11,7 +11,6 @@ defmodule Mix.Tasks.Show.Balances do
   def run(args) do
     %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, currency: currency}} = parse_args(args)
     ensure_repo(Repo, [])
-    {:ok, _pid, _apps} = ensure_started(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
     {:ok, _pid} = DriverSupervisor.start_link([])
