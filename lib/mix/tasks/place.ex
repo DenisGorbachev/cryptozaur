@@ -41,7 +41,7 @@ defmodule Mix.Tasks.Place do
 
     case result do
       {:ok, value} -> {:ok, value}
-      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error)))
+      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error))) && (Mix.env() != :test && exit({:shutdown, 1}))
     end
 
     result
