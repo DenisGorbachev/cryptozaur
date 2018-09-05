@@ -2,7 +2,7 @@ defmodule Mix.Tasks.Cancel.Test do
   use Cryptozaur.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney, options: [clear_mock: true]
 
-  test "user can place a cancel order", %{opts: opts} do
+  test "user can cancel an order", %{opts: opts} do
     use_cassette "tasks/cancel_ok", match_requests_on: [:query] do
       result = Mix.Tasks.Cancel.run(opts ++ ["leverex", "ETH_D:BTC_D", "16"])
 

@@ -236,6 +236,17 @@ defmodule Cryptozaur.Connector do
     execute(exchange, :cancel_order, [key, secret, base, quote, uid, type])
   end
 
+  def cancel_all_orders(exchange, key, secret, base, quote) do
+    if is_supported(exchange, :cancel_all_orders, 4) do
+      execute(exchange, :cancel_all_orders, [key, secret, base, quote])
+    else
+      with success(orders) <- get_orders(exchange, key, secret, base, quote),
+           success(orders) <- orders |> Enum.map(&cancel_order(exchange, key, secret, base, quote, &1.uid)) |> all_ok(orders) do
+        success(Enum.count(orders))
+      end
+    end
+  end
+
   def get_orders(exchange, key, secret) do
     # Some connectors may implement get_orders() as get_opened_orders() ++ get_closed_orders()
     execute(exchange, :get_orders, [key, secret])

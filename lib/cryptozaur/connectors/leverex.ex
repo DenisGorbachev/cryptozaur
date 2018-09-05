@@ -36,6 +36,15 @@ defmodule Cryptozaur.Connectors.Leverex do
     end
   end
 
+  def get_orders(key, secret, base, quote, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      orders <- Rest.get_orders(rest, "#{base}:#{quote}", extra)
+    after
+      orders |> Enum.map(&to_order(&1))
+    end
+  end
+
   defp to_order(order) do
     %Order{
       uid: order["id"],
@@ -62,7 +71,8 @@ defmodule Cryptozaur.Connectors.Leverex do
   def cancel_order(key, secret, _base, _quote, uid, extra \\ []) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
-      %{"id" => id} <- Rest.cancel_order(rest, uid, extra)
+      result = Rest.cancel_order(rest, uid, extra)
+      %{"id" => id} <- result
     after
       to_string(id)
     end
