@@ -82,6 +82,7 @@ defmodule Cryptozaur.MixProject do
       prepare: ["format", "clean", "compile"],
       info: ["show.info"],
       balances: ["show.balances"],
+      address: ["get.address"],
       orders: ["show.orders"]
     ]
   end

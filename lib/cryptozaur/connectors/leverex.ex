@@ -78,6 +78,16 @@ defmodule Cryptozaur.Connectors.Leverex do
     end
   end
 
+  def get_deposit_address(key, secret, asset, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      result = Rest.get_deposit_address(rest, asset, extra)
+      %{"address" => address} <- result
+    after
+      address
+    end
+  end
+
   #  defp to_symbol(base, quote) do
   #    "LEVEREX:#{to_pair(base, quote)}"
   #  end

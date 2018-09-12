@@ -48,6 +48,10 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     GenServer.call(pid, {:cancel_order, uid, extra}, @timeout)
   end
 
+  def get_deposit_address(pid, asset, extra \\ []) do
+    GenServer.call(pid, {:get_deposit_address, asset, extra}, @timeout)
+  end
+
   def handle_call({:get_info, extra}, _from, state) do
     path = "/api/v1/info"
     params = [] ++ extra
@@ -82,6 +86,13 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     params = [] ++ extra
     body = []
     {result, state} = put(path, body, params, build_headers(), build_options(is_signed: true), state)
+    {:reply, result, state}
+  end
+
+  def handle_call({:get_deposit_address, asset, extra}, _from, state) do
+    path = "/api/v1/my/deposits/address"
+    params = [asset: asset] ++ extra
+    {result, state} = get(path, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
   end
 
