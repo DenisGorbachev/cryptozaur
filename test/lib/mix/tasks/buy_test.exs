@@ -12,6 +12,18 @@ defmodule Mix.Tasks.Buy.Test do
     end
   end
 
+  test "user can place a buy order and see result in JSON format", %{opts: opts} do
+    use_cassette "tasks/buy_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Buy.run(opts ++ ["--format", "json", "leverex", "ETH_D:BTC_D", "0.00000001", "20"])
+
+      assert {:ok, _} = result
+      assert_received {:mix_shell, :info, [msg]}
+      order = Poison.decode!(msg, keys: :atoms!)
+      assert order.price == 0.00000001
+      assert order.amount_requested == 20.0
+    end
+  end
+
   test "user can't place a buy order with insufficient funds", %{opts: opts} do
     use_cassette "tasks/buy_error_not_enough_balance", match_requests_on: [:query] do
       result = Mix.Tasks.Buy.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.1", "20000000"])

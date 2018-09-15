@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Place do
   @shortdoc "Place an order"
 
   def run(args, amount_normalizer \\ &identity/1) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, market: market, price: price, amount: amount}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename, format: format}, args: %{account_name: account_name, market: market, price: price, amount: amount}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
@@ -20,31 +20,29 @@ defmodule Mix.Tasks.Place do
 
     :ok = put_config(config)
 
-    result =
-      with {:ok, %Account{exchange: exchange, key: key, secret: secret} = account} <- get_account(account_name, accounts),
-           {:ok, [base, quote]} <- parse_market(market),
-           amount = amount_normalizer.(amount),
-           {:ok, uid} <- Connector.place_order(exchange, key, secret, base, quote, amount, price) do
-        order = %Order{
-          uid: uid,
-          pair: "#{base}:#{quote}",
-          price: price,
-          amount_requested: amount,
-          account: account
-        }
+    with {:ok, %Account{exchange: exchange, key: key, secret: secret} = account} <- get_account(account_name, accounts),
+         {:ok, [base, quote]} <- parse_market(market),
+         amount = amount_normalizer.(amount),
+         {:ok, uid} <- Connector.place_order(exchange, key, secret, base, quote, amount, price) do
+      order = %Order{
+        uid: uid,
+        pair: "#{base}:#{quote}",
+        price: price,
+        amount_requested: amount,
+        account: account
+      }
 
-        order_to_string(order)
-        |> Mix.shell().info()
-
-        {:ok, order}
+      case format do
+        "text" -> order_to_string(order)
+        "json" -> order |> to_map() |> Poison.encode!(pretty: true)
+        other -> "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
       end
+      |> Mix.shell().info()
 
-    case result do
-      {:ok, value} -> {:ok, value}
-      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error))) && (Mix.env() != :test && exit({:shutdown, 1}))
+      {:ok, order}
+    else
+      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1})) || {:error, error}
     end
-
-    result
   end
 
   def parse_args(argv) do
@@ -100,6 +98,14 @@ defmodule Mix.Tasks.Place do
           help: "Accounts filename",
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
+        ],
+        format: [
+          value_name: "format",
+          short: "-f",
+          long: "--format",
+          help: "Format (text, json)",
+          required: false,
+          default: "text"
         ]
       ]
     )

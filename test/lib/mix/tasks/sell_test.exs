@@ -12,6 +12,18 @@ defmodule Mix.Tasks.Sell.Test do
     end
   end
 
+  test "user can place a sell order and see result in JSON format", %{opts: opts} do
+    use_cassette "tasks/sell_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Sell.run(opts ++ ["--format", "json", "leverex", "ETH_D:BTC_D", "0.5", "20"])
+
+      assert {:ok, _} = result
+      assert_received {:mix_shell, :info, [msg]}
+      order = Poison.decode!(msg, keys: :atoms!)
+      assert order.price == 0.5
+      assert order.amount_requested == -20.0
+    end
+  end
+
   test "user can't place a sell order with insufficient funds", %{opts: opts} do
     use_cassette "tasks/sell_error_not_enough_balance", match_requests_on: [:query] do
       result = Mix.Tasks.Sell.run(opts ++ ["leverex", "ETH_D:BTC_D", "0.5", "20000000"])

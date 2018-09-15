@@ -153,8 +153,6 @@ defmodule Cryptozaur.Connectors.Binance do
   end
 
   def place_order(key, secret, base, quote, amount, price, _extra \\ %{}) do
-    symbol = base <> quote
-
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
       symbol = base <> quote

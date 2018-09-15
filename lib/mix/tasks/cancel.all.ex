@@ -26,7 +26,7 @@ defmodule Mix.Tasks.Cancel.All do
 
     case result do
       {:ok, count} -> "[Count: #{count || "?"}] Cancelled all orders" |> Mix.shell().info()
-      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))
+      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1})) || {:error, error}
     end
 
     result

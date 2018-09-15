@@ -29,7 +29,7 @@ defmodule Mix.Tasks.Show.Info do
 
     case result do
       {:ok, value} -> {:ok, value}
-      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error))) && (Mix.env() != :test && exit({:shutdown, 1}))
+      {:error, error} -> Mix.shell().info("[ERR] " <> to_verbose_string(improve_error(error))) && (Mix.env() != :test && exit({:shutdown, 1})) || {:error, error}
     end
 
     result
@@ -71,15 +71,15 @@ defmodule Mix.Tasks.Show.Info do
           help: "Accounts filename",
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
+        ],
+        format: [
+          value_name: "format",
+          short: "-f",
+          long: "--format",
+          help: "Format (text, json)",
+          required: false,
+          default: "text"
         ]
-        #        without_dust: [
-        #          value_name: "without_dust",
-        #          short: "-d",
-        #          long: "--without-dust",
-        #          help: "Without dust (dust amount is specified in config)",
-        #          default: false,
-        #          required: false
-        #        ],
       ]
     )
     |> Optimus.parse!(argv)

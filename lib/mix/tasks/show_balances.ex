@@ -41,7 +41,7 @@ defmodule Mix.Tasks.Show.Balances do
 
       {:ok, balances}
     else
-      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))
+      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1})) || {:error, error}
     end
   end
 
