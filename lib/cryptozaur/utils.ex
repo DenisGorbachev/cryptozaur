@@ -172,8 +172,9 @@ defmodule Cryptozaur.Utils do
     to_list(symbol) |> Enum.at(2)
   end
 
-  def as_maps([%{__struct__: struct} | _] = structs) do
-    structs |> Enum.map(&Map.take(&1, apply(struct, :fields, [])))
+  def as_maps([%{__struct__: struct} | _] = structs, fields \\ nil) do
+    fields = fields || apply(struct, :fields, [])
+    structs |> Enum.map(&Map.take(&1, fields))
   end
 
   def to_maps(structs) do

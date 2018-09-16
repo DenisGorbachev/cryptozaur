@@ -41,7 +41,7 @@ defmodule Mix.Tasks.Show.Balances do
           end
 
         "json" ->
-          balances |> as_maps() |> Poison.encode!(pretty: true)
+          balances |> as_maps([:currency, :wallet, :available_amount, :total_amount]) |> Poison.encode!(pretty: true)
 
         other ->
           "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
