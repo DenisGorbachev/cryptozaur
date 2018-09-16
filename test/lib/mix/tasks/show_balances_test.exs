@@ -11,6 +11,17 @@ defmodule Mix.Tasks.Show.Balances.Test do
     end
   end
 
+  test "user can see balances in JSON format", %{opts: opts} do
+    use_cassette "tasks/show_balances_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Show.Balances.run(opts ++ ["--format", "json", "kucoin"])
+
+      assert {:ok, _} = result
+      assert_received {:mix_shell, :info, [msg]}
+      balances = Poison.decode!(msg, keys: :atoms!)
+      assert length(balances) > 0
+    end
+  end
+
   test "user can see balance of specific currency", %{opts: opts} do
     use_cassette "tasks/show_balances_ok_specific_currency", match_requests_on: [:query] do
       result = Mix.Tasks.Show.Balances.run(opts ++ ["kucoin", "ACT"])
