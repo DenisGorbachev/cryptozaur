@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Get.Address do
   @shortdoc "Get deposit address"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, asset: asset}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename, format: format}, args: %{account_name: account_name, asset: asset}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
@@ -24,7 +24,19 @@ defmodule Mix.Tasks.Get.Address do
       end
 
     case result do
-      {:ok, address} -> "[Deposit address: #{address}]" |> Mix.shell().info()
+      {:ok, address} ->
+        case format do
+          "text" ->
+            "[Deposit address: #{address}]"
+
+          "json" ->
+            %{address: address}
+            |> Poison.encode!(pretty: true)
+
+          other ->
+            "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
+        end
+        |> Mix.shell().info()
       {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))
     end
 
@@ -72,6 +84,14 @@ defmodule Mix.Tasks.Get.Address do
           help: "Accounts filename",
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
+        ],
+        format: [
+          value_name: "format",
+          short: "-f",
+          long: "--format",
+          help: "Format (text, json)",
+          required: false,
+          default: "text"
         ]
       ]
     )
