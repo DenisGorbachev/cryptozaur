@@ -18,29 +18,25 @@ defmodule Mix.Tasks.Get.Address do
     {:ok, _config} = read_json(config_filename)
     {:ok, accounts} = read_json(accounts_filename)
 
-    result =
-      with {:ok, %Account{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts) do
-        Connector.get_deposit_address(exchange, key, secret, asset)
+    with {:ok, %Account{exchange: exchange, key: key, secret: secret}} <- get_account(account_name, accounts),
+         {:ok, address} <- Connector.get_deposit_address(exchange, key, secret, asset) do
+      case format do
+        "text" ->
+          "[Deposit address: #{address}]"
+
+        "json" ->
+          %{address: address}
+          |> Poison.encode!(pretty: true)
+
+        other ->
+          "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
       end
+      |> Mix.shell().info()
 
-    case result do
-      {:ok, address} ->
-        case format do
-          "text" ->
-            "[Deposit address: #{address}]"
-
-          "json" ->
-            %{address: address}
-            |> Poison.encode!(pretty: true)
-
-          other ->
-            "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
-        end
-        |> Mix.shell().info()
-      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))
+      {:ok, address}
+    else
+      {:error, error} -> (("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))) || {:error, error}
     end
-
-    result
   end
 
   def parse_args(argv) do
