@@ -44,6 +44,10 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     GenServer.call(pid, {:place_order, symbol, amount, price, extra}, @timeout)
   end
 
+  def withdraw(pid, asset, amount, address, extra \\ []) do
+    GenServer.call(pid, {:withdraw, asset, amount, address, extra}, @timeout)
+  end
+
   def cancel_order(pid, uid, extra \\ []) do
     GenServer.call(pid, {:cancel_order, uid, extra}, @timeout)
   end
@@ -77,6 +81,14 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     path = "/api/v1/my/orders"
     params = []
     body = extra |> Keyword.merge(symbol: symbol, requested_amount: to_string(amount), limit_price: to_string(price))
+    {result, state} = post(path, body, params, build_headers(), build_options(is_signed: true), state)
+    {:reply, result, state}
+  end
+
+  def handle_call({:withdraw, asset, amount, address, extra}, _from, state) do
+    path = "/api/v1/my/withdrawals"
+    params = []
+    body = extra |> Keyword.merge(asset: asset, amount: to_string(amount), address: address)
     {result, state} = post(path, body, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
   end

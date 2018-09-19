@@ -68,6 +68,15 @@ defmodule Cryptozaur.Connectors.Leverex do
     end
   end
 
+  def withdraw(key, secret, asset, amount, address, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      %{"id" => id} <- Rest.withdraw(rest, asset, amount, address, extra)
+    after
+      to_string(id)
+    end
+  end
+
   def cancel_order(key, secret, _base, _quote, uid, extra \\ []) do
     OK.for do
       rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)

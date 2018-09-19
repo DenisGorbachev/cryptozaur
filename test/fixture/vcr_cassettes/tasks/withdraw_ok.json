@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "asset=ETH_D&amount=0.20000000&address=32be343b94f860124dc4fee278fdcbd38c102d88",
+      "headers": {
+        "X-Key": "IfFClKl17Rbp2R6etPRNP98uAbtwXeCC",
+        "X-Signature": "76b5fc0d8223ac27fc15f030ed96f7e3d56cb44fe6948a804fccc62f59c6bf07",
+        "X-Nonce": "1537377210432",
+        "X-Timestamp": "1537377210"
+      },
+      "method": "post",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "https://www.leverex.io/api/v1/my/withdrawals?"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"transaction_hash\":null,\"inserted_at\":\"2018-09-19T17:13:30.906632\",\"id\":1,\"asset\":\"ETH_D\",\"amount\":0.2,\"address\":\"32be343b94f860124dc4fee278fdcbd38c102d88\"}",
+      "headers": {
+        "Server": "nginx/1.14.0 (Ubuntu)",
+        "Date": "Wed, 19 Sep 2018 17:13:30 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "157",
+        "Connection": "keep-alive",
+        "set-cookie": "_leverex_key=SFMyNTY.g3QAAAABbQAAABJfdGltYmVyX3Nlc3Npb25faWRtAAAAIDgyZTBlNTNhM2ZjMDQ2OGM0MDg2NzM2NTc4ZmU0MTlj.x1rbm2PmNVGb4fOuJyJDjxwnLAkLR3MFvb95gdx8G9k; path=/; HttpOnly",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
