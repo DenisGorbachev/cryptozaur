@@ -1,0 +1,35 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "X-Key": "IfFClKl17Rbp2R6etPRNP98uAbtwXeCC",
+        "X-Signature": "9151855a4a5bc46617e3886a3055d46de78af79dd5a4c1737703f936c45628aa",
+        "X-Nonce": "1537302004155",
+        "X-Timestamp": "1537302004"
+      },
+      "method": "get",
+      "options": {
+        "recv_timeout": 90000,
+        "connect_timeout": 90000
+      },
+      "request_body": "",
+      "url": "https://www.leverex.io/api/v1/my/deposits/address?asset=ETH_T"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"asset\":\"ETH_T\",\"address\":\"8005b9ad313bd32118809d12dedb0c39eac1adda\"}",
+      "headers": {
+        "Server": "nginx/1.14.0 (Ubuntu)",
+        "Date": "Tue, 18 Sep 2018 20:20:04 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "70",
+        "Connection": "keep-alive",
+        "set-cookie": "_leverex_key=SFMyNTY.g3QAAAABbQAAABJfdGltYmVyX3Nlc3Npb25faWRtAAAAIDQyZGMwOWFjOGVmYzA2MjMyYmNlOTJlOGU5NmUxZDVh.51NCCWIWvhzjla_25Ds33qU9nxclwf-t7K1GPNgC4ic; path=/; HttpOnly",
+        "cache-control": "max-age=0, private, must-revalidate"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
