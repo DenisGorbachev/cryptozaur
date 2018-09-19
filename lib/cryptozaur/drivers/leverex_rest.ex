@@ -148,7 +148,10 @@ defmodule Cryptozaur.Drivers.LeverexRest do
             failure(error)
 
           success(response) ->
-            parse!(response.body)
+            case parse(response.body) do
+              {:ok, json} -> success(json)
+              {:error, _error} -> failure(response.body)
+            end
         end
 
       {result, state}
@@ -173,8 +176,9 @@ defmodule Cryptozaur.Drivers.LeverexRest do
 
   defp validate({result, state}) do
     case result do
-      %{"type" => _type, "details" => _details} = error -> {failure(error), state}
-      data -> {success(data), state}
+      {:error, error} -> {failure(error), state}
+      {:ok, %{"type" => _type, "details" => _details} = error} -> {failure(error), state}
+      {:ok, data} -> {success(data), state}
     end
   end
 end
