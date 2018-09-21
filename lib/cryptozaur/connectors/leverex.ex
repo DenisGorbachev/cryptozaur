@@ -45,6 +45,22 @@ defmodule Cryptozaur.Connectors.Leverex do
     end
   end
 
+  def get_withdrawals(key, secret, asset, extra \\ []) do
+    OK.for do
+      rest <- Cryptozaur.DriverSupervisor.get_driver(key, secret, Rest)
+      withdrawals <- Rest.get_withdrawals(rest, asset, extra)
+    after
+      withdrawals |> Enum.map(&to_withdrawal(&1))
+    end
+  end
+
+  defp to_withdrawal(withdrawal) do
+    for {key, value} <- withdrawal do
+      {String.to_atom(key), value}
+    end
+    |> Map.new()
+  end
+
   defp to_order(order) do
     %Order{
       uid: order["id"],

@@ -83,7 +83,8 @@ defmodule Cryptozaur.MixProject do
       info: ["show.info"],
       balances: ["show.balances"],
       address: ["get.address"],
-      orders: ["show.orders"]
+      orders: ["show.orders"],
+      withdrawals: ["show.withdrawals"]
     ]
   end
 end

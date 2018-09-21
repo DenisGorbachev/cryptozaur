@@ -141,6 +141,10 @@ defmodule Cryptozaur.Connector do
     execute(exchange, :get_balances, [key, secret])
   end
 
+  def get_withdrawals(exchange, key, secret, asset) do
+    execute(exchange, :get_withdrawals, [key, secret, asset])
+  end
+
   # TODO: temp; remove it after Balance model has amount_total, amount_available, amount_pending
   def get_balances_as_maps(exchange, key, secret) do
     execute(exchange, :get_balances_as_maps, [key, secret])

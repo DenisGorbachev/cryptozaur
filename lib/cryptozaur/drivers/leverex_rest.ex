@@ -36,6 +36,10 @@ defmodule Cryptozaur.Drivers.LeverexRest do
     GenServer.call(pid, {:get_balances, extra}, @timeout)
   end
 
+  def get_withdrawals(pid, asset, extra \\ []) do
+    GenServer.call(pid, {:get_withdrawals, asset, extra}, @timeout)
+  end
+
   def get_orders(pid, symbol \\ nil, extra \\ []) do
     GenServer.call(pid, {:get_orders, symbol, extra}, @timeout)
   end
@@ -66,6 +70,13 @@ defmodule Cryptozaur.Drivers.LeverexRest do
   def handle_call({:get_balances, extra}, _from, state) do
     path = "/api/v1/my/balances"
     params = [] ++ extra
+    {result, state} = get(path, params, build_headers(), build_options(is_signed: true), state)
+    {:reply, result, state}
+  end
+
+  def handle_call({:get_withdrawals, asset, extra}, _from, state) do
+    path = "/api/v1/my/withdrawals"
+    params = [asset: asset] ++ extra
     {result, state} = get(path, params, build_headers(), build_options(is_signed: true), state)
     {:reply, result, state}
   end
