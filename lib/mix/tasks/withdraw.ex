@@ -25,7 +25,7 @@ defmodule Mix.Tasks.Withdraw do
          {:ok, id} <- Connector.withdraw(exchange, key, secret, asset, amount, address) do
       case format do
         "text" -> "[Withdrawal ID: #{id}]"
-        "json" -> %{"id" => id} |> to_map() |> Poison.encode!(pretty: true)
+        "json" -> %{"id" => id} |> Poison.encode!(pretty: true)
         other -> "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
       end
       |> Mix.shell().info()
