@@ -19,4 +19,16 @@ defmodule Mix.Tasks.Show.Balances.Test do
       assert length(balances) == 1
     end
   end
+
+  test "user can see balances in JSON format", %{opts: opts} do
+    use_cassette "tasks/show_balances_ok", match_requests_on: [:query] do
+      result = Mix.Tasks.Show.Balances.run(opts ++ ["--format", "json", "kucoin"])
+
+      assert {:ok, balances} = result
+      assert length(balances) > 0
+
+      assert_received {:mix_shell, :info, [msg]}
+      assert length(Poison.decode!(msg)) == 1
+    end
+  end
 end

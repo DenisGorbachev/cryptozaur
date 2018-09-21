@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Show.Balances do
   @shortdoc "Show balances"
 
   def run(args) do
-    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename}, args: %{account_name: account_name, currency: currency}} = parse_args(args)
+    %{flags: %{verbose: _verbose}, options: %{config_filename: config_filename, accounts_filename: accounts_filename, format: format}, args: %{account_name: account_name, currency: currency}} = parse_args(args)
     ensure_repo(Repo, [])
     {:ok, _pid} = Application.ensure_all_started(:httpoison)
     {:ok, _pid} = Application.ensure_all_started(:ex_rated)
@@ -27,21 +27,30 @@ defmodule Mix.Tasks.Show.Balances do
           balances |> Enum.filter(&(&1.total_amount != 0.0))
         end
 
-      if length(balances) > 0 do
-        balances
-        |> Enum.sort_by(& &1.currency)
-        |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
-        |> Table.new(["Currency", "Wallet", "Available", "Total"])
-        |> Table.put_column_meta(2..5, align: :right)
-        |> Table.render!()
-      else
-        "No balances" <> if currency, do: " for #{currency}", else: ""
+      case format do
+        "text" ->
+          if length(balances) > 0 do
+            balances
+            |> Enum.sort_by(& &1.currency)
+            |> Enum.map(&[&1.currency, &1.wallet, format_amount(exchange, &1.currency, "BTC", &1.available_amount), format_amount(exchange, &1.currency, "BTC", &1.total_amount)])
+            |> Table.new(["Currency", "Wallet", "Available", "Total"])
+            |> Table.put_column_meta(2..5, align: :right)
+            |> Table.render!()
+          else
+            "No balances" <> if currency, do: " for #{currency}", else: ""
+          end
+
+        "json" ->
+          balances |> Enum.map(&to_map/1) |> Poison.encode!(pretty: true)
+
+        other ->
+          "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
       end
       |> Mix.shell().info()
 
       {:ok, balances}
     else
-      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1})) || {:error, error}
+      {:error, error} -> (("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))) || {:error, error}
     end
   end
 
@@ -86,6 +95,14 @@ defmodule Mix.Tasks.Show.Balances do
           help: "Accounts filename",
           default: "#{System.user_home!()}/.cryptozaur/accounts.json",
           required: false
+        ],
+        format: [
+          value_name: "format",
+          short: "-f",
+          long: "--format",
+          help: "Format (text, json)",
+          required: false,
+          default: "text"
         ]
         #        without_dust: [
         #          value_name: "without_dust",
