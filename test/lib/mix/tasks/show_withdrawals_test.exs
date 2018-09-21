@@ -23,5 +23,4 @@ defmodule Mix.Tasks.Show.Withdrawals.Test do
       assert length(Poison.decode!(msg)) == 1
     end
   end
-
 end

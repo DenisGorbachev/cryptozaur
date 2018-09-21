@@ -37,7 +37,9 @@ defmodule Mix.Tasks.Get.Address do
             "[ERR] " <> to_verbose_string(improve_error(%{message: "Unsupported format", format: other}))
         end
         |> Mix.shell().info()
-      {:error, error} -> ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))
+
+      {:error, error} ->
+        ("[ERR] " <> to_verbose_string(improve_error(error))) |> Mix.shell().info() && (Mix.env() != :test && exit({:shutdown, 1}))
     end
 
     result

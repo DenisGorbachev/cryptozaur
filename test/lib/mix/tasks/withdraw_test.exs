@@ -25,5 +25,4 @@ defmodule Mix.Tasks.Withdraw.Test do
       assert String.contains?(msg, ~s|[Withdrawal ID: #{withdrawal_id}]|)
     end
   end
-
 end

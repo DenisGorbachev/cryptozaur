@@ -25,5 +25,4 @@ defmodule Mix.Tasks.Get.Address.Test do
       assert String.contains?(msg, ~s|{\n  \"address\": \"8005b9ad313bd32118809d12dedb0c39eac1adda\"\n}|)
     end
   end
-
 end
