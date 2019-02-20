@@ -68,7 +68,8 @@ defmodule Cryptozaur.MixProject do
       {:postgrex, ">= 0.12.2"},
       {:signaturex, "~> 1.3.0"},
       {:mix_test_watch, "~> 0.6", only: :dev, runtime: false},
-      {:pre_commit, "~> 0.2", only: :dev}
+      {:pre_commit, "~> 0.2", only: :dev},
+      {:websockex, "~> 0.4.0"}
     ]
   end
 
