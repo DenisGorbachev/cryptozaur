@@ -11,97 +11,97 @@ defmodule Cryptozaur.Drivers.LeverexWebsocket do
   end
 
   def join_balances do
-    ref = get_ref()
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/balances/", "phx_join", %{})})
+    ref = get_main_ref()
+    set_channel_info(:balances, ref, [])
+    send_frame(frame(ref, ref, "/balances/", "phx_join", %{}))
   end
 
-  def join_orderbook(symbol, opts \\ []) do
-    ref = get_ref()
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/orderbooks/#{symbol}", "phx_join", Map.new(opts))})
+  def join_orderbooks(symbol, opts \\ []) do
+    ref = get_main_ref()
+    set_channel_info(:orderbooks, ref, [symbol, opts])
+    send_frame(frame(ref, ref, "/orderbooks/#{symbol}", "phx_join", Map.new(opts)))
   end
 
   def join_orders(symbol, opts \\ []) do
-    ref = get_ref()
-    :sys.replace_state(__MODULE__, &Map.put(&1, :orders_join_ref, ref))
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/orders/#{symbol}", "phx_join", Map.new(opts))})
+    ref = get_main_ref()
+    set_channel_info(:orders, ref, [symbol, opts])
+    send_frame(frame(ref, ref, "/orders/#{symbol}", "phx_join", Map.new(opts)))
   end
 
   def place_order(symbol, opts) do
-    ref = get_ref()
-    join_ref = get_ref(:orders_join_ref)
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, join_ref, "/orders/#{symbol}", "place", Map.new(opts))})
+    ref = get_main_ref()
+    join_ref = get_join_ref(:orders)
+    send_frame(frame(ref, join_ref, "/orders/#{symbol}", "place", Map.new(opts)))
   end
 
   def cancel_order(symbol, opts) do
-    ref = get_ref()
-    join_ref = get_ref(:orders_join_ref)
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, join_ref, "/orders/#{symbol}", "cancel", Map.new(opts))})
+    ref = get_main_ref()
+    join_ref = get_join_ref(:orders)
+    send_frame(frame(ref, join_ref, "/orders/#{symbol}", "cancel", Map.new(opts)))
   end
 
   def join_positions do
-    ref = get_ref()
-    :sys.replace_state(__MODULE__, &Map.put(&1, :positions_join_ref, ref))
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/positions/", "phx_join", %{})})
+    ref = get_main_ref()
+    set_channel_info(:positions, ref, [])
+    send_frame(frame(ref, ref, "/positions/", "phx_join", %{}))
   end
 
   def assign_position(opts) do
-    ref = get_ref()
-    join_ref = get_ref(:positions_join_ref)
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, join_ref, "/positions/", "assign", Map.new(opts))})
+    ref = get_main_ref()
+    join_ref = get_join_ref(:positions)
+    send_frame(frame(ref, join_ref, "/positions/", "assign", Map.new(opts)))
   end
 
   def join_tickers(opts \\ []) do
-    ref = get_ref()
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/tickers", "phx_join", Map.new(opts))})
+    ref = get_main_ref()
+    set_channel_info(:tickers, ref, [opts])
+    send_frame(frame(ref, ref, "/tickers", "phx_join", Map.new(opts)))
   end
 
   def join_trades(symbol) do
-    ref = get_ref()
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/trades/#{symbol}", "phx_join", %{})})
+    ref = get_main_ref()
+    set_channel_info(:trades, ref, [symbol])
+    send_frame(frame(ref, ref, "/trades/#{symbol}", "phx_join", %{}))
   end
 
   def join_candles(symbol, opts) do
-    ref = get_ref()
-    :sys.replace_state(__MODULE__, &Map.put(&1, :candles_join_ref, ref))
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/candles/#{symbol}", "phx_join", Map.new(opts))})
+    ref = get_main_ref()
+    set_channel_info(:candles, ref, [symbol, opts])
+    send_frame(frame(ref, ref, "/candles/#{symbol}", "phx_join", Map.new(opts)))
   end
 
   def get_snapshot(symbol, opts) do
-    ref = get_ref()
-    join_ref = get_ref(:candles_join_ref)
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, join_ref, "/candles/#{symbol}", "get_snapshot", Map.new(opts))})
+    ref = get_main_ref()
+    join_ref = get_join_ref(:candles)
+    send_frame(frame(ref, join_ref, "/candles/#{symbol}", "get_snapshot", Map.new(opts)))
   end
 
   def join_deposits(opts \\ []) do
-    ref = get_ref()
-    :sys.replace_state(__MODULE__, &Map.put(&1, :deposits_join_ref, ref))
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, ref, "/deposits/", "phx_join", Map.new(opts))})
+    ref = get_main_ref()
+    set_channel_info(:deposits, ref, [opts])
+    send_frame(frame(ref, ref, "/deposits/", "phx_join", Map.new(opts)))
   end
 
   def get_deposit_address(opts \\ []) do
-    ref = get_ref()
-    join_ref = get_ref(:deposits_join_ref)
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, join_ref, "/deposits/", "get_deposit_address", Map.new(opts))})
+    ref = get_main_ref()
+    join_ref = get_join_ref(:deposits)
+    send_frame(frame(ref, join_ref, "/deposits/", "get_deposit_address", Map.new(opts)))
   end
 
   def join_withdrawals(opts \\ []) do
-    ref = get_ref()
-    :sys.replace_state(__MODULE__, &Map.put(&1, :withdrawals_join_ref, ref))
-    WebSockex.send_frame(__MODULE__, {:text, frame(1, 1, "/withdrawals/", "phx_join", Map.new(opts))})
+    ref = get_main_ref()
+    set_channel_info(:withdrawals, ref, [opts])
+    send_frame(frame(1, 1, "/withdrawals/", "phx_join", Map.new(opts)))
   end
 
   def create_withdrawal(opts) do
-    ref = get_ref()
-    join_ref = get_ref(:withdrawals_join_ref)
-    WebSockex.send_frame(__MODULE__, {:text, frame(ref, join_ref, "/withdrawals/", "create_withdrawal", Map.new(opts))})
+    ref = get_main_ref()
+    join_ref = get_join_ref(:withdrawals)
+    send_frame(frame(ref, join_ref, "/withdrawals/", "create_withdrawal", Map.new(opts)))
   end
 
   def send_frame(frame) do
     WebSockex.send_frame(__MODULE__, {:text, frame})
-  end
-
-  def handle_info({:"$gen_cast", :counter}, %{counter: counter} = state) do
-    {:reply, counter, state}
   end
 
   def handle_info({:"$gen_cast", :increment_ref}, %{counter: counter}) do
@@ -115,7 +115,12 @@ defmodule Cryptozaur.Drivers.LeverexWebsocket do
 
   def handle_frame({:text, msg}, state) do
     IO.inspect(msg)
-    {:reply, {:text, msg}, state}
+    {:ok, state}
+  end
+
+  def handle_disconnect(_connection_status_map, state) do
+    IO.puts("Reconnecting...")
+    {:reconnect, state}
   end
 
   def terminate(reason, state) do
@@ -138,11 +143,19 @@ defmodule Cryptozaur.Drivers.LeverexWebsocket do
     %{ref: to_string(ref), join_ref: to_string(join_ref), topic: topic, event: event, payload: payload} |> Poison.encode!()
   end
 
-  def get_ref(ref_name \\ :ref) do
-    :sys.get_state(__MODULE__) |> Map.get(ref_name)
+  def get_join_ref(ref_name \\ :ref) do
+    :sys.get_state(__MODULE__) |> Map.get(ref_name) |> Map.get(:join_ref)
+  end
+
+  def get_main_ref do
+    :sys.get_state(__MODULE__) |> Map.get(:ref)
   end
 
   def incr_ref do
     :sys.replace_state(__MODULE__, &Map.update!(&1, :counter, fn x -> x + 1 end))
+  end
+
+  def set_channel_info(channel, join_ref, opts) do
+    :sys.replace_state(__MODULE__, &Map.put(&1, channel, %{join_ref: join_ref, opts: opts}))
   end
 end
